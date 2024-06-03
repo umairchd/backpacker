@@ -1,0 +1,23 @@
+.promocode-alert {
+  width: 100%;
+  background: #58b18c4d;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 4px !important;
+  line-height: 1.5;
+  margin-top: 12px;
+  margin-bottom: 0;
+  margin-left: 0 !important;
+
+  &.promocode-alert-error {
+    background: #de180b5a;
+  }
+
+  :global(.btn-close-white) {
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+    padding: 10px 16px;
+    margin-top: 7px;
+  }
+}

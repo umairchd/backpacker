@@ -1,0 +1,56 @@
+.bottom-part {
+  display: flex;
+  align-items: center;
+  margin-top: 14px;
+  margin-bottom: 14px;
+
+  .payment-step-button {
+    width: 289px;
+    height: 64px;
+    margin-right: 30px;
+
+    @media screen and (max-width: 576px) {
+      width: 100%;
+      margin: 0 auto 20px auto;
+    }
+  }
+
+  & > div {
+    &:first-of-type {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 12px;
+        margin-right: 10px;
+
+        path {
+          fill: var(--color-green-dark);
+        }
+      }
+    }
+
+    div {
+      font-size: 14px;
+
+      &:last-of-type {
+        font-size: 20px;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    flex-direction: column;
+  }
+}
+
+.policy-terms {
+  font-size: 14px;
+
+  a {
+    text-decoration: underline;
+  }
+}

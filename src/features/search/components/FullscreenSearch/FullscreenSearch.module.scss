@@ -1,0 +1,148 @@
+span.highlight,
+span.title {
+  font-weight: 700;
+}
+
+.modal-hack {
+  padding-left: 0 !important;
+  // this is needed because somewhere is adding a padding-left:15 to the div
+}
+
+.morphsearch {
+  width: 100%;
+  min-height: 100%;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background: #f1f1f1;
+  position: absolute;
+  z-index: 10000;
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+  -webkit-transition-property: min-height, width, top, right;
+  transition-property: min-height, width, top, right;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  input[type="search"] {
+    /* reset normalize */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+.morphsearch-form {
+  margin: 0 auto;
+
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.morphsearch-input {
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  -webkit-transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+  transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: 7em;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2em;
+  }
+}
+.morphsearch-input-group {
+  &:after {
+    content: "";
+    background: url(../../images/magnifier.svg) no-repeat center;
+    width: 40px;
+    height: 40px;
+
+    @media screen and (max-width: 768px) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+
+.morphsearch-input::-ms-clear {
+  /* remove cross in IE */
+  display: none;
+}
+
+.morphsearch.hideInput .morphsearch-input {
+  color: transparent;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+/* placeholder */
+.morphsearch-input::-webkit-input-placeholder {
+  color: #c2c2c2;
+}
+
+.morphsearch-input:-moz-placeholder {
+  color: #c2c2c2;
+}
+
+.morphsearch-input::-moz-placeholder {
+  color: #c2c2c2;
+}
+
+.morphsearch-input:-ms-input-placeholder {
+  color: #c2c2c2;
+}
+
+/* hide placeholder when active in Chrome */
+.gn-search:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.morphsearch-content {
+  color: #333;
+  background: #f1f1f1;
+}
+
+.dummy-column h4 {
+  font-size: 1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #c2c2c2;
+  padding: 0.5em 0;
+}
+
+.dummy-media-object {
+  padding: 0.75em;
+  margin: 0.3em 0;
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(118, 117, 128, 0.05);
+
+  &:global(.Mui-focused), // mui uses a hard coded class name for focus state
+  &[data-focus="true"],
+  &.active,
+  &:active {
+    background: rgba(118, 117, 128, 0.1);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
+  }
+}

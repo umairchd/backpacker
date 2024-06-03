@@ -1,0 +1,46 @@
+.contact-details-form {
+  :global(.container) {
+    padding: 0;
+
+    & > div:not(:last-of-type) {
+      padding-bottom: 16px;
+    }
+  }
+
+  :global(.form-label) {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  :global(.row) {
+    & > div {
+      box-sizing: border-box;
+      position: relative;
+    }
+  }
+
+  .submit-button {
+    width: 137px;
+    height: 43px;
+    background: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    text-transform: none;
+    margin-bottom: 30px;
+
+    &:active,
+    &:focus {
+      background: var(--color-green-dark);
+      border-color: var(--color-green-dark);
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .contact-us-form {
+    .submit-button {
+      width: 90%;
+      margin: auto;
+      display: block;
+    }
+  }
+}

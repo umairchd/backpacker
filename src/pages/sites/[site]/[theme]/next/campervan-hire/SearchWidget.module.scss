@@ -1,0 +1,1486 @@
+.campervan-widget {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 1160px) {
+    display: block;
+  }
+
+  :global(.roaver) {
+    --roaver-color-text-primary: #ffffff;
+    --roaver-color-text-primary-dark: #1f2726;
+    --roaver-color-text-primary-light: #6f6f6f;
+    --roaver-color-text-secondary: var(--primary);
+    --roaver-color-text-secondary-dark: var(--primary-transparent-bg-darker);
+    --roaver-color-text-secondary-light: var(--primary-transparent-bg-darker);
+    --roaver-color-text-tertiary: #2a2823;
+    --roaver-color-text-tertiary-dark: #303030;
+    --roaver-color-text-tertiary-light: #4a4a4a;
+    --roaver-color-back-primary: var(--primary);
+    --roaver-color-back-primary-dark: #333333;
+    --roaver-color-back-primary-light: #bbdcd6;
+    --roaver-color-back-primary-alpha: #5e8b8399;
+    --roaver-color-back-primary-dark-alpha: #3333338c;
+    --roaver-color-back-primary-light-alpha: #78b2a793;
+    --roaver-color-back-secondary: #3333338c;
+    --roaver-color-back-secondary-dark: #70baad;
+    --roaver-color-back-secondary-light: #aedcd3;
+    --roaver-color-back-secondary-alpha: #44938480;
+    --roaver-color-back-secondary-dark-alpha: #1c383386;
+    --roaver-color-back-secondary-light-alpha: #74b7ab8b;
+    --roaver-color-back-tertiary: #e3d5b8;
+    --roaver-color-back-tertiary-dark: #333333;
+    --roaver-color-back-tertiary-light: #ece0c9;
+    --roaver-color-back-tertiary-alpha: #e3d5b88e;
+    --roaver-color-back-tertiary-dark-alpha: #333333;
+    --roaver-color-back-tertiary-light-alpha: #e3d5b889;
+    --roaver-color-back-quaternary: #eee;
+    --roaver-color-back-quaternary-dark: #e1e1e1;
+    --roaver-color-back-quaternary-light: #fbfbfb;
+    --roaver-color-back-quaternary-alpha: hsla(0, 0%, 93%, 0.5);
+    --roaver-color-back-quaternary-dark-alpha: hsla(0, 0%, 88%, 0.5);
+    --roaver-color-back-quaternary-light-alpha: hsla(0, 0%, 98%, 0.5);
+    --roaver-color-input-primary: var(--primary);
+    --roaver-color-input-primary-dark: var(--primary-transparent-bg-darker);
+    --roaver-color-input-primary-light: var(--primary);
+    --roaver-color-input-primary-alpha: var(--primary-transparent-bg-darker);
+    --roaver-color-input-success-text: #39b54a;
+    --roaver-color-input-success-text-dark: #33a242;
+    --roaver-color-input-success-text-light: #44c455;
+    --roaver-color-input-success-back: #bfe2c2;
+    --roaver-color-input-success-back-dark: #addab1;
+    --roaver-color-input-success-back-light: #d1ead3;
+    --roaver-color-input-error-text: #942020;
+    --roaver-color-input-error-text-dark: #7f1b1b;
+    --roaver-color-input-error-text-light: #a92525;
+    --roaver-color-input-error-back: #cfb4b4;
+    --roaver-color-input-error-back-dark: #c5a4a4;
+    --roaver-color-input-error-back-light: #d9c4c4;
+    --roaver-color-input-warn-text: #d3a200;
+    --roaver-color-input-warn-text-dark: #ba8e00;
+    --roaver-color-input-warn-text-light: #edb600;
+    --roaver-color-input-warn-back: #f1ebc3;
+    --roaver-color-input-warn-back-dark: #ece4ae;
+    --roaver-color-input-warn-back-light: #f6f2d8;
+    --roaver-color-back-shadow: rgba(0, 0, 0, 0.07);
+    color: var(--roaver-color-text-primary);
+    font-family: var(--font-primary);
+    font-style: normal;
+    font-weight: 300;
+  }
+
+  :global(select[name="driver_license"]) {
+    color: black;
+  }
+
+  :global(.roaver #app) {
+    width: 1075px;
+
+    @media screen and (max-width: 1160px) {
+      width: 100%;
+    }
+  }
+
+  :global(.roaver #main),
+  :global(.roaver .body) {
+    padding: 0;
+  }
+
+  :global(.roaver #qsm-switch) {
+    border-bottom: 2px solid #b1b9cc;
+  }
+
+  :global(.roaver #qsm-switch a.active) {
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 2.5px solid #000;
+    margin-bottom: -2px;
+    background: #fff;
+  }
+
+  :global(.roaver .qsm-holder),
+  :global(.roaver #qsm-switch) {
+    background: #fff;
+  }
+
+  :global(.roaver #qsm-switch a) {
+    font-size: 18px;
+    text-align: left;
+    padding: 0 0 18px 0;
+    color: #000;
+    background: #fff;
+
+    span {
+      font-size: 14px;
+      margin-top: 8px;
+      color: #333;
+    }
+
+    &:first-child {
+      margin-right: 40px;
+
+      @media screen and (max-width: 768px) {
+        margin-right: 0;
+      }
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  :global(.roaver .daterangepicker .calendar-table td.available:hover) {
+    color: #fff;
+  }
+
+  :global(.roaver .input-field .field .icon) {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    flex: 0;
+  }
+
+  :global(.roaver .daterangepicker .calendar-table td) {
+    border: 0;
+  }
+
+  :global(.roaver .daterangepicker .drp-calendar.left),
+  :global(.roaver .daterangepicker .drp-calendar.right) {
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 12px 6px;
+    }
+  }
+
+  :global(.roaver .form-row label.error) {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  :global(.roaver .input-field .field) {
+    border-radius: 8px;
+    border: 1px solid #dee0e6;
+    background: #f8f9fb;
+    margin-right: 16px;
+    padding: 0 8px;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  :global(.roaver .icon-right-open:before) {
+    display: none;
+  }
+
+  :global(.roaver .select2-container--default .select2-selection--single),
+  :global(.roaver .input-field .field input),
+  :global(.roaver .daterangepicker .calendar-table td.off) {
+    background: transparent;
+    box-shadow: none;
+    color: #000;
+  }
+
+  :global(.roaver.select2-dropdown .select2-results__option--group .select2-results__option) {
+    margin: 0;
+  }
+
+  :global(.roaver .select2-results__option--selectable),
+  :global(.roaver.select2-dropdown .select2-results__option--group) {
+    margin: 0 !important;
+  }
+
+  :global(.roaver .select2-container--default .select2-selection--single .select2-selection__rendered) {
+    color: #444;
+  }
+
+  :global(.roaver .select2-container--default .select2-selection--single) {
+    border: 0 !important;
+    max-width: 200px;
+
+    @media (min-width: 940px) and (max-width: 1160px) {
+      max-width: 150px;
+    }
+
+    @media screen and (max-width: 940px) {
+      max-width: 100px;
+    }
+  }
+
+  :global(.roaver .qsm-holder) {
+    padding: 16px 0 0 0;
+  }
+
+  :global(.roaver .field-row) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  :global(.roaver .input-field .small-icon.icon-down-open:before) {
+    display: none;
+  }
+
+  :global(.roaver .select2-container--default .select2-selection--single .select2-selection__placeholder) {
+    font-size: 14px;
+    color: #999;
+  }
+
+  :global(.roaver .select2-container .select2-selection__arrow:before) {
+    right: 5px;
+  }
+
+  :global(.roaver .input-field label) {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      max-width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  :global(.roaver .body a:hover) {
+    text-decoration: none;
+  }
+
+  :global(.roaver .info.icon-info) {
+    color: var(--primary);
+
+    &:before {
+      font-size: 16px;
+    }
+  }
+
+  :global(.roaver .search-field input#pickup_date_display) {
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .search-field input#dropoff_date_display) {
+    border: 0;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .vehicle__notes .important-notes),
+  :global(.roaver .vehicle__notes > .confirmation) {
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .vehicle__booking__column) {
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
+  }
+
+  :global(.roaver .locations .location-block h3) {
+    font-weight: 600;
+
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  :global(.roaver .btn) {
+    color: white;
+    font-size: 18px;
+    text-transform: capitalize;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 20px;
+      height: auto;
+      padding: 0;
+    }
+
+    &:before {
+      content: url(./icons/icn-bx-search.svg);
+      width: 24px;
+      height: auto;
+      margin-right: 5px;
+      margin-bottom: -5px;
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: -10px;
+      }
+    }
+  }
+
+  :global(.roaver .daterangepicker) {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    font-size: 16px;
+    flex-flow: row;
+    z-index: 1000;
+    margin: 0;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      flex-flow: column;
+      position: fixed;
+      top: 52%;
+      border: 0;
+      background-color: #fff;
+      overflow: auto;
+    }
+
+    @media screen and (max-height: 896px) {
+      top: 55%;
+      height: 560px;
+      padding-top: 45px;
+    }
+
+    @media screen and (max-height: 768px) {
+      top: 60%;
+      height: 560px;
+      padding-top: 45px;
+    }
+
+    @media screen and (max-height: 667px) {
+      top: 60%;
+      height: 460px;
+      padding-top: 140px;
+    }
+  }
+
+  :global(.roaver .daterangepicker .calendar-table td.disabled) {
+    color: #b2b2b2;
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .daterangepicker .calendar-table td.available) {
+    font-weight: 600;
+    color: #000;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .daterangepicker .calendar-table th) {
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  :global(.roaver .daterangepicker .calendar-table th.month) {
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  :global(.roaver .daterangepicker .calendar-table th.next span),
+  :global(.roaver .daterangepicker .calendar-table th.prev span) {
+    border-color: var(--primary);
+  }
+
+  :global(.roaver .daterangepicker .calendar-table td.active),
+  :global(.roaver .daterangepicker .calendar-table td.in-range) {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  :global(.roaver .ui-notice) {
+    color: red;
+  }
+
+  :global(.roaver .input-field .field select) {
+    width: 100%;
+    background-color: #f8f9fb;
+    box-shadow: none;
+
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  :global(.roaver #search-form .arrow) {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    :global(.roaver .body) {
+      width: 100%;
+
+      & > p {
+        font-size: 14px;
+      }
+    }
+
+    :global(.roaver #qsm-switch a span) {
+      width: 100%;
+      max-width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
+    }
+
+    :global(.roaver #search-slogan) {
+      display: none;
+    }
+
+    :global(.roaver .input-field .field) {
+      max-width: 100%;
+    }
+
+    :global(.roaver #qsm-switch a) {
+      margin-top: 20px;
+
+      @media screen and (max-width: 768px) {
+        margin-top: 0;
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  // Booking Flow Page
+  :global(.roaver .search-info) {
+    background: var(--primary);
+    border-radius: 8px;
+    padding: 16px;
+    color: #fff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  :global(.roaver #search-btns) {
+    padding: 0;
+  }
+
+  :global(.roaver #loading-info) {
+    border: none;
+    color: var(--roaver-color-text-primary-dark);
+    text-align: left;
+    font-size: 14px;
+  }
+
+  :global(.roaver .vehicle) {
+    background-color: #fff;
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver #header-btns .btn:first-child) {
+    color: #fff;
+  }
+
+  :global(.roaver .body h1),
+  :global(.roaver .body h2),
+  :global(.roaver .body h3),
+  :global(.roaver .icon-zoom-in:before),
+  :global(.roaver .campervan-detail .campervan-detail-aligner),
+  :global(.roaver .slick-slider .slick-dots li button:before),
+  :global(.roaver .filter-rows select),
+  :global(.roaver .filter-row span),
+  :global(.roaver .tag-notice),
+  :global(.roaver .info-text),
+  :global(.roaver .info-text a),
+  :global(.roaver .body a),
+  :global(.roaver .insurance a span),
+  :global(.roaver .locations .location-block a),
+  :global(.roaver .row-org_rate) {
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver .select-holder select) {
+    color: var(--roaver-color-text-primary-dark);
+    min-width: 150px;
+    margin-left: -25px;
+
+    @media screen and (max-width: 768px) {
+      margin-left: -20px;
+    }
+  }
+
+  :global(.roaver .select-holder .small-icon) {
+    margin-right: -5px;
+    color: var(--roaver-color-text-primary-dark);
+
+    @media screen and (max-width: 768px) {
+      margin-right: -10px;
+    }
+  }
+
+  :global(.roaver .icon-bar .part) {
+    font-size: 14px;
+    color: var(--roaver-color-text-primary-dark);
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .form-row) {
+    padding: 0;
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  :global(.roaver .insurance__box i) {
+    z-index: 80;
+  }
+
+  :global(.roaver .number-group input[type="button"]) {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  :global(.roaver #price-bar .aligner) {
+    @media screen and (max-width: 765px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  :global(.roaver .btn-submit) {
+    background: var(--roaver-color-input-success-text-dark);
+    border: none;
+    margin-top: 20px;
+  }
+
+  :global(.roaver .option-table thead th),
+  :global(.roaver .option-table label.text) {
+    color: var(--roaver-color-text-primary-dark);
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .filter-rows select) {
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver .filter-rows .icon),
+  :global(.roaver .filter-rows .small-icon) {
+    color: var(--roaver-color-text-primary-dark);
+    margin-top: 5px;
+  }
+
+  :global(.roaver .trip-details),
+  :global(.roaver .insurance__box),
+  :global(.roaver .search-results__filters) {
+    background-color: #eeeeee;
+    color: var(--roaver-color-text-primary-dark);
+    border-radius: 8px;
+    border: none;
+    box-shadow: none;
+  }
+
+  :global(.roaver .locations .location-block) {
+    background-color: #eeeeee;
+    color: var(--roaver-color-text-primary-dark);
+    border-radius: 8px;
+    border: none;
+    box-shadow: none;
+
+    font-size: 14px;
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .vehicle__booking .price-table-container .price-table thead tr th),
+  :global(.roaver .vehicle__booking .price-table-container .price-table tbody tr td) {
+    font-size: 14px;
+    font-weight: 500;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .option-table td) {
+    @media screen and (max-width: 768px) {
+      line-height: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  :global(.roaver .quote-options .vehicle .icon-bar div) {
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .select2-container .select2-selection--single .select2-selection__rendered) {
+    padding: 0 0 0 10px;
+    font-weight: 500;
+
+    @media screen and (max-width: 768px) {
+      padding: 0;
+      width: max-content;
+      font-size: 14px;
+    }
+  }
+
+  :global(.roaver .daterangepicker .calendar-table th.available:hover) {
+    background: transparent;
+  }
+
+  :global(.roaver .vehicle__booking .price-table-container .price-table tbody tr.total td) {
+    font-weight: 600 !important;
+    font-size: 14px;
+  }
+
+  :global(.roaver .filter-holder.open) {
+    border: none;
+  }
+
+  :global(.roaver .filter-holder .filter-label) {
+    border: none;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  :global(.roaver #search-btns #change-search) {
+    padding: 16px;
+    font-weight: 500;
+    font-size: 14px;
+
+    &:before {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      margin: 20px 0 0 0;
+      padding: 5px;
+    }
+  }
+
+  :global(.roaver #search-btns .btn) {
+    @media screen and (max-width: 768px) {
+      margin: 20px 0 0 20px;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  :global(.roaver .slick-slider .slick-dots) {
+    @media screen and (max-width: 768px) {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+
+  :global(.roaver .overview-vehicle__detail h2) {
+    @media screen and (max-width: 768px) {
+      margin-top: 20px;
+    }
+  }
+
+  :global(.roaver .checkbox input:checked ~ ins) {
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
+    height: 16px !important;
+    width: 8px !important;
+    left: 5px !important;
+    top: -2px !important;
+  }
+
+  :global(.roaver .info-row) {
+    font-size: 16px;
+    font-weight: 600;
+
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+
+  :global(.roaver .info-row .left) {
+    padding-right: 5px;
+  }
+
+  :global(.roaver .icon-right-open) {
+    padding-right: 5px;
+
+    &:before {
+      content: "\e81f";
+      display: inline-block;
+      font-family: fa;
+      font-style: normal;
+    }
+  }
+
+  :global(.roaver .no-vehicles) {
+    box-shadow: none;
+    background: #333;
+    color: #fff;
+
+    h2 {
+      color: #fff;
+    }
+  }
+
+  :global(.roaver #search-holder-background) {
+    background-color: #fff;
+  }
+
+  :global(.roaver .select2-container) {
+    width: 40px !important;
+  }
+
+  :global(.roaver .vehicle h3) {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+  }
+
+  :global(.roaver div.label) {
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 5px;
+  }
+
+  :global(.roaver .campervans__list .vehicle .btn-holder .book-btn) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    &:before {
+      margin-bottom: -15px;
+    }
+  }
+
+  :global(.roaver .pagination .page-link) {
+    text-shadow: none;
+    border-radius: 0;
+    color: #fff;
+    line-height: 40px;
+  }
+
+  :global(.roaver .campervans__list .vehicle .btn-holder .btn) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    max-width: 200px;
+
+    &:before {
+      display: none;
+    }
+
+    &:hover {
+      text-decoration: none;
+      border: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      height: 40px;
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+
+  :global(.roaver #steps) {
+    display: none;
+  }
+
+  :global(.roaver .vehicle__pay-now),
+  :global(.roaver .insurance .recommended) {
+    color: #fff;
+  }
+
+  :global(.roaver .quote-options i) {
+    color: #333;
+    font-size: 14px;
+  }
+
+  :global(.roaver .extras .discount-code .discount-code-check) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-left: 10px;
+    width: 150px;
+    padding: 0;
+
+    &:before {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 220px;
+      margin-left: 20px;
+      margin-top: 0;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  :global(.roaver .extras .discount-code .discount-form .entry .form-field) {
+    @media screen and (max-width: 768px) {
+      margin: 0;
+    }
+  }
+
+  :global(.roaver .btn-holder) {
+    &:before {
+      display: none;
+    }
+  }
+
+  :global(.roaver .insurance input:checked ~ .insurance__box) {
+    background: #eee;
+  }
+
+  :global(.roaver .insurance__box h3) {
+    margin-bottom: 10px;
+    margin-top: -5px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      margin-left: 30px;
+      margin-bottom: 15px;
+      margin-top: -1px;
+    }
+  }
+
+  :global(.roaver .large-prices > .price) {
+    display: flex;
+    align-items: center;
+  }
+
+  :global(.roaver .large-prices h4) {
+    font-size: 18px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  :global(.roaver .locations .location-block select) {
+    border: 0;
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver .insurance input:checked ~ .insurance__box i:before) {
+    color: #fff;
+  }
+
+  :global(.roaver #option-form h2) {
+    margin-bottom: 0;
+
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+    }
+  }
+  :global(.roaver .price-overview h2) {
+    margin-bottom: 0;
+  }
+
+  :global(.roaver .quote-overview .overview-vehicle__price) {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+
+  :global(.roaver .btn.blue) {
+    background: var(--roaver-color-back-tertiary-dark-alpha);
+  }
+
+  :global(.roaver .campervan-detail #main) {
+    background: #fff;
+
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
+  }
+
+  :global(.roaver .tag-notice) {
+    padding: 15px 0;
+  }
+
+  :global(.roaver .campervan-detail .intro-part .body) {
+    padding-bottom: 26px;
+
+    & > p {
+      font-size: 14px;
+    }
+  }
+
+  :global(.roaver .campervan-detail h1) {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+
+    @media screen and (max-width: 768px) {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+  }
+
+  :global(.roaver .campervan-detail h2) {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      padding: 0;
+      text-align: center;
+    }
+  }
+
+  :global(.roaver .tab-links a) {
+    font-weight: 600;
+    background: #fff;
+    color: var(--roaver-color-text-primary-dark);
+    font-size: 14px;
+  }
+
+  :global(.roaver .campervan-detail .tag_groups .tag_group h3) {
+    font-weight: 600;
+    font-weight: 18px;
+  }
+
+  :global(.roaver #book-btn-bottom .btn) {
+    display: inline-flex;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  :global(.roaver .campervan-detail .tag_groups) {
+    background: #eee;
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver .tab-links a.active) {
+    background-color: #eee;
+    padding-bottom: 0;
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver .campervan-detail .tag_groups .tag_group) {
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  :global(.roaver .campervan-detail .tag_groups .tag_group ul li span) {
+    font-style: italic;
+  }
+
+  :global(.roaver .trip-details .more-details) {
+    margin: 0;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 10px;
+    }
+  }
+
+  :global(.roaver .trip-details .more-details table) {
+    font-size: 14px;
+  }
+
+  :global(.roaver .trip-details .details h2) {
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: normal;
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .vehicle__booking .price-table-container .price-table) {
+    padding: 16px;
+    background: #eee;
+    margin-top: -25px;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
+  :global(.roaver .trip-details.open) {
+    padding: 12px;
+    margin: 0;
+  }
+
+  :global(.roaver .trip-details.open .more-details h2) {
+    font-size: 16px;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 0;
+      font-size: 14px;
+    }
+  }
+
+  :global(.roaver .trip-details.open .more-details.first) {
+    margin-top: 0;
+  }
+
+  :global(.roaver .more-options-link) {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--roaver-color-text-primary-dark);
+    margin-top: 15px;
+  }
+
+  :global(.roaver #search-holder .qsm-holder) {
+    background: transparent;
+  }
+
+  :global(.roaver .vehicle__notes) {
+    border-color: var(--primary);
+  }
+
+  :global(.roaver .options-field label) {
+    max-width: 100%;
+    white-space: unset;
+  }
+
+  :global(.roaver .vehicle__booking .price-table-container) {
+    margin-top: 0;
+
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
+  }
+
+  :global(.roaver .price-table tr th) {
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  :global(.roaver .price-table #bottomline .discount) {
+    font-style: italic;
+  }
+
+  :global(.roaver .quote-overview .overview-vehicle) {
+    background: transparent;
+    margin-top: 20px;
+  }
+
+  :global(.roaver .vehicle__pay-now) {
+    margin: 20px 0 0 0;
+    width: 100%;
+  }
+
+  :global(.roaver .vehicle__pay-now .pre-price) {
+    color: #fff;
+    margin-bottom: 2px;
+    font-size: 13px;
+  }
+
+  :global(.roaver .vehicle__pay-now .price) {
+    color: #fff;
+  }
+
+  :global(.roaver .vehicle__pay-now .balance-holder) {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  :global(.roaver .insurance__box .includes-height),
+  :global(.roaver .insurance__box table) {
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .extras .discount-code .discount-form) {
+    margin: 12px 0 0 0;
+    width: 425px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  :global(.roaver .option-table) {
+    @media screen and (max-width: 1160px) {
+      width: 100%;
+    }
+  }
+
+  :global(.roaver .extras .options) {
+    width: 56%;
+
+    @media screen and (max-width: 1160px) {
+      width: 100%;
+    }
+  }
+
+  :global(.roaver .extras .discount-code) {
+    width: 42%;
+    margin-left: 10px;
+
+    @media screen and (max-width: 1160px) {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 20px;
+    }
+  }
+
+  :global(.roaver label.error) {
+    background: #fff;
+    margin: 0;
+    font-style: italic;
+    font-size: 14px;
+    color: red;
+    font-weight: 400;
+  }
+
+  :global(.roaver .locations .location-block .control-label) {
+    width: 100%;
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver .quote-overview .trip-details) {
+    margin: 0;
+    padding: 20px 1.5rem 20px 1.5rem;
+
+    @media screen and (max-width: 768px) {
+      padding: 1.5rem;
+    }
+  }
+
+  :global(.roaver table tr td) {
+    padding-right: 10px;
+    color: var(--roaver-color-text-primary-dark);
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+
+  :global(.roaver .overview-vehicle__image) {
+    margin: 0;
+  }
+
+  :global(.roaver .quote-overview #overview-vehicle__bond-info) {
+    font-size: 14px;
+    color: var(--primary);
+  }
+
+  :global(.roaver .price-overview) {
+    background: #eee;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  :global(.roaver .filter-row.checkbox-row) {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+
+  :global(.roaver .price-table thead th) {
+    color: var(--roaver-color-text-primary-dark);
+    padding: 0;
+    font-size: 14px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 11px;
+    }
+  }
+  :global(.roaver .filter-row.checkbox-row label) {
+    &:nth-child(2) {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  :global(.roaver .icon-bar) {
+    margin-bottom: 20px;
+  }
+
+  :global(.roaver .campervans__list .vehicle .btn-holder) {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  :global(.roaver .search-info-aligner) {
+    @media screen and (max-width: 768px) {
+      padding: 50px 0 0;
+    }
+  }
+
+  :global(.roaver .select-holder) {
+    @media screen and (max-width: 768px) {
+      position: relative;
+      left: 60%;
+      top: -20px;
+    }
+  }
+
+  :global(.roaver .option-table label.text) {
+    @media screen and (max-width: 768px) {
+      width: 160px;
+    }
+  }
+
+  :global(.roaver .quote-form .body p) {
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      color: var(--roaver-color-text-primary-dark);
+    }
+  }
+  :global(.roaver .aligner__medium p) {
+    color: var(--roaver-color-text-primary-dark);
+  }
+
+  :global(.roaver .secure-form .header h3) {
+    font-style: italic;
+    line-height: 1.5;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+
+  :global(.roaver .select2-container.select2-container--below),
+  :global(.roaver .form-row > .select2-container) {
+    border-radius: 0;
+    background-color: #f8f9fb;
+    width: 100% !important;
+  }
+
+  :global(.roaver .form-field#pickup_date_display),
+  :global(.roaver input[type="radio"]),
+  :global(.roaver .vehicle-label),
+  :global(.roaver .radio-mobile-group),
+  :global(.roaver .number-group input[type="number"]),
+  :global(.roaver .secure-form .checkbox),
+  :global(.roaver .form-field) {
+    background-color: #f8f9fb;
+    box-shadow: none;
+  }
+
+  :global(.form-select:before) {
+    display: none;
+  }
+
+  :global(.roaver .range-radios) {
+    background-color: transparent;
+    border: none;
+    background-image: none;
+    margin-bottom: 80px;
+  }
+
+  :global(.roaver .form-row .radio-label) {
+    @media screen and (max-width: 768px) {
+      margin-top: -22px;
+      text-align: left;
+      padding-left: 40px;
+    }
+  }
+
+  :global(.roaver .important .radio-mobile-group),
+  :global(.roaver .radio-mobile-group.multiple) {
+    @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  :global(.roaver .secure-form .textarea .icon) {
+    @media screen and (max-width: 768px) {
+      margin-top: 20px;
+    }
+  }
+
+  :global(.roaver .secure-form fieldset legend) {
+    margin-bottom: 15px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      margin-top: 5px;
+    }
+  }
+
+  :global(.roaver .radio-mobile-group.horizontal div) {
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  :global(.roaver .radio-mobile-group.horizontal div label) {
+    @media screen and (max-width: 768px) {
+      border-top: 1px solid var(--roaver-color-back-quaternary-dark);
+    }
+  }
+
+  :global(.roaver .secure-form .option-holder) {
+    background: transparent;
+    border: none;
+  }
+
+  :global(.roaver .radio-mobile input:checked ~ label) {
+    background-color: var(--primary);
+    color: #fff;
+  }
+
+  :global(.roaver .form-field#dropoff_date_display) {
+    background-color: #f8f9fb;
+    box-shadow: none;
+    @media screen and (max-width: 768px) {
+      padding-left: 40px;
+    }
+  }
+
+  :global(#main .aligner .quote-aligner .intro) {
+    color: black;
+  }
+
+  :global(#main .aligner .quote-aligner .intro p) {
+    margin-top: 25px;
+  }
+
+  :global(#option-form .aligner .discount-code input.form-control) {
+    color: black;
+  }
+
+  // Show less trip details booking flow 1
+  :global(#main #trip-details a.more-details-link.more-link) {
+    position: absolute;
+    bottom: 10px;
+    left: 55%;
+    color: var(--primary);
+    font-size: 14px;
+    @media screen and (max-width: 768px) {
+      left: 30%;
+    }
+  }
+
+  // Show less trip details container booking flow 2
+  :global(#main .vehicle .vehicle__booking #trip-details.trip-details.open) {
+    padding-bottom: 50px;
+  }
+
+  // Show less trip details container booking flow 3
+  :global(#main .trip-intro #trip-details.trip-details.open) {
+    padding-bottom: 50px;
+    padding-top: 10px;
+  }
+
+  // Show less trip details booking flow 3
+  :global(#main .trip-intro #trip-details a.more-details-link.more-link) {
+    bottom: 8px;
+    font-size: 13px;
+    @media screen and (max-width: 768px) {
+      left: 27%;
+    }
+  }
+
+  :global(#main #trip-details .details h2) {
+    @media screen and (max-width: 768px) {
+      padding-top: 15px;
+    }
+  }
+
+  // Start booking and Vehicle Details
+  :global(#main .aligner .btn-holder) {
+    @media screen and (max-width: 768px) {
+      gap: 10px;
+    }
+  }
+
+  // Start booking and Vehicle Details button color
+  :global(#main .aligner a.btn) {
+    color: white;
+  }
+
+  // select insurance & extra options on the next page
+  :global(#main .aligner .select-insurance-info) {
+    @media screen and (max-width: 768px) {
+      margin-top: 15px;
+    }
+  }
+
+  // Get in Touch button
+  :global(#main .aligner.outro a) {
+    max-width: 100%;
+    min-width: 170px;
+  }
+
+  // Have a question about your quote, require an update or want to change something? Click above
+  :global(#main .aligner.outro) {
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  // Confirm flow Proceed to Payment button
+  :global(#main .check-form #price-bar .btn-holder #option-form-submit) {
+    max-width: 100%;
+    min-width: 270px;
+  }
+
+  :global(#main .vehicle .row.vehicle__booking) {
+    @media screen and (min-width: 993px) {
+      min-height: 220px;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.details-accordion {
+  :global(.form-label) {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  :global {
+    .accordion-body {
+      padding: 0;
+    }
+
+    .accordion-item {
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      .accordion-header {
+        svg.fa-circle-check {
+          width: 18px;
+          position: relative;
+          margin-left: 12px;
+
+          path {
+            fill: var(--color-green-dark);
+          }
+        }
+
+        .accordion-button {
+          font-size: 20px;
+          font-weight: 600;
+          padding-left: 35px;
+
+          & > svg {
+            left: 0;
+            right: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .booking-details-wrapper {
+    padding-left: 35px;
+
+    @media screen and (max-width: 992px) {
+      padding-left: 0;
+    }
+  }
+}
+
+.contact-details-card {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  @media screen and (max-width: 992px) {
+    padding: 0 !important;
+    border: none;
+  }
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icn-booked@3x</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icn-booked" fill="#B2B2B2">
+            <path d="M5,5.87121212 C7.944375,5.87121212 10,7.32631494 10,9.41017316 L10,10 L0,10 L0,9.41017316 C0,7.32631494 2.055625,5.87121212 5,5.87121212 Z M5,5 C3.61928813,5 2.5,3.88071187 2.5,2.5 C2.5,1.11928813 3.61928813,0 5,0 C6.38071187,0 7.5,1.11928813 7.5,2.5 C7.5,3.88071187 6.38071187,5 5,5 Z" id="Icon"></path>
+        </g>
+    </g>
+</svg>

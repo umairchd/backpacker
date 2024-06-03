@@ -1,0 +1,136 @@
+{
+  "productsStatistics": {
+    "countryStatistic": [
+      {
+        "id": "c510d4b8-d8a6-4aaf-b7ed-c01244d2af2a",
+        "name": "Australia",
+        "uniqueName": "australia",
+        "productCount": 149
+      },
+      {
+        "id": "73222540-f598-4f3d-a866-4a7d9f98e539",
+        "name": "New Zealand",
+        "uniqueName": "new-zealand",
+        "productCount": 98
+      },
+      {
+        "id": "646a11fc-b2f6-4dc4-82c4-c0231e2ed2c0",
+        "name": "United States",
+        "uniqueName": "united-states",
+        "productCount": 73
+      }
+    ],
+    "cityStatistic": [
+      {
+        "id": "0f928428-5b74-4e61-8bd7-10a87a46c757",
+        "name": "Queenstown",
+        "uniqueName": "queenstown",
+        "productCount": 54
+      },
+      {
+        "id": "0bf8bdc6-8398-439b-9412-a3110538d21a",
+        "name": "Cairns",
+        "uniqueName": "cairns",
+        "productCount": 29
+      },
+      {
+        "id": "1f11e0c0-2b1f-4b6b-9c0e-a3d8f866b2c3",
+        "name": "Sydney",
+        "uniqueName": "sydney",
+        "productCount": 23
+      },
+      {
+        "id": "413f3b4c-f6eb-4c31-b3d7-c612c0d70476",
+        "name": "Melbourne",
+        "uniqueName": "melbourne",
+        "productCount": 17
+      },
+      {
+        "id": "8b8999e1-1509-42ef-90fb-d578ce1a6046",
+        "name": "Brisbane",
+        "uniqueName": "brisbane",
+        "productCount": 5
+      },
+      {
+        "id": "a756faeb-be06-4010-a5f4-d8122931b914",
+        "name": "Adelaide",
+        "uniqueName": "adelaide",
+        "productCount": 5
+      }
+    ],
+    "categoryStatistic": [
+      {
+        "id": "c510d4b8-d8a6-4aaf-b7ed-c01244d2af2a",
+        "name": "Australia",
+        "uniqueName": "australia",
+        "productCount": 149
+      },
+      {
+        "id": "73222540-f598-4f3d-a866-4a7d9f98e539",
+        "name": "New Zealand",
+        "uniqueName": "new-zealand",
+        "productCount": 99
+      },
+      {
+        "id": "646a11fc-b2f6-4dc4-82c4-c0231e2ed2c0",
+        "name": "United States",
+        "uniqueName": "united-states",
+        "productCount": 73
+      },
+      {
+        "id": "5cfd76bc-13e5-4436-b34a-98525f6c007c",
+        "name": "United Arab Emirates",
+        "uniqueName": "united-arab-emirates",
+        "productCount": 61
+      },
+      {
+        "id": "6e01467f-c77c-4a30-99f0-56adf7291f3a",
+        "name": "Morocco",
+        "uniqueName": "morocco",
+        "productCount": 11
+      },
+      {
+        "id": "ef8e5dbd-d1ad-45a4-8ff3-67bc55df4632",
+        "name": "France",
+        "uniqueName": "france",
+        "productCount": 8
+      },
+      {
+        "id": "f4b77d3b-7ebc-46c3-9fda-0adac7cf4ff9",
+        "name": "Costa Rica",
+        "uniqueName": "costa-rica",
+        "productCount": 4
+      },
+      {
+        "id": "3f099592-4f29-462d-b344-df4343d56a3c",
+        "name": "Mexico",
+        "uniqueName": "mexico",
+        "productCount": 3
+      },
+      {
+        "id": "4753869b-26ec-453f-9bb0-89a0b8e7f1d3",
+        "name": "Oman",
+        "uniqueName": "oman",
+        "productCount": 2
+      },
+      {
+        "id": "beffdb91-74c3-408b-9cc5-789b618504f3",
+        "name": "Thailand",
+        "uniqueName": "thailand",
+        "productCount": 2
+      },
+      {
+        "id": "32bdd20e-c52a-4dca-82e3-4ff2f27dedf0",
+        "name": "Croatia",
+        "uniqueName": "croatia",
+        "productCount": 1
+      },
+      {
+        "id": "daf741ce-9a36-44f0-ab49-c53813c6f2ab",
+        "name": "Nepal",
+        "uniqueName": "nepal",
+        "productCount": 1
+      }
+    ]
+  }
+}

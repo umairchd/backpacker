@@ -1,0 +1,1133 @@
+@import "~react-calendar/dist/Calendar.css";
+
+.bg-primary {
+	background-color: var(--primary) !important;
+}
+
+.icon {
+	display: inline-block;
+	max-height: 1.5rem;
+	max-width: 1.5rem;
+	margin-right: 0.5rem;
+
+	img {
+		height: auto;
+		object-fit: cover;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.icon {
+		display: none;
+	}
+}
+
+.next-available-button {
+	border: none;
+	background: none;
+	text-decoration: underline;
+	color: var(--primary);
+	font-weight: 600;
+}
+
+.loading-calendar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 300px;
+}
+
+.limit-order-message {
+	background-color: #df190b;
+	color: #fff;
+	padding: 10px;
+	margin: 10px 0;
+	font-weight: 600;
+	white-space: pre-wrap;
+}
+
+.tile-spinner {
+	display: block;
+	height: 70%;
+}
+
+.booking-cal-cont {
+	.loading {
+		border-top: 1px solid #ccc;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		height: 100%;
+	}
+
+	display: block;
+	position: absolute;
+	overflow: hidden;
+	padding: 0;
+	width: 80%;
+	max-width: 960px;
+	height: 85vh;
+	background: #ffffff;
+	box-sizing: border-box;
+	top: 100px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.24);
+	z-index: 99;
+	margin: 0 auto;
+	border-radius: 0.5rem 0.5rem 0 0;
+	-webkit-border-radius: 0.5rem 0.5rem 0 0;
+	-moz-border-radius: 0.5rem 0.5rem 0 0;
+	& > .header-cont {
+		display: grid;
+		grid-auto-flow: row;
+		grid-template-columns: 1fr auto;
+		grid-gap: 1rem;
+		padding: 0 1.5rem;
+		width: 100%;
+		height: 5rem;
+		box-sizing: border-box;
+		align-items: center;
+		& > .header {
+			& h2 {
+				font-weight: 700;
+				font-size: 30px;
+				line-height: 38px;
+				padding: 0;
+				margin: 0;
+			}
+		}
+		& > .close2 {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 1rem;
+			height: 1rem;
+			padding: 0.7rem;
+			font-size: 32px;
+			cursor: pointer;
+			border-radius: 3rem;
+			-webkit-border-radius: 3rem;
+			-moz-border-radius: 3rem;
+			&:hover {
+				color: #ffffff;
+				background: var(--primary);
+				border-radius: 3rem;
+				-webkit-border-radius: 3rem;
+				-moz-border-radius: 3rem;
+			}
+		}
+	}
+	& > .pickerCont {
+		display: block;
+		grid-auto-flow: row;
+		grid-template-columns: auto;
+		grid-gap: 1rem;
+		padding: 1rem 1.5rem;
+		border: solid #d8d8d8;
+		border-width: 1px 0;
+		& > .number-input {
+			display: inline-grid;
+			grid-auto-flow: row;
+			grid-template-columns: repeat(2, auto);
+			grid-gap: 0.5rem;
+			place-items: center;
+			margin: 0 1rem 0.5rem 0;
+			& span {
+				display: block;
+				font-size: 10px;
+				color: #757575;
+				line-height: 2px;
+				margin-top: 2px;
+			}
+			& > * {
+				box-sizing: border-box;
+			}
+			& > div {
+				& > .plus:after {
+					transform: translate(-50%, -50%) rotate(90deg);
+					color: #ffffff;
+				}
+				& > button {
+					-webkit-appearance: none;
+					background-color: transparent;
+					border: none;
+					align-items: center;
+					justify-content: center;
+					width: 2rem;
+					height: 2rem;
+					cursor: pointer;
+					margin: 0;
+					position: relative;
+					&:before,
+					&:after {
+						content: "";
+						display: inline-block;
+						position: absolute;
+						width: 14px;
+						height: 2px;
+						border-radius: 1px;
+						-webkit-border-radius: 1px;
+						-moz-border-radius: 1px;
+						background-color: #ffffff;
+						transform: translate(-50%, -50%);
+					}
+					&:first-of-type {
+						border-radius: 32px 0 0 32px;
+						-webkit-border-radius: 32px 0 0 32px;
+						-moz-border-radius: 32px 0 0 32px;
+						background: var(--primary);
+						color: #ffffff;
+						height: 2.5rem;
+						width: 3rem;
+						margin-right: -4px;
+					}
+					&:last-of-type {
+						border-radius: 0 32px 32px 0;
+						-webkit-border-radius: 0 32px 32px 0;
+						-moz-border-radius: 0 32px 32px 0;
+						background: var(--primary);
+						color: #ffffff;
+						height: 2.5rem;
+						width: 3rem;
+						margin-left: -4px;
+					}
+				}
+				& > .quantity {
+					width: 3rem;
+					height: 2.5rem;
+					font-size: 1.5rem;
+					border-bottom: 1px solid #d8d8d8;
+					border-top: 1px solid #d8d8d8;
+					border-left: none;
+					border-right: none;
+					font-weight: bold;
+					text-align: center;
+					vertical-align: top;
+					padding: 1px 2px;
+					box-sizing: border-box;
+					outline: none;
+				}
+				input[type="number"] {
+					-moz-appearance: textfield;
+					/* Firefox */
+					// Safari
+					-webkit-text-fill-color: #000;
+					opacity: 1;
+					color: #000;
+				}
+				input::-webkit-outer-spin-button,
+				input::-webkit-inner-spin-button {
+					-webkit-appearance: none;
+					margin: 0;
+				}
+			}
+		}
+	}
+	& > .calender-detail-cont {
+		background: white;
+		padding: 0;
+
+		.details {
+			background: #f5f5f5;
+			max-height: 57vh;
+			overflow-y: auto;
+			width: 100%;
+			box-sizing: border-box;
+			position: relative;
+			padding: 1rem 1rem;
+			& > .date-header {
+				display: grid;
+				grid-auto-flow: row;
+				grid-template-columns: 1fr auto;
+				padding: 1rem 0.5rem 1rem 1rem;
+				position: fixed;
+				box-sizing: border-box;
+				width: 100%;
+				margin: -1rem 0 0 -16px;
+				border-bottom: 1px solid #d8d8d8;
+				background: #f5f5f5;
+				font-weight: 900;
+				z-index: 5;
+				place-items: baseline;
+
+				@media (min-width: 992px) {
+					width: 52.6%;
+				}
+
+				@media screen and (max-width: 1023px) {
+					width: 100%;
+				}
+			}
+			& > .deal-card-container {
+				display: flex;
+				flex-direction: column;
+				padding-top: 35px;
+			}
+		}
+	}
+}
+
+.slide-up-calendar {
+	animation: slide-up-calendar 0.35s cubic-bezier(0, 1.01, 0.41, 1.01)
+		forwards;
+}
+
+.calendarStep {
+	font-size: 24px;
+}
+
+.calendar-container {
+	background-color: white;
+
+	:global {
+		//change react calender custom style
+		.react-calendar {
+			border: none !important;
+			padding: 0;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			margin: auto;
+			overflow: hidden;
+			font-family: var(--bs-body-font-family);
+			width: 100%;
+
+			.react-calendar__navigation {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.react-calendar__tile {
+				background: none;
+			}
+
+			.react-calendar__tile--hasActive {
+				background-color: var(bs-primary);
+			}
+
+			.react-calendar__month-view__days {
+				border: none;
+			}
+
+			.react-calendar__month-view__days__day--weekend {
+				color: inherit;
+			}
+
+			.react-calendar__month-view__days__day--neighboringMonth {
+				color: #757575 !important;
+			}
+
+			.react-calendar__month-view__weekdays__weekday {
+				color: #757575;
+				font-weight: 300;
+				cursor: default;
+				display: inline-block;
+				text-align: center;
+				& > * {
+					text-decoration: none !important;
+				}
+
+				& abbr {
+					font-size: 12px;
+				}
+			}
+
+			.calendar__tile-label,
+			.calendar__tile-label:disabled {
+				font-size: 9px;
+				font-weight: 500;
+				color: var(--primary);
+				line-height: 0.25rem;
+				& > abbr {
+					font-weight: 700;
+					color: #000;
+					font-size: 14px;
+					margin-bottom: 10px;
+				}
+			}
+
+			.calendar__tile {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100% !important;
+				width: 80% !important;
+				padding: 4% 0;
+				transition: all 0.2s ease-in-out;
+				font-weight: 700;
+				font-family: var(--font-primary);
+				font-size: 12px;
+
+				& abbr {
+					font-weight: 700;
+				}
+
+				& span {
+					font-size: min(max(1rem, 3vw), 10px);
+					font-weight: 500;
+					color: var(--primary);
+					line-height: 0.25rem;
+					margin-top: 3px;
+					position: absolute;
+					bottom: 8px;
+				}
+
+				&:disabled {
+					color: #b2b2b2;
+					font-weight: 500;
+					cursor: not-allowed;
+					background: none;
+					position: relative;
+					&:hover {
+						color: #b2b2b2;
+					}
+				}
+
+				&:focus {
+					background: none !important;
+				}
+
+				&:hover {
+					background: none !important;
+					color: var(--primary);
+				}
+			}
+
+			.react-calendar__tile--active {
+				&:before {
+					background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHdpZHRoPSIyMXB4IiBoZWlnaHQ9IjIwcHgiIHZpZXdCb3g9IjAgMCAyMSAyMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDx0aXRsZT5pY24tbG0tZGVhbHMtd2hpdGU8L3RpdGxlPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZD0iTTE2LjMzMzMzMzMsMC44MzMzMzMzMzMgQzE2Ljc5MzU3MDYsMC44MzMzMzMzMzMgMTcuMTY2NjY2NywxLjIwNjQyOTM4IDE3LjE2NjY2NjcsMS42NjY2NjY2NyBDMTcuMTY2NjY2NywyLjEyNjkwMzk2IDE2Ljc5MzU3MDYsMi41IDE2LjMzMzMzMzMsMi41IEwxMy44MzI1LDIuNSBMMTMuODMzMDgwNyw1LjA0NTc0NjA2IEMxNy41ODMxNjEsNS40NjAxNjgwOCAyMC41LDguNjM5NDUxOTIgMjAuNSwxMi41IEMyMC41LDE2LjY0MjEzNTYgMTcuMTQyMTM1NiwyMCAxMywyMCBDMTAuMzYyMjExNCwyMCA4LjA0MjQ3NDQ4LDE4LjYzODI1OTEgNi43MDU0Mjk4MSwxNi41Nzk0MTc5IEM2LjU5NDMzODY2LDE2LjYzNDk0MDkgNi40Njc1NDA5NywxNi42NjY2NjY3IDYuMzMzMzMzMzMsMTYuNjY2NjY2NyBMMy44MzMzMzMzMywxNi42NjY2NjY3IEMzLjM3MzA5NjA0LDE2LjY2NjY2NjcgMywxNi4yOTM1NzA2IDMsMTUuODMzMzMzMyBDMywxNS4zNzMwOTYgMy4zNzMwOTYwNCwxNSAzLjgzMzMzMzMzLDE1IEw1LjkyNjkzNDUzLDE1LjAwMDQ4MTcgQzUuNzM5MzM1NDUsMTQuNDY5ODMxIDUuNjA5NzYxOTIsMTMuOTExNzY2NyA1LjU0NTgzODA3LDEzLjMzMzkxMjkgTDMsMTMuMzMzMzMzMyBDMi41Mzk3NjI3MSwxMy4zMzMzMzMzIDIuMTY2NjY2NjcsMTIuOTYwMjM3MyAyLjE2NjY2NjY3LDEyLjUgQzIuMTY2NjY2NjcsMTIuMDM5NzYyNyAyLjUzOTc2MjcxLDExLjY2NjY2NjcgMywxMS42NjY2NjY3IEw1LjU0NTc0NjA2LDExLjY2NjkxOTMgQzUuNjA5NjA0MzEsMTEuMDg5MDY5OCA1LjczOTExMDYyLDEwLjUzMTAwNDUgNS45MjY2NDE3OSwxMC4wMDAzNDY1IEwxLjMzMzMzMzMzLDEwIEMwLjg3MzA5NjA0MiwxMCAwLjUsOS42MjY5MDM5NiAwLjUsOS4xNjY2NjY2NyBDMC41LDguNzA2NDI5MzggMC44NzMwOTYwNDIsOC4zMzMzMzMzMyAxLjMzMzMzMzMzLDguMzMzMzMzMzMgTDYuNzYzMDc3ODYsOC4zMzMxNTM1NyBDNy45NjI2ODA3LDYuNTQxMTUxNzMgOS45MTQxMDQ4Miw1LjI5NDk1ODg1IDEyLjE2NjA4NzEsNS4wNDU4MzgwNyBMMTIuMTY1ODMzMywyLjUgTDkuNjY2NjY2NjcsMi41IEM5LjIwNjQyOTM4LDIuNSA4LjgzMzMzMzMzLDIuMTI2OTAzOTYgOC44MzMzMzMzMywxLjY2NjY2NjY3IEM4LjgzMzMzMzMzLDEuMjA2NDI5MzggOS4yMDY0MjkzOCwwLjgzMzMzMzMzMyA5LjY2NjY2NjY3LDAuODMzMzMzMzMzIEwxNi4zMzMzMzMzLDAuODMzMzMzMzMzIFogTTEuMzMzMzMzMzMsMTUgQzEuNzkzNTcwNjIsMTUgMi4xNjY2NjY2NywxNS4zNzMwOTYgMi4xNjY2NjY2NywxNS44MzMzMzMzIEMyLjE2NjY2NjY3LDE2LjI5MzU3MDYgMS43OTM1NzA2MiwxNi42NjY2NjY3IDEuMzMzMzMzMzMsMTYuNjY2NjY2NyBDMC44NzMwOTYwNDIsMTYuNjY2NjY2NyAwLjUsMTYuMjkzNTcwNiAwLjUsMTUuODMzMzMzMyBDMC41LDE1LjM3MzA5NiAwLjg3MzA5NjA0MiwxNSAxLjMzMzMzMzMzLDE1IFogTTEzLDcuNSBDMTIuNTc1MTY1Niw3LjUgMTIuMjI0NTgxNyw3LjgxNzkwNDMyIDEyLjE3MzE1OTUsOC4yMjg4MDE3NyBMMTIuMTY2NjY2Nyw4LjMzMzMzMzMzIEwxMi4xNjY1NDQ3LDExLjA1NjM3NDIgQzExLjY2ODQ0NDIsMTEuMzQ0NTY2MSAxMS4zMzMzMzMzLDExLjg4MzE0ODQgMTEuMzMzMzMzMywxMi41IEMxMS4zMzMzMzMzLDEzLjQyMDQ3NDYgMTIuMDc5NTI1NCwxNC4xNjY2NjY3IDEzLDE0LjE2NjY2NjcgQzEzLjkyMDQ3NDYsMTQuMTY2NjY2NyAxNC42NjY2NjY3LDEzLjQyMDQ3NDYgMTQuNjY2NjY2NywxMi41IEMxNC42NjY2NjY3LDExLjkzNDU1MjcgMTQuMzg1MDgwNSwxMS40MzQ4NzMzIDEzLjk1NDQ4NTIsMTEuMTMzNTM5MSBMMTMuODMzNDU1MywxMS4wNTYzNzQyIEwxMy44MzMzMzMzLDguMzMzMzMzMzMgQzEzLjgzMzMzMzMsNy44NzMwOTYwNCAxMy40NjAyMzczLDcuNSAxMyw3LjUgWiIgaWQ9Imljbi1sbS1kZWFscy13aGl0ZSIgZmlsbD0iI0ZGRkZGRiI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4K")
+						no-repeat center/cover;
+				}
+			}
+
+			.react-calendar__tile--active,
+			.calendar__tile-selected {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #ffffff !important;
+				cursor: default;
+				border-radius: 50%;
+				background: var(--primary) !important;
+				width: 1rem !important;
+
+				& > abbr {
+					color: #ffffff;
+				}
+				& span {
+					color: #ffffff;
+				}
+				&:hover {
+					background: var(--primary) !important;
+				}
+				&:focus {
+					background: var(--primary) !important;
+				}
+			}
+
+			.react-calendar__tile--now {
+				background: none;
+			}
+
+			.react-calendar__navigation__label {
+				padding: 1rem;
+				text-align: center;
+				font-weight: 700;
+				width: 230px;
+				flex-grow: inherit !important;
+				color: #000000;
+				background: none;
+
+				& span {
+					font-weight: 700;
+				}
+			}
+
+			.react-calendar__navigation__prev-button {
+				background: none;
+			}
+
+			.react-calendar__navigation button:enabled:hover,
+			.react-calendar__navigation button:enabled:focus {
+				background-color: transparent;
+			}
+
+			.react-calendar__navigation button[disabled] {
+				background: none !important;
+			}
+
+			.react-calendar__navigation__prev2-button {
+				display: none;
+			}
+
+			.react-calendar__navigation__next2-button {
+				display: none;
+			}
+
+			.react-calendar__navigation__arrow {
+				background: none;
+				color: var(--primary);
+				font-size: 30px;
+			}
+		}
+	}
+
+	.skeleton-calendar {
+		padding: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.calendarStep {
+		padding: 1rem 1.5rem 1rem 1.5rem;
+	}
+}
+
+.lm-deal {
+	animation: shake 0.15s infinite;
+	animation-iteration-count: 6;
+	animation-delay: 1s;
+	&:before {
+		position: absolute;
+		right: 71%;
+		content: "";
+		width: 16px;
+		height: 16px;
+		display: inline-block;
+		vertical-align: middle;
+		background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjFweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjEgMjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+aWNuLWxtLWRlYWxzLW9yYW5nZTwvdGl0bGU+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMTYuMzMzMzMzMywwLjgzMzMzMzMzMyBDMTYuNzkzNTcwNiwwLjgzMzMzMzMzMyAxNy4xNjY2NjY3LDEuMjA2NDI5MzggMTcuMTY2NjY2NywxLjY2NjY2NjY3IEMxNy4xNjY2NjY3LDIuMTI2OTAzOTYgMTYuNzkzNTcwNiwyLjUgMTYuMzMzMzMzMywyLjUgTDEzLjgzMjUsMi41IEwxMy44MzMwODA3LDUuMDQ1NzQ2MDYgQzE3LjU4MzE2MSw1LjQ2MDE2ODA4IDIwLjUsOC42Mzk0NTE5MiAyMC41LDEyLjUgQzIwLjUsMTYuNjQyMTM1NiAxNy4xNDIxMzU2LDIwIDEzLDIwIEMxMC4zNjIyMTE0LDIwIDguMDQyNDc0NDgsMTguNjM4MjU5MSA2LjcwNTQyOTgxLDE2LjU3OTQxNzkgQzYuNTk0MzM4NjYsMTYuNjM0OTQwOSA2LjQ2NzU0MDk3LDE2LjY2NjY2NjcgNi4zMzMzMzMzMywxNi42NjY2NjY3IEwzLjgzMzMzMzMzLDE2LjY2NjY2NjcgQzMuMzczMDk2MDQsMTYuNjY2NjY2NyAzLDE2LjI5MzU3MDYgMywxNS44MzMzMzMzIEMzLDE1LjM3MzA5NiAzLjM3MzA5NjA0LDE1IDMuODMzMzMzMzMsMTUgTDUuOTI2OTM0NTMsMTUuMDAwNDgxNyBDNS43MzkzMzU0NSwxNC40Njk4MzEgNS42MDk3NjE5MiwxMy45MTE3NjY3IDUuNTQ1ODM4MDcsMTMuMzMzOTEyOSBMMywxMy4zMzMzMzMzIEMyLjUzOTc2MjcxLDEzLjMzMzMzMzMgMi4xNjY2NjY2NywxMi45NjAyMzczIDIuMTY2NjY2NjcsMTIuNSBDMi4xNjY2NjY2NywxMi4wMzk3NjI3IDIuNTM5NzYyNzEsMTEuNjY2NjY2NyAzLDExLjY2NjY2NjcgTDUuNTQ1NzQ2MDYsMTEuNjY2OTE5MyBDNS42MDk2MDQzMSwxMS4wODkwNjk4IDUuNzM5MTEwNjIsMTAuNTMxMDA0NSA1LjkyNjY0MTc5LDEwLjAwMDM0NjUgTDEuMzMzMzMzMzMsMTAgQzAuODczMDk2MDQyLDEwIDAuNSw5LjYyNjkwMzk2IDAuNSw5LjE2NjY2NjY3IEMwLjUsOC43MDY0MjkzOCAwLjg3MzA5NjA0Miw4LjMzMzMzMzMzIDEuMzMzMzMzMzMsOC4zMzMzMzMzMyBMNi43NjMwNzc4Niw4LjMzMzE1MzU3IEM3Ljk2MjY4MDcsNi41NDExNTE3MyA5LjkxNDEwNDgyLDUuMjk0OTU4ODUgMTIuMTY2MDg3MSw1LjA0NTgzODA3IEwxMi4xNjU4MzMzLDIuNSBMOS42NjY2NjY2NywyLjUgQzkuMjA2NDI5MzgsMi41IDguODMzMzMzMzMsMi4xMjY5MDM5NiA4LjgzMzMzMzMzLDEuNjY2NjY2NjcgQzguODMzMzMzMzMsMS4yMDY0MjkzOCA5LjIwNjQyOTM4LDAuODMzMzMzMzMzIDkuNjY2NjY2NjcsMC44MzMzMzMzMzMgTDE2LjMzMzMzMzMsMC44MzMzMzMzMzMgWiBNMS4zMzMzMzMzMywxNSBDMS43OTM1NzA2MiwxNSAyLjE2NjY2NjY3LDE1LjM3MzA5NiAyLjE2NjY2NjY3LDE1LjgzMzMzMzMgQzIuMTY2NjY2NjcsMTYuMjkzNTcwNiAxLjc5MzU3MDYyLDE2LjY2NjY2NjcgMS4zMzMzMzMzMywxNi42NjY2NjY3IEMwLjg3MzA5NjA0MiwxNi42NjY2NjY3IDAuNSwxNi4yOTM1NzA2IDAuNSwxNS44MzMzMzMzIEMwLjUsMTUuMzczMDk2IDAuODczMDk2MDQyLDE1IDEuMzMzMzMzMzMsMTUgWiBNMTMsNy41IEMxMi41NzUxNjU2LDcuNSAxMi4yMjQ1ODE3LDcuODE3OTA0MzIgMTIuMTczMTU5NSw4LjIyODgwMTc3IEwxMi4xNjY2NjY3LDguMzMzMzMzMzMgTDEyLjE2NjU0NDcsMTEuMDU2Mzc0MiBDMTEuNjY4NDQ0MiwxMS4zNDQ1NjYxIDExLjMzMzMzMzMsMTEuODgzMTQ4NCAxMS4zMzMzMzMzLDEyLjUgQzExLjMzMzMzMzMsMTMuNDIwNDc0NiAxMi4wNzk1MjU0LDE0LjE2NjY2NjcgMTMsMTQuMTY2NjY2NyBDMTMuOTIwNDc0NiwxNC4xNjY2NjY3IDE0LjY2NjY2NjcsMTMuNDIwNDc0NiAxNC42NjY2NjY3LDEyLjUgQzE0LjY2NjY2NjcsMTEuOTM0NTUyNyAxNC4zODUwODA1LDExLjQzNDg3MzMgMTMuOTU0NDg1MiwxMS4xMzM1MzkxIEwxMy44MzM0NTUzLDExLjA1NjM3NDIgTDEzLjgzMzMzMzMsOC4zMzMzMzMzMyBDMTMuODMzMzMzMyw3Ljg3MzA5NjA0IDEzLjQ2MDIzNzMsNy41IDEzLDcuNSBaIiBpZD0iaWNuLWxtLWRlYWxzLW9yYW5nZSIgZmlsbD0iI0Y1NEQwRCI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4K")
+			no-repeat center/cover;
+	}
+}
+
+@media screen and (max-height: 700px) {
+	.booking-cal-cont
+		> .pickerCont
+		> .number-input
+		> div
+		> button:first-of-type,
+	.booking-cal-cont > .pickerCont > .number-input > div > button:last-of-type,
+	.booking-cal-cont > .pickerCont > .number-input > div > .quantity {
+		height: 2rem;
+	}
+
+	.booking-cal-cont > .header-cont > .header h2 {
+		font-size: 18px !important;
+		line-height: 30px !important;
+	}
+
+	.booking-cal-cont > .pickerCont {
+		padding-top: 0.5rem !important;
+		padding-bottom: 0 !important;
+	}
+
+	.picker-buttons {
+		display: flex;
+	}
+
+	.call-us-number {
+		padding: 0.5rem 0 !important;
+	}
+
+	.booking-cal-cont {
+		top: 50px !important;
+		height: 90vh !important;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	.calendarStep {
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.calendar-container {
+		background-color: white;
+		width: 100%;
+		overflow: hidden;
+
+		:global {
+			.react-calendar__tile--active,
+			.calendar__tile-selected {
+				height: 3.8rem !important;
+			}
+		}
+	}
+
+	.dateHeader {
+		width: 100% !important;
+		margin: -1.5rem 0 0 -16px !important;
+		position: absolute !important;
+	}
+
+	.booking-cal-cont {
+		width: 100%;
+		padding: 1rem 0;
+		overflow-y: scroll;
+
+		& > .header-cont {
+			padding: 0 1rem 3rem 1rem;
+			height: 0;
+
+			& > .header {
+				& h2 {
+					font-size: 24px;
+					line-height: 30px;
+				}
+			}
+		}
+
+		& > .pickerCont {
+			padding: 1rem;
+
+			& > .number-input {
+				display: grid;
+				justify-content: space-between;
+				margin: 0 0 1rem 0;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.booking-cal-cont {
+		width: 100%;
+		padding: 1rem 0;
+		overflow-y: scroll;
+
+		& > .header-cont {
+			padding: 0 1rem 3rem 1rem;
+			height: 0;
+
+			& > .header {
+				& h2 {
+					font-size: 24px;
+					line-height: 30px;
+				}
+			}
+		}
+
+		& > .pickerCont {
+			padding: 1rem;
+
+			& > .number-input {
+				display: grid;
+				justify-content: space-between;
+				margin: 0 0 1rem 0;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.calendar-container {
+		:global {
+			.react-calendar__month-view__days,
+			.react-calendar__month-view__weekdays {
+				max-width: 100% !important;
+				margin: auto;
+			}
+		}
+	}
+
+	.modal-dialog {
+		max-width: 750px !important;
+	}
+	.calendarStep {
+		font-size: 16px;
+	}
+}
+
+@media (min-width: 992px) {
+	.calendar-container {
+		:global {
+			.react-calendar__month-view__days,
+			.react-calendar__month-view__weekdays {
+				max-width: 90% !important;
+				margin: auto;
+			}
+		}
+	}
+
+	.booking-cal-cont {
+		width: 100%;
+		height: fit-content;
+	}
+}
+
+@keyframes slide-up-calendar {
+	0% {
+		bottom: -50px;
+	}
+	100% {
+		bottom: 0;
+	}
+}
+
+.productInfo {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-columns: 2fr 1fr;
+	grid-gap: 1.5rem;
+	padding: 1.5rem;
+	box-sizing: border-box;
+
+	& > .productRHS {
+		position: relative;
+		border-radius: 0.5rem;
+		-webkit-border-radius: 0.5rem;
+		-moz-border-radius: 0.5rem;
+
+		& > .pricebox {
+			background: #ffffff;
+			border: 1px solid #d8d8d8;
+			box-shadow: 0 0 4px 0 #00000014;
+			padding: 1rem 0 0 0;
+			border-radius: 0.5rem;
+			-webkit-border-radius: 0.5rem;
+			-moz-border-radius: 0.5rem;
+			text-align: center;
+			& > .priceInfoCont {
+				& > .from {
+					font-size: 13px;
+					padding: 0 0 0.5rem 0;
+				}
+				& > .price {
+					font-size: 2rem;
+					color: #000000;
+					font-weight: 900;
+					padding: 0 0 0.5rem 0;
+				}
+				& > .easyPayments {
+					font-size: 13px;
+					padding: 0.5rem 0 0 0;
+				}
+				& > .priceSave {
+					padding: 0.25rem;
+					margin: 0.5rem 0 0 0;
+					font-size: 14px;
+					color: #76ba16;
+					border-top: 1px solid #d8d8d8;
+					border-bottom: 1px solid #d8d8d8;
+				}
+			}
+			& > .buttonDateCont {
+				background: rgba(245, 77, 13, 0.1);
+				padding: 1rem 0.5rem;
+				& > .button {
+					margin: 0.5rem auto;
+				}
+			}
+		}
+	}
+}
+
+.calenderCont {
+	height: 100%;
+	z-index: 80;
+	top: 0;
+	left: 0;
+}
+
+.call-us-number {
+	min-width: 288px;
+	text-align: center;
+	font-weight: 700;
+	padding: 1.5rem 0;
+	color: #ffffff;
+	position: absolute;
+	z-index: 98;
+	top: 0;
+	left: 50%;
+	transform: translatex(-50%);
+	& span {
+		font-weight: 500;
+	}
+	&:before {
+		content: "";
+		width: 16px;
+		height: 16px;
+		background: url("../../../../themes/images/svg/icn-call.svg") no-repeat
+			center/cover;
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 0.25rem;
+	}
+	& a {
+		color: #ffffff;
+		text-decoration: underline;
+	}
+}
+
+.button {
+	max-width: 160px;
+	width: fit-content;
+	padding: 0.5rem 1.5rem;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	border-radius: 50px;
+	font-weight: 900;
+	font-size: 16px;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	border: none;
+	outline: none;
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.modal {
+	background-color: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(10px);
+}
+
+.modal-content {
+	border: initial;
+}
+
+///// Calender
+
+.prev-label {
+	width: 1.5rem;
+	height: 1.5rem;
+	display: inline-block;
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDEzIDEzIj4KICA8cG9seWdvbiBmaWxsPSIjRjU0RDBEIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHBvaW50cz0iMyAxLjUgNC41IDAgMTEgNi41IDQuNSAxMyAzIDExLjUgOCA2LjUiLz4KPC9zdmc+Cg==")
+		no-repeat center/cover;
+	transform: rotate(180deg);
+	vertical-align: middle;
+}
+
+.next-label {
+	width: 1.5rem;
+	height: 1.5rem;
+	display: inline-block;
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDEzIDEzIj4KICA8cG9seWdvbiBmaWxsPSIjRjU0RDBEIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHBvaW50cz0iMyAxLjUgNC41IDAgMTEgNi41IDQuNSAxMyAzIDExLjUgOCA2LjUiLz4KPC9zdmc+Cg==")
+		no-repeat center/cover;
+	vertical-align: middle;
+}
+
+.calendar {
+	background: #ffffff;
+	height: 100%;
+	display: inline-block;
+	padding: 1rem 1rem 0 1rem;
+	border-right: 1px solid #d8d8d8;
+	& > .monthSelector {
+		padding: 1rem;
+		text-align: center;
+		font-weight: 700;
+		& > button:first-of-type {
+			content: "";
+			width: 1.5rem;
+			height: 1.5rem;
+			margin: 0 2.5rem 0 0;
+			display: inline-block;
+			background: url("/images/icons/icn-di-right.svg") no-repeat
+				center/cover;
+			transform: rotate(180deg);
+			vertical-align: middle;
+			border: none;
+			outline: none;
+			cursor: pointer;
+		}
+		& > button:last-of-type {
+			content: "";
+			width: 1.5rem;
+			height: 1.5rem;
+			margin: 0 0 0 2.5rem;
+			display: inline-block;
+			background: url("/images/icons/icn-di-right.svg") no-repeat
+				center/cover;
+			vertical-align: middle;
+			border: none;
+			outline: none;
+			cursor: pointer;
+		}
+	}
+	& > .datesAndDays {
+		& > .daysOfWeek {
+			& li {
+				color: #757575;
+				font-weight: 300;
+				cursor: default;
+			}
+		}
+		& > ul {
+			display: inline-grid;
+			width: 100%;
+			height: 44px;
+			grid-auto-flow: column;
+			grid-template-columns: repeat(7, minmax(0, 1fr));
+			font-size: 12px;
+			color: #000000;
+			margin: 0;
+			padding: 0;
+			& > li {
+				display: inline-block;
+				text-align: center;
+				padding: 12px 0;
+				font-weight: 700;
+				position: relative;
+				cursor: pointer;
+				transition: all 0.2s ease-in-out;
+				&:hover {
+					color: var(--primary);
+					transition: all 0.2s ease-in-out;
+				}
+				& > span {
+					font-size: 9px;
+					font-weight: 500;
+					color: var(--primary);
+					display: block;
+					line-height: 0.25rem;
+					margin-top: 3px;
+				}
+			}
+			& > .disabled {
+				color: #b2b2b2;
+				font-weight: 500;
+				cursor: not-allowed;
+				&:before {
+					content: "";
+					width: 1px;
+					height: 24px;
+					border-left: 1px solid #b2b2b2;
+					position: absolute;
+					left: 50%;
+					top: 6px;
+					transform: rotate(-45deg);
+				}
+			}
+			& > .lm-deal {
+				animation: shake 0.15s infinite;
+				animation-iteration-count: 6;
+				animation-delay: 1s;
+				&:before {
+					position: absolute;
+					content: "";
+					width: 16px;
+					height: 16px;
+					display: inline-block;
+					vertical-align: middle;
+					margin: -4px 4px 0 -16px;
+					background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjFweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjEgMjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+aWNuLWxtLWRlYWxzLW9yYW5nZTwvdGl0bGU+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8cGF0aCBkPSJNMTYuMzMzMzMzMywwLjgzMzMzMzMzMyBDMTYuNzkzNTcwNiwwLjgzMzMzMzMzMyAxNy4xNjY2NjY3LDEuMjA2NDI5MzggMTcuMTY2NjY2NywxLjY2NjY2NjY3IEMxNy4xNjY2NjY3LDIuMTI2OTAzOTYgMTYuNzkzNTcwNiwyLjUgMTYuMzMzMzMzMywyLjUgTDEzLjgzMjUsMi41IEwxMy44MzMwODA3LDUuMDQ1NzQ2MDYgQzE3LjU4MzE2MSw1LjQ2MDE2ODA4IDIwLjUsOC42Mzk0NTE5MiAyMC41LDEyLjUgQzIwLjUsMTYuNjQyMTM1NiAxNy4xNDIxMzU2LDIwIDEzLDIwIEMxMC4zNjIyMTE0LDIwIDguMDQyNDc0NDgsMTguNjM4MjU5MSA2LjcwNTQyOTgxLDE2LjU3OTQxNzkgQzYuNTk0MzM4NjYsMTYuNjM0OTQwOSA2LjQ2NzU0MDk3LDE2LjY2NjY2NjcgNi4zMzMzMzMzMywxNi42NjY2NjY3IEwzLjgzMzMzMzMzLDE2LjY2NjY2NjcgQzMuMzczMDk2MDQsMTYuNjY2NjY2NyAzLDE2LjI5MzU3MDYgMywxNS44MzMzMzMzIEMzLDE1LjM3MzA5NiAzLjM3MzA5NjA0LDE1IDMuODMzMzMzMzMsMTUgTDUuOTI2OTM0NTMsMTUuMDAwNDgxNyBDNS43MzkzMzU0NSwxNC40Njk4MzEgNS42MDk3NjE5MiwxMy45MTE3NjY3IDUuNTQ1ODM4MDcsMTMuMzMzOTEyOSBMMywxMy4zMzMzMzMzIEMyLjUzOTc2MjcxLDEzLjMzMzMzMzMgMi4xNjY2NjY2NywxMi45NjAyMzczIDIuMTY2NjY2NjcsMTIuNSBDMi4xNjY2NjY2NywxMi4wMzk3NjI3IDIuNTM5NzYyNzEsMTEuNjY2NjY2NyAzLDExLjY2NjY2NjcgTDUuNTQ1NzQ2MDYsMTEuNjY2OTE5MyBDNS42MDk2MDQzMSwxMS4wODkwNjk4IDUuNzM5MTEwNjIsMTAuNTMxMDA0NSA1LjkyNjY0MTc5LDEwLjAwMDM0NjUgTDEuMzMzMzMzMzMsMTAgQzAuODczMDk2MDQyLDEwIDAuNSw5LjYyNjkwMzk2IDAuNSw5LjE2NjY2NjY3IEMwLjUsOC43MDY0MjkzOCAwLjg3MzA5NjA0Miw4LjMzMzMzMzMzIDEuMzMzMzMzMzMsOC4zMzMzMzMzMyBMNi43NjMwNzc4Niw4LjMzMzE1MzU3IEM3Ljk2MjY4MDcsNi41NDExNTE3MyA5LjkxNDEwNDgyLDUuMjk0OTU4ODUgMTIuMTY2MDg3MSw1LjA0NTgzODA3IEwxMi4xNjU4MzMzLDIuNSBMOS42NjY2NjY2NywyLjUgQzkuMjA2NDI5MzgsMi41IDguODMzMzMzMzMsMi4xMjY5MDM5NiA4LjgzMzMzMzMzLDEuNjY2NjY2NjcgQzguODMzMzMzMzMsMS4yMDY0MjkzOCA5LjIwNjQyOTM4LDAuODMzMzMzMzMzIDkuNjY2NjY2NjcsMC44MzMzMzMzMzMgTDE2LjMzMzMzMzMsMC44MzMzMzMzMzMgWiBNMS4zMzMzMzMzMywxNSBDMS43OTM1NzA2MiwxNSAyLjE2NjY2NjY3LDE1LjM3MzA5NiAyLjE2NjY2NjY3LDE1LjgzMzMzMzMgQzIuMTY2NjY2NjcsMTYuMjkzNTcwNiAxLjc5MzU3MDYyLDE2LjY2NjY2NjcgMS4zMzMzMzMzMywxNi42NjY2NjY3IEMwLjg3MzA5NjA0MiwxNi42NjY2NjY3IDAuNSwxNi4yOTM1NzA2IDAuNSwxNS44MzMzMzMzIEMwLjUsMTUuMzczMDk2IDAuODczMDk2MDQyLDE1IDEuMzMzMzMzMzMsMTUgWiBNMTMsNy41IEMxMi41NzUxNjU2LDcuNSAxMi4yMjQ1ODE3LDcuODE3OTA0MzIgMTIuMTczMTU5NSw4LjIyODgwMTc3IEwxMi4xNjY2NjY3LDguMzMzMzMzMzMgTDEyLjE2NjU0NDcsMTEuMDU2Mzc0MiBDMTEuNjY4NDQ0MiwxMS4zNDQ1NjYxIDExLjMzMzMzMzMsMTEuODgzMTQ4NCAxMS4zMzMzMzMzLDEyLjUgQzExLjMzMzMzMzMsMTMuNDIwNDc0NiAxMi4wNzk1MjU0LDE0LjE2NjY2NjcgMTMsMTQuMTY2NjY2NyBDMTMuOTIwNDc0NiwxNC4xNjY2NjY3IDE0LjY2NjY2NjcsMTMuNDIwNDc0NiAxNC42NjY2NjY3LDEyLjUgQzE0LjY2NjY2NjcsMTEuOTM0NTUyNyAxNC4zODUwODA1LDExLjQzNDg3MzMgMTMuOTU0NDg1MiwxMS4xMzM1MzkxIEwxMy44MzM0NTUzLDExLjA1NjM3NDIgTDEzLjgzMzMzMzMsOC4zMzMzMzMzMyBDMTMuODMzMzMzMyw3Ljg3MzA5NjA0IDEzLjQ2MDIzNzMsNy41IDEzLDcuNSBaIiBpZD0iaWNuLWxtLWRlYWxzLW9yYW5nZSIgZmlsbD0iI0Y1NEQwRCI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4K")
+						no-repeat center/cover;
+				}
+			}
+			& > .selected {
+				color: #ffffff !important;
+				z-index: 1;
+				cursor: default;
+				&:before {
+					content: "";
+					z-index: -1;
+					width: 2.5rem;
+					height: 2.5rem;
+					background: var(--primary);
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -51%);
+					border-radius: 1.5rem;
+					-webkit-border-radius: 1.5rem;
+					-moz-border-radius: 1.5rem;
+				}
+			}
+		}
+	}
+}
+
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 400px;
+	font-weight: bold;
+}
+
+.line {
+	width: 100%;
+	height: 1px;
+	background: #d8d8d8;
+	margin: 1rem 0;
+}
+
+.no-availability {
+	padding-top: 2%;
+	height: 50%;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	font-weight: 600;
+
+	@media screen and (max-width: 576px) {
+		flex-direction: column-reverse;
+		height: auto;
+	}
+}
+
+@keyframes shake {
+	1% {
+		transform: rotate(3deg);
+	}
+	25% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(-6deg);
+	}
+	75% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(6deg);
+	}
+}
+
+///// slot-item
+
+.two-pops {
+	animation: two-pops 4s ease-in-out infinite;
+	animation-delay: 2s;
+}
+
+.last-minute-deal {
+	margin-top: 1.5rem;
+}
+
+.current-slot {
+	border: 3px solid var(--primary);
+}
+
+.disabled-deal {
+	border: 1px solid #ccc;
+	background: #ececec;
+	box-shadow: none;
+	& > .title {
+		color: #808080;
+	}
+	& > .price-button-cont {
+		& > .price {
+			color: #808080;
+		}
+		& > .disable-deal-button {
+			border: 2px solid red;
+			font-weight: 700;
+			color: red;
+			width: 100px;
+			height: 30px;
+		}
+	}
+	& > .space-left {
+		background: #ececec;
+	}
+}
+
+.has-levy {
+	min-height: 200px;
+}
+
+@keyframes two-pops {
+	0% {
+		transform: translateY(0);
+	}
+	2% {
+		transform: translateY(-2px);
+	}
+	4% {
+		transform: translateY(2px);
+	}
+	6% {
+		transform: translateY(-2px);
+	}
+	8% {
+		transform: translateY(2px);
+	}
+	10% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+///// Slot-list
+
+.booknow-modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	min-width: 350px;
+	width: 55%;
+	height: fit-content;
+	padding: 50px 0 25px 0;
+	background: #ffffff;
+	border: 1px solid #e4e4e4;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+	border-radius: 10px;
+	z-index: 11;
+
+	.close {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		width: 1rem;
+		height: 1rem;
+		padding: 0.7rem;
+		font-size: 32px;
+		cursor: pointer;
+		border-radius: 3rem;
+		-webkit-border-radius: 3rem;
+		-moz-border-radius: 3rem;
+		color: #df633b;
+		&:hover {
+			color: #ffffff;
+			background: var(--primary);
+			border-radius: 3rem;
+			-webkit-border-radius: 3rem;
+			-moz-border-radius: 3rem;
+		}
+	}
+
+	& > span {
+		font-weight: 600;
+		font-size: clamp(17px, 4vw, 20px);
+		line-height: 30px;
+		color: #df633b;
+		font-family: var(--font-primary);
+		font-style: normal;
+		margin: 0 20px;
+		text-align: center;
+	}
+}
+
+.booknow-overlay {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	opacity: 0.7;
+	z-index: 10;
+}

@@ -1,0 +1,214 @@
+.open-dated-page-wrapper {
+  :global(.alert-success) {
+    position: relative;
+    width: 100%;
+  }
+}
+
+.promocode-savings {
+  color: var(--primary);
+}
+
+.promocode-alert {
+  width: 100%;
+  background: #58b18c4d;
+  padding: 10px 16px;
+  border-radius: 4px !important;
+  line-height: 12px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  margin-left: 0 !important;
+
+  &.promocode-alert-error {
+    background: #de180b8a;
+  }
+
+  :global(.btn-close-white) {
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+    padding: 10px 16px;
+  }
+}
+
+.contact-details-card {
+  @media screen and (max-width: 768px) {
+    border: none;
+  }
+}
+
+.contact-details-card-body {
+  padding: 32px;
+
+  .contact-details-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+    color: var(--primary);
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 24px 0;
+  }
+}
+
+.price-info-card {
+  @media screen and (max-width: 768px) {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+.open-dated-booking-info-card {
+  padding: 32px;
+  margin-bottom: 12px;
+
+  :global(.card-body) {
+    padding: 0;
+
+    .product-name {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom: 22px;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .available-until {
+      font-size: 16px;
+      color: black;
+      padding: 14px 20px;
+      background: #ffaa0433;
+      display: flex;
+
+      svg {
+        width: 15px;
+        height: 16px;
+        min-width: 15px;
+        margin-top: 2px;
+        margin-right: 18px;
+      }
+    }
+
+    .info-details {
+      display: flex;
+
+      & > div:first-of-type {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 50%;
+        margin-right: 14px;
+      }
+
+      & > div:last-of-type {
+        width: calc(50% - 14px);
+
+        :global(.card-body) {
+          padding: 30px;
+        }
+      }
+
+      .image-wrapper {
+        height: 156px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 34px;
+        position: relative;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        .product-image-dimmer {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #0000006e;
+          align-items: center;
+          padding: 0 40px;
+
+          h2 {
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+            color: white;
+          }
+
+          @media screen and (max-width: 768px) {
+            display: flex;
+          }
+        }
+      }
+
+      .counters {
+        .counter-row {
+          display: flex;
+          align-items: center;
+          margin-bottom: 16px;
+
+          & > div {
+            width: 33%;
+          }
+
+          & > div:last-of-type {
+            text-align: right;
+          }
+
+          @media screen and (max-width: 768px) {
+            flex-direction: column;
+            width: 50%;
+            margin: 10px auto;
+
+            & > div {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+
+              &:nth-of-type(2) {
+                order: 3;
+              }
+
+              &:nth-of-type(3) {
+                order: 2;
+              }
+            }
+          }
+        }
+
+        @media screen and (max-width: 768px) {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0 24px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+
+        & > div:first-of-type {
+          width: 100%;
+          margin-right: 0;
+        }
+
+        & > div:last-of-type {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 14px;
+  }
+}

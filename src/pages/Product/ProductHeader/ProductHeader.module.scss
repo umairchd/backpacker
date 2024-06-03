@@ -1,0 +1,7 @@
+// Hack away for lazy image component
+
+.productHeader {
+  :global(.lazy-load-image-background) {
+    height: 100% !important;
+  }
+}

@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when destination header is displayed correct data must be rendered 1`] = `
+<DocumentFragment>
+  <div
+    class="theme"
+  >
+    <div
+      class="destination-header container-fluid"
+    >
+      <div
+        class="header-image"
+      >
+        <picture>
+          <source
+            media="(min-width: 2400px)"
+          />
+          <source
+            height="900"
+            media="(min-width: 1600px)"
+            width="1600"
+          />
+          <source
+            height="787.5"
+            media="(min-width: 1400px)"
+            width="1400"
+          />
+          <source
+            height="641.25"
+            media="(min-width: 1140px)"
+            width="1140"
+          />
+          <source
+            height="576"
+            media="(min-width: 1024px)"
+            width="1024"
+          />
+          <source
+            height="432"
+            media="(min-width: 768px)"
+            width="768"
+          />
+          <span
+            class="MuiSkeleton-root MuiSkeleton-rectangular MuiSkeleton-wave img-fluid css-1g5tya8-MuiSkeleton-root"
+            style="width: 100%; height: 100%;"
+          />
+        </picture>
+      </div>
+      <div
+        class="container"
+      >
+        <h1>
+          TEST
+        </h1>
+        <h2>
+          Test Header
+        </h2>
+        <a
+          class="view-best-deal btn btn-primary"
+          href="#top-three-activities"
+          role="button"
+          tabindex="0"
+          type="button"
+        >
+          View Best Deals
+        </a>
+      </div>
+    </div>
+    <div
+      class="destination-info container"
+    >
+      <div
+        class="subheader"
+      >
+        Test Subheader
+      </div>
+      <div>
+        Test Teaser
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,560 @@
+#roaver-widget-inject-Qr7p2f9E5s6t {
+  // custom colors for reusing through the roaver widget
+  --roaver-color-green-button: #9ac440;
+
+  // override roaver default colors
+  --color-0-lighter: #ffffff !important;
+  --color-1-lightest-lucid: #ffffff !important;
+
+  // dropdown selection
+  --color-1-lighter: #ffffff !important;
+
+  // background
+  --color-1-lightest: #ffffff !important;
+
+  // drop down icon
+  --color-1-dark: var(--primary) !important;
+
+  // date selectior background color, boarder color of input
+  --color-1-light: var(--primary) !important;
+
+  --first-color: var(--primary) !important;
+  --second-color: var(--primary) !important;
+
+  // button border
+  --color-0-darker: var(--primary) !important;
+
+  --color-details-button-rvr: #333333;
+
+  // discount code mobile view
+  @media screen and (max-width: 768px) {
+    .discount-code__root {
+      margin-top: 35px;
+      margin-bottom: 10px;
+    }
+  }
+
+  font-family: var(--font-primary) !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+
+  .roaver-standard-button-2B7ip1gg {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 25px;
+    border: none;
+  }
+
+  .roaver-standard-input-2A7ip2gf {
+    border: 1px solid var(--primary);
+    color: black;
+  }
+
+  .roaver-standard-selectize-input {
+    border: 1px solid #dee0e6;
+  }
+
+  .roaver-standard-label-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+  }
+
+  .roaver-standard-tooltip {
+    color: white;
+    background-color: var(--primary);
+    border: 2px solid white;
+  }
+
+  .roaver-standard-black-button-2B7ip1gg {
+    @extend .roaver-standard-button-2B7ip1gg;
+    background-color: var(--color-details-button-rvr);
+  }
+
+  .roaver-standard-arrow-button-2B7ip1gg {
+    background-color: var(--color-details-button-rvr);
+    color: white;
+  }
+
+  .roaver-standard-arrow-button-2B7ip1gg:hover {
+    background-color: transparent;
+    color: var(--primary);
+  }
+
+  // for selection color on text and text color
+  .roaver-standard-color-text-and-highlight {
+    --color-1-darker: black;
+    --color-1-darkest: var(--primary);
+  }
+
+  #rvr-content {
+    @extend .roaver-standard-color-text-and-highlight;
+
+    // pick up and drop off search top bar
+    .search__root th {
+      font-size: 15px;
+    }
+
+    .search__root td {
+      font-size: 18px;
+      padding-right: 10px;
+    }
+
+    .button-search {
+      @extend .roaver-standard-button-2B7ip1gg;
+    }
+
+    .tabs__label.selected {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .tabs__label {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    .selectize-input,
+    .selectize-dropdown,
+    .display-fr,
+    .display-to {
+      @extend .roaver-standard-selectize-input;
+    }
+
+    .tabs__labels {
+      display: none;
+    }
+
+    .tabs__contents {
+      border: none;
+    }
+
+    // search flow
+    .search__button-modal,
+    .book-options__submit {
+      @extend .roaver-standard-button-2B7ip1gg;
+    }
+
+    .modal-button.search__button-modal.text-md.text-nowrap {
+      @extend .roaver-standard-button-2B7ip1gg;
+      margin: 8px !important;
+    }
+
+    // *search result page
+    // View details button on search results
+    .search__result a.modal-button.flx-grow {
+      @extend .roaver-standard-black-button-2B7ip1gg;
+    }
+
+    // Start booking button on search results
+    .search__result a.button.flx-grow.green {
+      @extend .roaver-standard-button-2B7ip1gg;
+      background-color: var(--roaver-color-green-button);
+    }
+
+    .price-label.absolute {
+      background-color: var(--roaver-color-green-button);
+      color: white;
+    }
+
+    // price label tag dot pin
+    .price-label.absolute::after {
+      background-color: white;
+    }
+
+    .price-label > label {
+      text-decoration-color: white;
+    }
+
+    .price-label.absolute::before {
+      border-right-width: 1.72rem;
+      border-right-style: solid;
+      border-right-color: var(--roaver-color-green-button);
+    }
+
+    .glide__arrow.glide__arrow--right.frame,
+    .glide__arrow.glide__arrow--left.frame {
+      @extend .roaver-standard-arrow-button-2B7ip1gg;
+    }
+
+    .book-options__balance-container.panel.panel__color-1.select-none {
+      border-bottom: 0px;
+    }
+
+    .customer-info__root.panel__color-1 {
+      border-bottom: 0px;
+    }
+
+    .iti.iti--allow-dropdown input[type="tel"] {
+      border: 0px;
+    }
+    .iti.iti--allow-dropdown {
+      width: 96%;
+    }
+
+    // Booking confirmation
+
+    .book-payment__root .panel button {
+      @extend .roaver-standard-button-2B7ip1gg;
+    }
+
+    // glide buttons on below of the car
+    .glide__bullet.glide__bullet--active {
+      background-color: var(--primary);
+    }
+
+    .glide__bullet {
+      background-color: var(--color-details-button-rvr);
+    }
+
+    .panel {
+      border-bottom: 0px;
+    }
+
+    // payment background color
+    .panel:has(> div.book-payment__prices) {
+      /* styles to apply to the li tag */
+      // background-color: rgba(245, 77, 13, .06)
+      background-color: var(--primary-transparent);
+    }
+  }
+
+  // car image size
+  .glide__slide img {
+    object-fit: none;
+    @media screen and (max-width: 768px) {
+      object-fit: contain;
+    }
+  }
+
+  // hiding campervan selecion section on the search bar on the search results page search pop up
+  .modal__content form .item-tabs .tabs__labels {
+    display: none;
+  }
+
+  // search and booking filter
+  .table-condensed td.available:hover,
+  .table-condensed td.in-range,
+  td.start-date,
+  td.end-date,
+  .customer-info__root .input.integer button.decrement:hover,
+  .customer-info__root .input.integer button.increment:hover,
+  .search__filter button.decrement:hover,
+  .search__filter button.increment:hover {
+    color: white !important;
+  }
+
+  // mobile view of search results page
+  .search__button-filters {
+    @extend .roaver-standard-black-button-2B7ip1gg;
+    margin-bottom: 6px;
+  }
+
+  #search-filters-container {
+    @extend .roaver-standard-color-text-and-highlight;
+
+    .search__filters-apply button {
+      @extend .roaver-standard-button-2B7ip1gg;
+    }
+  }
+
+  .drp-buttons {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  // calender
+  .applyBtn {
+    @extend .roaver-standard-button-2B7ip1gg;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    width: 40%;
+    min-height: 40px;
+  }
+
+  .applyBtn:hover {
+    color: white;
+    background-color: var(--primary);
+  }
+
+  .daterangepicker {
+    @extend .roaver-standard-color-text-and-highlight;
+    transform: translate(-50%, -40%);
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
+
+    // calender for small height laptop
+
+    //  explaining max-height: 650px
+    //  This condition checks the maximum height of the screen.
+    //  In this case, it's saying that the styles inside the curly braces {}
+    //*  should apply only when the maximum height of the screen is 650 pixels or less.
+
+    @media screen and (max-height: 650px) {
+      overflow-y: auto;
+      height: 400px;
+    }
+
+    @media screen and (max-height: 500px) {
+      transform: translate(-50%, -30%);
+      overflow-y: auto;
+      height: 300px;
+    }
+
+    //*  should apply only when the maximum height of the screen is 430 pixels or less.
+    @media screen and (max-height: 430px) {
+      transform: translate(-50%, -30%);
+      overflow-y: auto;
+      height: 260px;
+    }
+
+    // calender for small height phone
+    @media screen and (max-width: 768px) {
+      padding-top: 250px;
+      padding-bottom: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
+      overflow-y: auto;
+      height: 600px;
+    }
+
+    //*  should apply only when the maximum height of the screen is 1000 pixels or less.
+    @media screen and (max-width: 768px) and (max-height: 1000px) {
+      padding-top: 120px;
+      padding-bottom: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
+      overflow-y: auto;
+      height: 700px;
+    }
+
+    //*  should apply only when the maximum height of the screen is 900 pixels or less.
+    @media screen and (max-width: 768px) and (max-height: 850px) {
+      padding-top: 220px;
+      padding-bottom: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
+      overflow-y: auto;
+      height: 600px;
+    }
+
+    //*  should apply only when the maximum height of the screen is 750 pixels or less.
+    @media screen and (max-width: 768px) and (max-height: 750px) {
+      padding-top: 350px;
+      padding-bottom: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
+      overflow-y: auto;
+      height: 500px;
+    }
+
+    //*  should apply only when the maximum height of the screen is 630 pixels or less.
+    @media screen and (max-width: 768px) and (max-height: 630px) {
+      padding-top: 390px;
+      padding-bottom: 20px;
+      padding-right: 10px;
+      padding-left: 10px;
+      overflow-y: auto;
+      height: 400px;
+    }
+  }
+
+  .irs-single,
+  .irs-from,
+  .irs-to {
+    color: white;
+  }
+
+  .search__pill {
+    @extend .roaver-standard-black-button-2B7ip1gg;
+  }
+
+  // booking flow
+
+  #search-cars {
+    // text color of labels, pick up location, drop off location, ect
+    @extend .roaver-standard-color-text-and-highlight;
+
+    .input > label,
+    .input-label {
+      @extend .roaver-standard-label-title;
+    }
+
+    .display-fr,
+    .display-to,
+    .selectize-input.items.full.has-options.has-items {
+      @extend .roaver-standard-selectize-input;
+    }
+
+    .button-search {
+      @extend .roaver-standard-button-2B7ip1gg;
+    }
+
+    .selectize-dropdown-content span.highlight {
+      color: white;
+      background-color: var(--primary);
+    }
+
+    // spacing for the labels in the search
+    .selectize.selectize-control.single {
+      @media (min-width: 768px) {
+        margin-right: 13.5px;
+        margin-top: 5px;
+      }
+    }
+
+    // labels on search window
+    .input.select label {
+      @media (min-width: 768px) {
+        margin-left: 0px;
+      }
+    }
+
+    // Pick Up Date and Drop Off Date
+    .input.date-range.date-time label.input-label {
+      @media (min-width: 768px) {
+        margin-left: 0px;
+        padding-bottom: 6px;
+      }
+    }
+
+    .flx.wrap .input.select.with-icon:nth-child(3) {
+      @media (min-width: 768px) {
+        margin-top: 5px;
+      }
+      .selectize-input.items {
+        @media (min-width: 768px) {
+          min-height: 42.93px;
+        }
+      }
+    }
+  }
+
+  // inside booking flow page 2
+  .stage {
+    border-bottom-width: 0px;
+    font-weight: bold;
+  }
+  .inject-link {
+    color: white;
+  }
+
+  .stage.stage__past,
+  .book-progress > div {
+    border-bottom: 0px;
+  }
+
+  .stage.stage__present {
+    color: white;
+    border-radius: 0px;
+    border: 0px;
+  }
+
+  .stage.stage__future {
+    color: var(--primary);
+    background-color: white;
+    border: 1px solid var(--primary);
+  }
+
+  // Extras
+  .increment:hover,
+  .decrement:hover {
+    color: white;
+  }
+
+  // Discount code
+  .discount-code__root .w-100.m-0 {
+    @extend .roaver-standard-button-2B7ip1gg;
+    padding: 13px 0; // 20px top and bottom, 0 left and right
+  }
+
+  input[name="DiscountCode"] {
+    @extend .roaver-standard-input-2A7ip2gf;
+    margin-bottom: 5px;
+  }
+
+  .customer-info__root .input.integer button.increment {
+    margin-right: 13px;
+  }
+
+  // confirm booking form,
+  .customer-info__root .input.integer button.decrement,
+  .customer-info__root .input.integer button.increment,
+  .search__filter button.decrement,
+  .search__filter button.increment,
+  .customer-info__root .input.integer input.flx-grow.text-center,
+  .iti.iti--allow-dropdown,
+  input[name="NameFirst"],
+  input[name="NameLast"],
+  input[name="Email"] {
+    @extend .roaver-standard-input-2A7ip2gf;
+    margin-top: 2px;
+  }
+
+  // label text for  first name, last name, email address, phone number
+  .customer-info__root label {
+    @extend .roaver-standard-label-title;
+  }
+
+  // Number of Travellers container box
+  .customer-info__root .input.integer input.flx-grow.text-center {
+    margin: 0 25px; // 0px top and bottom, 25 left and right
+    max-width: 75%;
+  }
+
+  #notifications-container {
+    .notification {
+      @extend .roaver-standard-tooltip;
+      color: white;
+      background-color: #ed1c24;
+    }
+  }
+
+  #tippy-1 {
+    color: white;
+    .book-options__availability-tooltip {
+      background-color: white;
+      color: black;
+      border: 1px solid var(--primary);
+    }
+
+    .tippy-arrow::before {
+      color: var(--primary);
+    }
+  }
+
+  // tool tip for
+  // This vehicle is currently available for booking. Rental confirmation will be sent instantly.
+  #tippy-2 {
+    color: white;
+    --color-0-light: var(--primary);
+
+    .tippy-arrow::before {
+      color: var(--primary);
+    }
+  }
+
+  // view details flow
+  .modal .glide__arrows .glide__arrow.glide__arrow--right.frame,
+  .modal .glide__arrows .glide__arrow.glide__arrow--left.frame {
+    @extend .roaver-standard-arrow-button-2B7ip1gg;
+  }
+
+  .modal .button.modal-close {
+    @extend .roaver-standard-button-2B7ip1gg;
+  }
+
+  .modal .display-entity .tabs .tabs__labels .tabs__label:not(.selected) {
+    background-color: white !important;
+    color: var(--primary);
+  }
+
+  .modal .display-entity .tabs .tabs__labels .tabs__label.selected {
+    color: white !important;
+    background-color: var(--primary);
+  }
+
+  .modal .display-entity .tabs .tabs__labels .tabs__label.selected h4 {
+    color: white !important;
+  }
+}

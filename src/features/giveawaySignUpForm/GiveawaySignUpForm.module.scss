@@ -1,0 +1,65 @@
+.million-sign-up-container {
+  :global(.card-body) {
+    padding: 0 5rem !important; // override card-body default padding;
+
+    @media screen and (max-width: 992px) {
+      padding: 0 !important;
+    }
+  }
+
+  .million-sign-up-form {
+    :global(.container) {
+      padding: 0;
+
+      & > div:not(:last-of-type) {
+        padding-bottom: 16px;
+      }
+    }
+
+    :global(.row) {
+      & > div {
+        box-sizing: border-box;
+        position: relative;
+      }
+    }
+
+    :global(.error-message) {
+      color: #d90d0d;
+    }
+  }
+}
+
+.container-button {
+  margin-top: 1rem;
+
+  .button-submit {
+    height: auto;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 992px) {
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+.info-text {
+  font-size: 13px;
+  margin: 4px 0 1rem 0;
+
+  @media screen and (max-width: 768px) {
+    margin: 8px 0;
+  }
+
+  .label {
+    & > a {
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    & > br {
+      margin-top: 0.5rem;
+    }
+  }
+}

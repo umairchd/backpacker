@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logout fail at POST 1`] = `"You have you ask me nicely."`;
+
+exports[`logout happy case session empty 1`] = `"http://localhost:3000"`;

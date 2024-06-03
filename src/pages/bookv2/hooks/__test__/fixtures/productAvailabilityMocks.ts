@@ -1,0 +1,127 @@
+export const productAvailability = [
+  {
+    date: "2023-06-07",
+    hasAvailableSlots: true,
+    slots: [
+      {
+        date: "2023-06-07 18:00:00",
+        title: null,
+        startTime: "06:00 PM",
+        endTime: "09:00 PM",
+        status: "AVAILABLE",
+        isTopDeal: false,
+        remainingCount: 80,
+        totalCount: 80,
+        slotId: "35596919",
+        orderedId: "rWTz27SAYP1gxOoQlknUQ",
+        isLastMinute: false,
+        prices: [
+          {
+            __typename: "TravelloPrice",
+            value: {
+              __typename: "Money",
+              amount: 45.94,
+              currencyCode: "USD",
+              convertedAmount: 69.66144879071096,
+            },
+            fareType: {
+              displayName: "Adult - General Admission",
+              typeName: "3008",
+              bpdFareType: "ADULT",
+              bookingId: "2524000208",
+            },
+            rateId: "2524000208",
+          },
+          {
+            __typename: "Levy",
+            included: false,
+            value: {
+              __typename: "Money",
+              amount: 0,
+              currencyCode: "USD",
+              convertedAmount: 0,
+            },
+            fareType: {
+              displayName: "Adult - General Admission",
+              typeName: "3008",
+              bpdFareType: "ADULT",
+              bookingId: "2524000208",
+            },
+            label: null,
+          },
+          {
+            __typename: "RecommendedRetailPrice",
+            value: {
+              __typename: "Money",
+              amount: 45.94,
+              currencyCode: "USD",
+              convertedAmount: 69.66144879071096,
+            },
+            fareType: {
+              displayName: "Adult - General Admission",
+              typeName: "3008",
+              bpdFareType: "ADULT",
+              bookingId: "2524000208",
+            },
+            seatUsed: 1,
+            minimumUnitOrder: 0,
+            maximumUnitOrder: null,
+            rateId: "2524000208",
+          },
+          {
+            __typename: "TravelloPrice",
+            value: {
+              __typename: "Money",
+              amount: 36.56,
+              currencyCode: "USD",
+              convertedAmount: 55.438018454253225,
+            },
+            fareType: {
+              displayName: "Child - General Admission",
+              typeName: "3009",
+              bpdFareType: "CHILD",
+              bookingId: "2524000209",
+            },
+            rateId: "2524000209",
+          },
+          {
+            __typename: "Levy",
+            included: false,
+            value: {
+              __typename: "Money",
+              amount: 0,
+              currencyCode: "USD",
+              convertedAmount: 0,
+            },
+            fareType: {
+              displayName: "Child - General Admission",
+              typeName: "3009",
+              bpdFareType: "CHILD",
+              bookingId: "2524000209",
+            },
+            label: null,
+          },
+          {
+            __typename: "RecommendedRetailPrice",
+            value: {
+              __typename: "Money",
+              amount: 36.56,
+              currencyCode: "USD",
+              convertedAmount: 55.438018454253225,
+            },
+            fareType: {
+              displayName: "Child - General Admission",
+              typeName: "3009",
+              bpdFareType: "CHILD",
+              bookingId: "2524000209",
+            },
+            seatUsed: 1,
+            minimumUnitOrder: 0,
+            maximumUnitOrder: null,
+            rateId: "2524000209",
+          },
+        ],
+      },
+    ],
+  },
+];

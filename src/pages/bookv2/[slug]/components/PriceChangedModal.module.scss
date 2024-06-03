@@ -1,0 +1,37 @@
+.price-changed-modal {
+  :global {
+    .modal-header {
+      padding: 42px 42px 0 42px;
+      border-bottom: none;
+    }
+
+    .btn-close {
+      position: absolute;
+      right: 22px;
+      top: 22px;
+    }
+
+    .modal-body {
+      padding: 20px 42px 42px 42px;
+
+      p:first-of-type {
+        color: var(--bs-link-color);
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      p:last-of-type {
+        font-size: 36px;
+        font-weight: 600;
+      }
+
+      .btn {
+        text-transform: none;
+        border-radius: 34px;
+        max-width: 290px;
+        width: 100%;
+      }
+    }
+  }
+}

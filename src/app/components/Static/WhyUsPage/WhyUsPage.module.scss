@@ -1,0 +1,45 @@
+.template-root-why-us {
+  :global(.row) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  :global(.service-box) {
+    padding: 30px;
+    background: #fff;
+
+    h2 {
+      font-size: 19px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 19px;
+      font-weight: 300;
+      color: #6d6e70;
+    }
+  }
+
+  :global(.img-center) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: auto;
+      height: 90px;
+      object-fit: fill;
+      margin-bottom: 1rem;
+    }
+  }
+}

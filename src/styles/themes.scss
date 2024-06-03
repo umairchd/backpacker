@@ -1,0 +1,383 @@
+:root {
+  --background: theme("colors.white");
+  --background-secondary: theme("colors.gray.50");
+
+  --primary: theme("colors.default");
+  --primary-darker: theme("colors.default-darker");
+  --primary-transparent: theme("colors.default-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.default-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.default-highlight");
+  --primary-highlight-bg: theme("colors.default-highlight-bg");
+
+  --primary-action: theme("colors.default-action");
+  --primary-action-highlight: theme("colors.default-action-highlight");
+  --primary-action-highlight-bg: theme("colors.default-action-highlight-bg");
+}
+
+[data-theme="travellov2b"],
+[data-theme="travellov2"] {
+  --primary: theme("colors.travello");
+  --primary-darker: theme("colors.travello-darker");
+  --primary-transparent: theme("colors.travello-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.travello-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.travello-highlight");
+  --primary-highlight-bg: theme("colors.travello-highlight-bg");
+
+  --primary-action: theme("colors.travello");
+  --primary-action-highlight: theme("colors.travello-highlight");
+  --primary-action-highlight-bg: theme("colors.travello-highlight-bg");
+}
+
+[data-theme="backpackerdeals"] {
+  --primary: theme("colors.backpackerdeals");
+  --primary-darker: theme("colors.backpackerdeals-darker");
+  --primary-transparent: theme("colors.backpackerdeals-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.backpackerdeals-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.backpackerdeals-highlight");
+  --primary-highlight-bg: theme("colors.backpackerdeals-highlight-bg");
+
+  --primary-action: theme("colors.backpackerdeals-action");
+  --primary-action-highlight: theme("colors.backpackerdeals-action-highlight");
+  --primary-action-highlight-bg: theme(
+    "colors.backpackerdeals-action-highlight-bg"
+  );
+}
+
+[data-theme="jucy"],
+[data-theme="jucyv2b"] {
+  --primary: theme("colors.jucy");
+  --primary-darker: theme("colors.jucy-darker");
+  --primary-transparent: theme("colors.jucy-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.jucy-transparent-bg-darker");
+  --primary-highlight: theme("colors.jucy-highlight");
+  --primary-highlight-bg: theme("colors.jucy-highlight-bg");
+
+  --primary-action: theme("colors.jucy-action");
+  --primary-action-highlight: theme("colors.jucy-action-highlight");
+  --primary-action-highlight-bg: theme("colors.jucy-action-highlight-bg");
+}
+
+[data-theme="sydneyexpert"],
+[data-theme="sydneyexpertv2b"] {
+  --primary: theme("colors.sydneyexpert");
+  --primary-darker: theme("colors.sydneyexpert-darker");
+  --primary-transparent: theme("colors.sydneyexpert-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.sydneyexpert-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.sydneyexpert-highlight");
+  --primary-highlight-bg: theme("colors.sydneyexpert-highlight-bg");
+
+  --primary-action: theme("colors.sydneyexpert-action");
+  --primary-action-highlight: theme("colors.sydneyexpert-action-highlight");
+  --primary-action-highlight-bg: theme(
+    "colors.sydneyexpert-action-highlight-bg"
+  );
+}
+
+[data-theme="scapev2"],
+[data-theme="scapev2b"] {
+  --primary: theme("colors.scape");
+  --primary-darker: theme("colors.scape-darker");
+  --primary-transparent: theme("colors.scape-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.scape-transparent-bg-darker");
+  --primary-highlight: theme("colors.scape-highlight");
+  --primary-highlight-bg: theme("colors.scape-highlight-bg");
+
+  --primary-action: theme("colors.scape");
+  --primary-action-highlight: theme("colors.scape-highlight");
+  --primary-action-highlight-bg: theme("colors.scape-highlight-bg");
+}
+
+[data-theme="flightcentrev2"],
+[data-theme="flightcentrev2b"] {
+  --primary: theme("colors.flightcentre");
+  --primary-darker: theme("colors.flightcentre-darker");
+  --primary-transparent: theme("colors.flightcentre-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.flightcentre-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.flightcentre-highlight");
+  --primary-highlight-bg: theme("colors.flightcentre-highlight-bg");
+
+  --primary-action: theme("colors.flightcentre");
+  --primary-action-highlight: theme("colors.flightcentre-highlight");
+  --primary-action-highlight-bg: theme("colors.flightcentre-highlight-bg");
+}
+
+[data-theme="australiayourway"],
+[data-theme="australiayourwayv2b"] {
+  --primary: theme("colors.australiayourway");
+  --primary-darker: theme("colors.australiayourway-darker");
+  --primary-transparent: theme("colors.australiayourway-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.australiayourway-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.australiayourway-highlight");
+  --primary-highlight-bg: theme("colors.australiayourway-highlight-bg");
+
+  --primary-action: theme("colors.australiayourway-action");
+  --primary-action-highlight: theme("colors.australiayourway-action-highlight");
+  --primary-action-highlight-bg: theme(
+    "colors.australiayourway-action-highlight-bg"
+  );
+}
+
+[data-theme="letsgocaravanandcamping"] {
+  --primary: theme("colors.letsgocaravanandcamping");
+  --primary-darker: theme("colors.letsgocaravanandcamping-darker");
+  --primary-transparent: theme("colors.letsgocaravanandcamping-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.letsgocaravanandcamping-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.letsgocaravanandcamping-highlight");
+  --primary-highlight-bg: theme("colors.letsgocaravanandcamping-highlight-bg");
+
+  --primary-action: theme("colors.letsgocaravanandcamping-action");
+  --primary-action-highlight: theme(
+    "colors.letsgocaravanandcamping-action-highlight"
+  );
+  --primary-action-highlight-bg: theme(
+    "colors.letsgocaravanandcamping-action-highlight-bg"
+  );
+}
+
+[data-theme="mixandmatch"] {
+  --primary: theme("colors.mixandmatch");
+  --primary-darker: theme("colors.mixandmatch-darker");
+  --primary-transparent: theme("colors.mixandmatch-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.mixandmatch-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.mixandmatch-highlight");
+  --primary-highlight-bg: theme("colors.mixandmatch-highlight-bg");
+
+  --primary-action: theme("colors.mixandmatch-action");
+  --primary-action-highlight: theme("colors.mixandmatch-action-highlight");
+  --primary-action-highlight-bg: theme(
+    "colors.mixandmatch-action-highlight-bg"
+  );
+}
+
+[data-theme="mixandmatchnz"] {
+  --primary: theme("colors.mixandmatchnz");
+  --primary-darker: theme("colors.mixandmatchnz-darker");
+  --primary-transparent: theme("colors.mixandmatchnz-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.mixandmatchnz-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.mixandmatchnz-highlight");
+  --primary-highlight-bg: theme("colors.mixandmatchnz-highlight-bg");
+
+  --primary-action: theme("colors.mixandmatchnz-action");
+  --primary-action-highlight: theme("colors.mixandmatchnz-action-highlight");
+  --primary-action-highlight-bg: theme(
+    "colors.mixandmatchnz-action-highlight-bg"
+  );
+}
+
+[data-theme="cairnsretailstore"] {
+  --primary: theme("colors.cairnsretailstore");
+  --primary-darker: theme("colors.cairnsretailstore-darker");
+  --primary-transparent: theme("colors.cairnsretailstore-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.cairnsretailstore-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.cairnsretailstore-highlight");
+  --primary-highlight-bg: theme("colors.cairnsretailstore-highlight-bg");
+
+  --primary-action: theme("colors.cairnsretailstore");
+  --primary-action-highlight: theme("colors.cairnsretailstore-highlight");
+  --primary-action-highlight-bg: theme("colors.cairnsretailstore-highlight-bg");
+}
+
+[data-theme="aifs"] {
+  --primary: theme("colors.aifs");
+  --primary-darker: theme("colors.aifs-darker");
+  --primary-transparent: theme("colors.aifs-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.aifs-transparent-bg-darker");
+  --primary-highlight: theme("colors.aifs-highlight");
+  --primary-highlight-bg: theme("colors.aifs-highlight-bg");
+
+  --primary-action: theme("colors.aifs");
+  --primary-action-highlight: theme("colors.aifs-highlight");
+  --primary-action-highlight-bg: theme("colors.aifs-highlight-bg");
+}
+
+[data-theme="magnums"] {
+  --primary: theme("colors.magnums");
+  --primary-darker: theme("colors.magnums-darker");
+  --primary-transparent: theme("colors.magnums-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.magnums-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.magnums-highlight");
+  --primary-highlight-bg: theme("colors.magnums-highlight-bg");
+
+  --primary-action: theme("colors.magnums");
+  --primary-action-highlight: theme("colors.magnums-highlight");
+  --primary-action-highlight-bg: theme("colors.magnums-highlight-bg");
+}
+
+[data-theme="girlslovetravel"] {
+  --primary: theme("colors.girlslovetravel");
+  --primary-darker: theme("colors.girlslovetravel-darker");
+  --primary-transparent: theme("colors.girlslovetravel-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.girlslovetravel-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.girlslovetravel-highlight");
+  --primary-highlight-bg: theme("colors.girlslovetravel-highlight-bg");
+
+  --primary-action: theme("colors.girlslovetravel-action");
+  --primary-action-highlight: theme("colors.girlslovetravel-action-highlight");
+  --primary-action-highlight-bg: theme(
+    "colors.girlslovetravel-action-highlight-bg"
+  );
+}
+
+[data-theme="gap360"] {
+  --primary: theme("colors.gap360");
+  --primary-darker: theme("colors.gap360-darker");
+  --primary-transparent: theme("colors.gap360-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.gap360-transparent-bg-darker");
+  --primary-highlight: theme("colors.gap360-highlight");
+  --primary-highlight-bg: theme("colors.gap360-highlight-bg");
+
+  --primary-action: theme("colors.gap360-action");
+  --primary-action-highlight: theme("colors.gap360-action-highlight");
+  --primary-action-highlight-bg: theme("colors.gap360-action-highlight-bg");
+}
+
+[data-theme="skydive"] {
+  --primary: theme("colors.skydive");
+  --primary-darker: theme("colors.skydive-darker");
+  --primary-transparent: theme("colors.skydive-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.skydive-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.skydive-highlight");
+  --primary-highlight-bg: theme("colors.skydive-highlight-bg");
+
+  --primary-action: theme("colors.skydive-action");
+  --primary-action-highlight: theme("colors.skydive-action-highlight");
+  --primary-action-highlight-bg: theme("colors.skydive-action-highlight-bg");
+}
+
+[data-theme="selina"] {
+  --primary: theme("colors.selina");
+  --primary-darker: theme("colors.selina-darker");
+  --primary-transparent: theme("colors.selina-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.selina-transparent-bg-darker");
+  --primary-highlight: theme("colors.selina-highlight");
+  --primary-highlight-bg: theme("colors.selina-highlight-bg");
+
+  --primary-action: theme("colors.selina-action");
+  --primary-action-highlight: theme("colors.selina-action-highlight");
+  --primary-action-highlight-bg: theme("colors.selina-action-highlight-bg");
+}
+
+[data-theme="skybus"] {
+  --primary: theme("colors.skybus");
+  --primary-darker: theme("colors.skybus-darker");
+  --primary-transparent: theme("colors.skybus-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.skybus-transparent-bg-darker");
+  --primary-highlight: theme("colors.skybus-highlight");
+  --primary-highlight-bg: theme("colors.skybus-highlight-bg");
+
+  --primary-action: theme("colors.skybus-action");
+  --primary-action-highlight: theme("colors.skybus-action-highlight");
+  --primary-action-highlight-bg: theme("colors.skybus-action-highlight-bg");
+}
+
+[data-theme="spaceship"] {
+  --primary: theme("colors.spaceship");
+  --primary-darker: theme("colors.spaceship-darker");
+  --primary-transparent: theme("colors.spaceship-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.spaceship-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.spaceship-highlight");
+  --primary-highlight-bg: theme("colors.spaceship-highlight-bg");
+
+  --primary-action: theme("colors.spaceship-action");
+  --primary-action-highlight: theme("colors.spaceship-action-highlight");
+  --primary-action-highlight-bg: theme("colors.spaceship-action-highlight-bg");
+}
+
+[data-theme="studentdeals"] {
+  --primary: theme("colors.studentdeals");
+  --primary-darker: theme("colors.studentdeals-darker");
+  --primary-transparent: theme("colors.studentdeals-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.studentdeals-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.studentdeals-highlight");
+  --primary-highlight-bg: theme("colors.studentdeals-highlight-bg");
+
+  --primary-action: theme("colors.studentdeals-action");
+  --primary-action-highlight: theme("colors.studentdeals-action-highlight");
+  --primary-action-highlight-bg: theme(
+    "colors.studentdeals-action-highlight-bg"
+  );
+}
+
+[data-theme="wikicamps"] {
+  --primary: theme("colors.wikicamps");
+  --primary-darker: theme("colors.wikicamps-darker");
+  --primary-transparent: theme("colors.wikicamps-transparent-bg");
+  --primary-transparent-bg-darker: theme(
+    "colors.wikicamps-transparent-bg-darker"
+  );
+  --primary-highlight: theme("colors.wikicamps-highlight");
+  --primary-highlight-bg: theme("colors.wikicamps-highlight-bg");
+
+  --primary-action: theme("colors.wikicamps-action");
+  --primary-action-highlight: theme("colors.wikicamps-action-highlight");
+  --primary-action-highlight-bg: theme("colors.wikicamps-action-highlight-bg");
+}
+
+[data-theme="yha"] {
+  --primary: theme("colors.yha");
+  --primary-darker: theme("colors.yha-darker");
+  --primary-transparent: theme("colors.yha-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.yha-transparent-bg-darker");
+  --primary-highlight: theme("colors.yha-highlight");
+  --primary-highlight-bg: theme("colors.yha-highlight-bg");
+
+  --primary-action: theme("colors.yha-action");
+  --primary-action-highlight: theme("colors.yha-action-highlight");
+  --primary-action-highlight-bg: theme("colors.yha-action-highlight-bg");
+}
+
+[data-theme="issy"] {
+  --primary: theme("colors.issy");
+  --primary-darker: theme("colors.issy-darker");
+  --primary-transparent: theme("colors.issy-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.issy-transparent-bg-darker");
+  --primary-highlight: theme("colors.issy-highlight");
+  --primary-highlight-bg: theme("colors.issy-highlight-bg");
+
+  --primary-action: theme("colors.issy");
+  --primary-action-highlight: theme("colors.issy-highlight");
+  --primary-action-highlight-bg: theme("colors.issy-highlight-bg");
+}
+
+[data-theme="myisic"] {
+  --primary: theme("colors.myisic");
+  --primary-darker: theme("colors.myisic-darker");
+  --primary-transparent: theme("colors.myisic-transparent-bg");
+  --primary-transparent-bg-darker: theme("colors.myisic-transparent-bg-darker");
+  --primary-highlight: theme("colors.myisic-highlight");
+  --primary-highlight-bg: theme("colors.myisic-highlight-bg");
+
+  --primary-action: theme("colors.myisic");
+  --primary-action-highlight: theme("colors.myisic-highlight");
+  --primary-action-highlight-bg: theme("colors.myisic-highlight-bg");
+}

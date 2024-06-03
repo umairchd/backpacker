@@ -1,0 +1,4258 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+"country code"
+scalar CountryCode
+"An RFC-3339 compliant Full Date Scalar"
+scalar Date
+"An RFC-3339 compliant DateTime Scalar"
+scalar DateTime
+"A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/."
+scalar EmailAddress
+"gender"
+scalar Gender
+"Long type"
+scalar Long
+type AddOnPayload {
+  ageMax: Int
+  ageMin: Int
+  ageQualified: Boolean
+  description: String
+  name: String
+  otherCharges: String
+  price: PriceAddOnPayload
+  specialNotes: String
+  unitsAvailable: Int
+  unitsLinkedToParent: Boolean
+  unitsMax: Int
+  unitsMin: Int
+  unitsMultipleOf: Int
+  uuid: UUIDPayload
+}
+type AddOnSelectionPayload {
+  hint: String
+  quantity: Int
+  uuid: String
+}
+type AdvertisedDeparture {
+  amount: String!
+  currency: String!
+  departure: ProductAdminServiceDeparture!
+  previousAmount: String!
+  promotion: ProductAdminServicePromotion!
+  room: String
+  rooms: [Room!]
+}
+type AnswerPayload {
+  hint: String
+  questionUuid: String
+  value: String
+}
+type AnswersPayload {
+  answers: [AnswerPayload]
+}
+type AttributeKeyValuePair {
+  key: String
+  value: String
+}
+type AvailabilityAndPricingSummaryPayload {
+  nextAvailableDate: NextAvailableDatePayload!
+  priceFrom: PriceFromPayload!
+  productId: String!
+  resSystemType: ResSystemType
+  variantSummaries: [AvailabilityAndPricingSummaryPayload!]
+  zoneOffset: String!
+}
+type AvailabilityCacheConfigurationPayload {
+  cacheTtl: Long!
+  id: Int!
+  productId: String!
+  resSystemType: ResSystemType!
+}
+"Availability models"
+type AvailabilityDataPayload {
+  resProviderExecutionTime: Int
+  resSystemType: ResSystemType!
+  slots: [AvailabilitySlot!]
+}
+type AvailabilityFare {
+  availableCount: Int
+  bpdFareType: String
+  isHidden: Boolean!
+  levyLabel: String
+  maxQuantity: Int
+  minQuantity: Int
+  price: FarePrice!
+  resSystemBookingId: String!
+  resSystemFareTypeId: String!
+  seatUsed: Int
+}
+type AvailabilityFarePricePayload {
+  availabilitySlotKey: String
+  commission: Float
+  createdAt: DateTime
+  discountRulePrice: Float
+  fareDiscountPrice: Float
+  id: Int
+  netPrice: Float
+  productId: String
+  recommendedRetailPrice: Float
+  resSystemFareTypeId: String
+  totalPrice: Float
+  totalSaving: Float
+  updatedAt: DateTime
+}
+type AvailabilityMoney {
+  adjustedMoney: Money
+  money: Money!
+}
+type AvailabilitySlot {
+  availabilitySlotKey: String
+  availableCount: Int
+  endTime: DateTime
+  endTimeLocal: String
+  fares: [AvailabilityFare!]!
+  hasAvailableSlots: Boolean
+  isLastMinute: Boolean
+  isOperating: Boolean
+  maxQuantity: Int
+  minQuantity: Int
+  pickupDropOffs: [PickupDropOffPayload]
+  startTime: DateTime
+  startTimeLocal: String
+  status: AvailabilitySlotStatusEnum
+  totalCount: Int
+}
+type AvailableDate {
+  date: DateTime! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  hasAvailableSlots: Boolean! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  isOperating: Boolean! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  maximumUnitOrder: Int @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  minimumUnitOrder: Int @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  slots: [Slot!]! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+type BarcodeDetailsPayload {
+  barcodeData: String
+  barcodeRaw: String
+  barcodeRequired: Boolean
+  format: String
+  instructions: String
+}
+type BaseVariantPayload {
+  addOns: [AddOnPayload]
+  available: Boolean
+  description: String
+  name: String
+  specialNotes: String
+  timeSlots: [TimeslotPayload]
+}
+type BillingInfoPayload {
+  billingCurrency: String
+  billingExchangeRate: String
+  forexSurchargePerc: String
+}
+type BookingCompany {
+  id: String!
+  name: String!
+}
+type BookingConfirmationResponse {
+  url: String
+}
+"## Booking Search End ###"
+type BookingContactDetailsPayload {
+  contactInfo: BookingContactInfoPayload
+  customerLocation: BookingCustomerLocationPayload
+  extra: BookingExtraInfoPayload
+  participantDetails: [BookingParticipantDetailsPayload]
+  pickup: BookingPickupPayload
+}
+type BookingContactInfoPayload {
+  customBookingFields: [CustomBookingFieldAnswerPayload!]!
+  email: String!
+  firstName: String!
+  id: Int!
+  lastName: String!
+  phone: String!
+}
+type BookingCustomerLocationPayload {
+  customerCity: String
+  customerCountry: String
+  customerLocation: String
+  id: ID!
+  ipAddress: String!
+}
+type BookingDataPayload {
+  availabilitySlotKey: String
+  bookingId: Int! @deprecated(reason: "replaced by bookingUid")
+  bookingStatus: BookingStatus!
+  bookingType: BookingType
+  bookingUid: String!
+  departureDate: DateTime!
+  expirationDate: DateTime
+  participantDetails: [BookingParticipantDetailsPayload]
+  productId: String!
+  userId: ID!
+}
+type BookingDetailsPayload {
+  cancellationPolicy: CancellationPolicyPayload
+  clientReference: String
+  id: Int
+  livnReference: String
+  partyEmailAddress: String
+  partyName: String
+  passThroughReference: String
+  supplierReference: String
+}
+type BookingErrorPayload {
+  customerErrorMessage: String
+  goBackToRetry: Boolean
+  internalErrorMessage: String
+  terminateTransaction: Boolean
+}
+type BookingExtraInfoPayload {
+  message: String
+}
+type BookingInternalNotePayload {
+  createdAt: DateTime
+  id: Int!
+  noteText: String!
+  updatedAt: DateTime
+  userId: ID!
+}
+type BookingParticipantDetailsPayload {
+  bookingFareTypeId: Int!
+  bookingFareTypeName: String!
+  customBookingFields: [CustomBookingFieldAnswerPayload!]!
+  fareTypeId: Int! @deprecated(reason: "replaced by booking related bookingFareTypeId")
+  firstName: String
+  id: Int!
+  lastName: String
+}
+type BookingPayload {
+  billingInfo: BillingInfoPayload
+  cancellationPolicy: CancellationPolicyPayload
+  cancellations: [ChannelCancellationPolicyPayload]
+  clientReference: String
+  confirmed: DateTime
+  externalResources: ExternalResourcesPayload
+  flowId: Int
+  id: Int
+  invoice: InvoicePayload
+  livnReference: String
+  partyEmailAddress: String
+  partyName: String
+  passThroughReference: String
+  supplierReference: String
+  tickets: [TicketPayload]
+}
+type BookingPaymentPayload {
+  currency: String
+  paymentPrice: Float
+  paymentProviderOrderId: String
+  paymentType: String
+}
+type BookingPickupPayload {
+  additionalNotes: String
+  address: String
+  name: String
+  offset: Int
+  pickupId: String
+}
+type BookingPricingPayload {
+  commission: Float!
+  currency: String!
+  discount: Float
+  discountType: DiscountType
+  fareTypesToBook: [FareTypeToBookPayload!]!
+  id: Int
+  promocode: BookingPricingPromocodePayload
+  recommendedRetailPrice: Float!
+  totalOrderPrice: Float!
+}
+type BookingPricingPromocodePayload {
+  discountAmount: Float!
+  name: String!
+}
+type BookingPromocodeErrorPayload {
+  error: String
+  success: Boolean!
+}
+type BookingPromocodeSuccessPayload {
+  promocodeName: String
+  success: Boolean!
+}
+type BookingReferrals {
+  affiliateType: String
+  channelId: String!
+  merchantId: String!
+  promotionName: String
+}
+type BookingReferralsPayload {
+  affiliateProgramType: String
+  channelId: String
+  channelName: String
+  merchantId: String
+}
+type BookingResponse {
+  bookingId: String
+  isBookable: Boolean
+  resSystemType: BookingResSystemType
+}
+type BookingSearchContactInfoPayload {
+  email: String
+  name: String
+  phone: String
+}
+type BookingSearchCouponPayload {
+  amount: Float
+  name: String
+}
+type BookingSearchCustomerLocationPayload {
+  city: String
+  country: String
+  ipAddress: String
+  location: String
+}
+type BookingSearchExtraInfoPayload {
+  notes: String
+}
+type BookingSearchFareTypePayload {
+  numberOfSeats: Int!
+  price: FareTypePricePayload!
+  resSystemFareTypeId: String!
+}
+type BookingSearchInternalNotePayload {
+  createdAt: DateTime!
+  createdBy: Int!
+  text: String!
+}
+type BookingSearchOrderPayload {
+  orderDate: Date
+}
+type BookingSearchPricingPayload {
+  commission: Float
+  discount: Float
+  orderTotal: Float
+  rrp: Float
+}
+type BookingSearchProductDataPayload {
+  optionName: String
+  productName: String
+}
+type BookingSearchProductPayload {
+  city: String
+  country: String
+  mainCategory: String
+  partnerName: String
+  productId: String
+  region: String
+  url: String
+}
+type BookingSearchResProviderPayload {
+  resProviderId: String
+}
+type BookingSearchVoucherPayload {
+  code: String
+}
+type BPD_Afterpay {
+  enabled: Boolean
+  merchant_id: String
+  region: String
+  order_minimum: Float
+  order_maximum: Float
+}
+type BPD_Banner {
+  id: ID!
+  name: String!
+  heading: String
+  link: String
+  delayMs: Int
+  images: [Image!]!
+}
+type BPD_Blog {
+  url: String
+  posts: [BPD_BlogPost!]!
+}
+type BPD_BlogPost {
+  id: ID!
+  title: String
+  link: String
+  categories: [String!]!
+  featuredImage: Image
+}
+type BPD_BookingExtraFieldOutput {
+  formKey: String!
+  value: String
+}
+type BPD_BookingFields {
+  extraFields: BPD_ExtraFields!
+  pickupLocations: [BPD_PickupLocation]!
+}
+type BPD_BookingFieldValues {
+  extraFields: BPD_ExtraFieldValues
+  pickupLocation: String
+}
+type BPD_Category implements BPD_CategoryLike {
+  id: ID
+  uri: BPD_Uri!
+  name: String!
+  uniqueName: String!
+  image: Image
+  productCount: Int
+}
+type BPD_Channel {
+  id: ID!
+  key: String!
+  name: String!
+  theme: String!
+  url: String!
+  googlePayMerchantId: String!
+  siteConfig: BPD_SiteConfig!
+  banners(type: BPD_BannerType): [BPD_Banner!]!
+  supportedCurrencies: [BPD_Currency!]!
+  features: [String!]!
+  paymentProviders: [String!]!
+  countries: [BPD_Country!]! @deprecated(reason: "use Query.productStatistics")
+  categories: [BPD_Category!]! @deprecated(reason: "use Query.productStatistics")
+}
+type BPD_ChannelSimple {
+  name: String!
+  url: String!
+}
+type BPD_City implements BPD_CategoryLike {
+  id: ID
+  uri: BPD_Uri!
+  name: String!
+  uniqueName: String!
+  country: BPD_Country!
+  productCount: Int
+  image: Image
+}
+type BPD_ClientInfo {
+  host: String!
+  clientIP: String
+  cityName: String
+  subdivisionName: String
+  countryName: String
+  isoCountryCode: String
+  timeZone: String
+  currencyCode: String
+  coordinate: Coordinate
+}
+type BPD_Contact {
+  name: String
+  email: String
+  phoneNumber: String
+}
+type BPD_ContactBookingDataOutput {
+  contactName: String
+  email: String
+  contactNumber: String
+  participants: [BPD_ContactBookingDataParticipantOutput!]
+  couponCode: String
+  pickupID: String
+  specialInstructionMessage: String
+  extraFields: [BPD_BookingExtraFieldOutput]
+}
+type BPD_ContactBookingDataParticipantOutput {
+  fareType: String!
+  name: String!
+  extraFields: [BPD_BookingExtraFieldOutput]
+}
+type BPD_Country implements BPD_CategoryLike {
+  id: ID
+  uri: BPD_Uri!
+  name: String!
+  uniqueName: String!
+  cities: [BPD_City!]!
+  productCount: Int
+  image: Image
+}
+type BPD_CreatedBookingOutput {
+  message: String!
+  voucherUrl: String
+  token: String
+}
+type BPD_CreateWishlistOutput {
+  message: String
+  product: Product
+}
+type BPD_Currency {
+  id: ID!
+  name: String!
+  symbol: String!
+  uniRate: Float!
+  isoSymbol: String!
+}
+type BPD_DisplayPrice {
+  adultPrice: BPD_Price
+  childPrice: BPD_Price
+  familyPrice: BPD_Price
+}
+type BPD_ExternalUri {
+  url: String
+}
+type BPD_ExtraField {
+  id: Int!
+  position: Int
+  formKey: String!
+  label: String!
+  isRequired: Boolean
+  isPublished: Boolean
+  fieldType: String!
+  fieldOptions: [BPD_ExtraFieldOption]
+}
+type BPD_ExtraFieldOption {
+  label: String!
+  value: String!
+}
+type BPD_ExtraFieldPerBookingValues {
+  formKey: String!
+  value: String
+}
+type BPD_ExtraFieldPerParticipantValues {
+  participantIndex: String!
+  formKey: String!
+  value: String
+}
+type BPD_ExtraFields {
+  perBooking: [BPD_ExtraField]
+  perParticipant: [BPD_ExtraField]
+}
+type BPD_ExtraFieldValues {
+  perBooking: [BPD_ExtraFieldPerBookingValues]
+  perParticipant: [BPD_ExtraFieldPerParticipantValues]
+}
+type BPD_GeneratedBraintreeClientTokenOutput {
+  message: String!
+  token: String
+  orderID: String!
+  levyString: String
+  levy: BPD_LevyOutput
+  request: BPD_GiftOrderRequestOutput!
+}
+type BPD_GiftOrderRequestOutput {
+  adultQuantity: Int
+  childQuantity: Int
+  familyQuantity: Int
+  orderSum: Money!
+  prices: BPD_PricesOutput!
+}
+type BPD_HomeLocalDeals {
+  title: String
+  seeAllRelativeUrl: String!
+  products: [Product!]!
+}
+type BPD_Homepage_Ribbon {
+  banner_heading: String
+  banner_text: String
+  banner_url: String
+  banner_background_color: String
+  banner_background_secondary_color: String
+}
+type BPD_LandingPage {
+  image: Image
+  header: String
+  subheader: String
+  teaser: String
+  image_title: String
+  image_alt: String
+  image_description: String
+}
+type BPD_LevyOutput {
+  adult: Money
+  child: Money
+  family: Money
+}
+type BPD_ListFilter {
+  country: BPD_Country
+  city: BPD_City
+  categories: [BPD_Category!]
+  last_minute: Boolean
+  top_deal: Boolean
+}
+type BPD_ListPage implements BPD_Page {
+  id: ID!
+  template: String!
+  listFilter: BPD_ListFilter @deprecated(reason: "use productsStatistics query")
+  popularProducts: [Product!]! @deprecated(reason: "use products query")
+  hideBreadcrumbs: Boolean
+  country: BPD_Country
+  city: BPD_City
+  category: BPD_Category
+  relatedCountries: [BPD_Country!] @deprecated(reason: "use productsStatistics query")
+  relatedCities: [BPD_City!] @deprecated(reason: "use productsStatistics query")
+  relatedCategories: [BPD_Category!] @deprecated(reason: "use productsStatistics query")
+  landingPage: BPD_LandingPage
+  landingPageFooter: BPD_LandingPage
+  ratingScore: Float
+  totalReviews: Int
+  products: [Product!]!
+  channel: BPD_Channel!
+}
+type BPD_MenuItem {
+  id: ID!
+  name: String
+  uri: BPD_MenuItemUri!
+}
+type BPD_NonPage implements BPD_Page {
+  id: ID!
+  template: String!
+  channel: BPD_Channel!
+}
+type BPD_Order {
+  orderID: String!
+  channel: BPD_ChannelSimple!
+  grandTotal: Money
+  isGift: Boolean
+  product: Product!
+  slot: BPD_ValidBookingDataSlotOutput!
+  payment: BPD_PaymentOutput
+  bookingRequest: BPD_ValidBookingDataRequestOutput!
+  bookingData: BPD_ContactBookingDataOutput
+}
+type BPD_OtherSearch {
+  countries: [BPD_Country!]!
+  cities: [BPD_City!]!
+  categories: [BPD_Category!]!
+}
+type BPD_Participants {
+  adult: [String]
+  child: [String]
+  family: [String]
+}
+type BPD_Partner {
+  company_logo: Image
+  name: String!
+}
+type BPD_PaymentOptions {
+  braintree: Boolean
+  laybuy: Boolean
+  afterpay: BPD_Afterpay
+}
+type BPD_PaymentOutput {
+  method: String
+  methodType: String
+  countryCode: String
+  zipCode: String
+}
+type BPD_PickupLocation {
+  id: String!
+  label: String!
+  productStartTime: String
+}
+type BPD_Price {
+  price: Money
+  value: Money
+  type: String
+}
+type BPD_PricesOutput {
+  adultPrice: Float!
+  childPrice: Float
+  familyPrice: Float
+}
+type BPD_ProductPage implements BPD_Page {
+  id: ID!
+  template: String!
+  product: Product!
+  paymentOptions: BPD_PaymentOptions!
+  relatedProducts: [Product!]! @deprecated(reason: "use products query")
+  channel: BPD_Channel!
+}
+type BPD_Redirect {
+  newUrl: String!
+  status: Int!
+}
+type BPD_RegionPage implements BPD_Page {
+  id: ID!
+  template: String!
+  title: String
+  content: String
+  menu: [BPD_MenuItem!]
+  channel: BPD_Channel!
+}
+type BPD_SeoData {
+  id: ID!
+  openGraph_title: String
+  openGraph_type: String
+  openGraph_url: String
+  openGraph_image: String
+  openGraph_image_raw: String
+  openGraphImage: Image
+  openGraph_description: String
+  twitterCard_card: String
+  twitterCard_title: String
+  twitterCard_description: String
+  twitterCard_image: String
+  twitterCard_image_raw: String
+  twitterCardImage: Image
+  seoConfig_title: String
+  seoConfig_description: String
+  seoConfig_keywords: String
+  openGraph_site_name: String
+  twitterCard_site: String
+  seoConfig_schema: String
+  canonical_url: String
+  canonical_host: String
+  amp_url: String
+  author_title: String
+  rss_title: String
+  rss_xml: String
+  language: String
+  noindex: Boolean
+}
+type BPD_SiteConfig {
+  id: ID!
+  logo: String
+  logoImage: Image
+  favicon: String
+  faviconImage: Image
+  home_image: String
+  homeImage: Image
+  home_header: String
+  home_subheader: String
+  home_search_placeholder: String
+  promo_title_1: String
+  promo_title_2: String
+  promo_title_3: String
+  promo_title_4: String
+  promo_title_5: String
+  home_featured_title: String
+  home_featured_subtitle: String
+  home_featured_button_prefix: String
+  home_partners: String
+  footer_right_info_box: String
+  footer_copyright: String
+  contact_address: String
+  contact_phones: String
+  contact_mail: String
+  contact_company_id: String
+  contact_physical_address: String
+  contact_physical_phone: String
+  contact_facebook_url: String
+  contact_links_phone: String
+  contact_links_mail: String
+  tracking_google_tag_manager: String
+  iterable_key: String
+  home_last_minute: Boolean
+  contact_phone_us: String
+  contact_phone_default: String
+  is_banner_active: Boolean
+  banner_heading: String
+  banner_text: String
+  banner_url: String
+  banner_icon: String
+  bannerIconImage: Image
+  banner_background_color: String
+  banner_background_secondary_color: String
+  is_homepage_content_active: Boolean
+  homepage_content: String
+  home_schema: String
+  footer_social_links: String
+}
+type BPD_StaticPage implements BPD_Page {
+  id: ID!
+  template: String!
+  subTemplate: String
+  title: String
+  content: String
+  menu: [BPD_MenuItem!]
+  channel: BPD_Channel!
+}
+type BPD_UpdatedContactInformationOutput {
+  message: String!
+}
+type BPD_Uri {
+  country: String
+  city: String
+  slug: String
+  url: String
+}
+type BPD_UserOrder {
+  invoiceNumber: String
+  invoiceDate: String
+  bookingTime: DateTime
+  couponCode: String
+  totalAmount: Money
+  status: String
+  voucherUrl: String
+  invoiceUrl: String
+}
+type BPD_UserOrders {
+  edges: [BPD_UserOrder]
+  limitOffsetPageInfo: LimitOffsetPageInfo
+}
+type BPD_ValidBookingDataOutput {
+  orderID: String!
+  product: Product!
+  request: BPD_ValidBookingDataRequestOutput!
+  slot: BPD_ValidBookingDataSlotOutput!
+  token: String
+}
+type BPD_ValidBookingDataRequestOutput {
+  date: String
+  adultQuantity: Int
+  childQuantity: Int
+  familyQuantity: Int
+  discount: Money
+  discountSum: Money
+  sum: Money
+}
+type BPD_ValidBookingDataSlotOutput {
+  id: String
+  orderedAvailabilitySlotId: String
+  doubleAdultPrice: Money
+  doubleChildPrice: Money
+  doubleFamilyPrice: Money
+  date: String
+  startTime: String
+  endTime: String
+}
+type BPD_ValidBookingOutput {
+  message: String!
+  data: BPD_ValidBookingDataOutput
+}
+type BPD_ValidCouponDataCouponOutput {
+  name: String!
+  discount: Float!
+  balance: Float!
+}
+type BPD_ValidCouponDataOutput {
+  coupon: BPD_ValidCouponDataCouponOutput!
+}
+type BPD_ValidCouponOutput {
+  message: String!
+  data: BPD_ValidCouponDataOutput!
+}
+type CancellationPolicyPayload {
+  rules: [CancellationPolicyRulePayload]
+  setAtTimeOfBooking: Boolean
+  text: String
+}
+type CancellationPolicyRulePayload {
+  after: DateTime
+  cancellationCostAmount: PriceCancellationCostAmountPayload
+  cancellationCostPerc: String
+  cancellationPossible: Boolean
+}
+type CataloguePayload {
+  id: Int
+  name: String
+}
+type CategoryPayload {
+  id: Int
+  name: String
+}
+type CategoryType {
+  href: String!
+  id: String!
+  label: String!
+}
+type ChannelCancellationPolicyPayload {
+  rules: [ChannelCancellationPolicyRulePayload]
+  text: String
+}
+type ChannelCancellationPolicyRulePayload {
+  cancellationCostAmount: PriceCancellationCostAmountPayload
+  cancellationCostPerc: String
+  cancellationPossible: Boolean
+  hoursToDeparture: Int
+}
+type ChannelPayload {
+  billingCurrency: String
+  cancellationPolicy: ChannelCancellationPolicyPayload
+  created: DateTime
+  directConnect: Boolean
+  forexSurchargePerc: String
+  id: Int
+  modified: DateTime
+}
+type City {
+  href: String!
+  id: String!
+  name: String!
+}
+type Coordinate {
+  latitude: Float!
+  longitude: Float!
+}
+type Country {
+  href: String!
+  id: String!
+  name: String!
+}
+type CustomBookingFieldAnswerPayload {
+  answerValue: String!
+  customBookingFieldId: Int!
+}
+type CustomBookingFieldsPayload {
+  fieldType: CustomBookingFieldType!
+  fieldTypeDataForeignId: Int
+  id: Int!
+  isRequiredByProvider: Boolean
+  label: String
+  note: String
+  originalLabel: String
+  placeholder: String
+  productId: ID!
+  publishedLevel: VisibilityLevel!
+  requiredLevel: VisibilityLevel!
+  resSystemFieldId: String!
+}
+type DateRange {
+  end: DateTime!
+  start: DateTime!
+}
+type DeleteAvailabilityCacheConfigurationPayload {
+  id: Int!
+}
+type DeleteDiscountRulePayload {
+  " Database ID of deleted object"
+  id: Int
+}
+type DeleteMapBookingFieldTypeConfigurationPayload {
+  " Database ID of deleted object"
+  id: [Int!]!
+}
+type DeleteMapBookingFieldTypeGroupPayload {
+  " Database ID of deleted object"
+  id: [Int!]!
+}
+type DepartureAvailability {
+  female: String!
+  male: String!
+  status: String!
+  total: Int!
+}
+type Detail {
+  body: String!
+  detailType: DetailType!
+}
+type DetailType {
+  id: String!
+  label: String!
+}
+type DiscountRulePayload {
+  blackoutDates: [DateRange!]
+  " used for DB-sync only to ensure one-to-one mapping between BPD record and new DiscountRule record"
+  bpdId: Int
+  dayOfWeekDisabled: Int
+  discountRate: Int!
+  " Database ID"
+  id: Int!
+  isActive: Boolean!
+  isApproved: Boolean!
+  numberOfSeats: Int
+  " Unique product identifier (UUID)"
+  productId: ID!
+  startTimeOffset: Int!
+  travelDate: DateRange
+  validFrom: DateTime
+  validUntil: DateTime
+}
+type DistributorPayload {
+  emailCancellations: String
+  emailRes: String
+  id: Int
+  name: String
+  tnc: String
+}
+type EditProductPayload {
+  currencyCode: String
+  globalDiscount: Float
+  id: Int!
+  productId: ID!
+}
+type ExternalResourcePayload {
+  caption: String
+  data: String
+  mimeType: String
+  printRequired: Boolean
+  required: Boolean
+  ticketUuids: [UUIDPayload]
+  url: String
+}
+type ExternalResourcesPayload {
+  externalResources: [ExternalResourcePayload]
+}
+type FareDetailsPayload {
+  addOns: [AddOnPayload]
+  baseVariants: [BaseVariantPayload]
+}
+type FareDiscountValuesPayload {
+  bpdFareType: BpdFareType
+  commission: Float
+  fareDiscount: Float
+  fareTypeId: Int!
+  isHidden: Boolean
+  isLevyIncluded: Boolean
+  levyAmount: Float
+  levyBpdLabel: String
+  levyLabel: String
+}
+type FarePayload {
+  addOns: [AddOnPayload]
+  ageMax: Int
+  ageMin: Int
+  ageQualified: Boolean
+  availabilityUnknown: Boolean
+  description: String
+  name: String
+  otherCharges: String
+  price: PriceFarePayload
+  specialNotes: String
+  unitsAvailable: Int
+  unitsMax: Int
+  unitsMin: Int
+  unitsMultipleOf: Int
+  uuid: UUIDPayload
+}
+type FarePrice {
+  " Amount of commission for that particular fare"
+  commission: AvailabilityMoney!
+  " LMD Discount"
+  discountRulePrice: AvailabilityMoney!
+  fareDiscountPrice: AvailabilityMoney!
+  levyPrice: LevyPrice
+  " Price to pay to ResSystem"
+  netPrice: AvailabilityMoney!
+  " Regular price proposed by ResSystem – 235.95"
+  recommendedRetailPrice: AvailabilityMoney!
+  " Final price to be payed by customer"
+  totalPrice: AvailabilityMoney!
+  " How much buyer saves picking this deal"
+  totalSaving: AvailabilityMoney!
+}
+type FareSelectionPayload {
+  hint: String
+  quantity: Int
+  uuid: String
+}
+type FareType {
+  "Get the value of displayName."
+  displayName: String! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  "Get the value of typeName."
+  typeName: FareTypeEnum! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+type FareTypeBooked {
+  quantity: Int!
+  title: String!
+}
+type FareTypeImportPayload {
+  data: [FareTypePayload]!
+  status: FareTypeImportStatusPayload!
+}
+type FareTypeImportStatusPayload {
+  ignored: Int!
+  stored: Int!
+}
+"Import Fare types models"
+type FareTypePayload {
+  bpdFareType: BpdFareType
+  currencyCode: String
+  description: String
+  displayName: String
+  " Database ID"
+  id: Int!
+  isHidden: Boolean!
+  originalName: String!
+  productId: ID!
+  recommendedRetailPrice: Float
+  resSystemFareTypeId: ID!
+}
+type FareTypePricePayload {
+  commission: Float
+  currency: String
+  discount: Float
+  orderTotal: Float
+  recommendedRetailPrice: Float
+}
+type FareTypeToBookPayload {
+  fareTypeName: String!
+  numberOfSeats: Int!
+  resSystemFareTypeId: String!
+  totalPrice: Float!
+  totalSaving: Float!
+}
+type FinalMoney {
+  amount: Float!
+  currencyCode: String!
+}
+type FlowPayload {
+  billingInfo: BillingInfoPayload
+  bookings: [BookingPayload]
+  clientId: String
+  clientReference: String
+  currency: String
+  date: DateTime
+  directConnect: Boolean
+  id: Int
+  livnReference: String
+  product: ProductPayload
+  productId: Int
+  resSystemType: ResSystemTypeForLivn
+  roadmap: String
+  simulation: Boolean
+  steps: [StepPayload]
+}
+type Geography {
+  finishCity: City!
+  finishCountry: Country!
+  primaryCountry: Country!
+  region: Region!
+  startCity: City!
+  startCountry: Country!
+  visitedCountries: [Country!]!
+}
+type GeoLocation {
+  city: LocationData
+  country: LocationData
+  region: LocationData
+}
+type GuestMe implements MeOrGuestMe {
+  id: ID!
+  preferredCurrency: String!
+}
+type HighlightsPayload {
+  highlights: [String]
+}
+type Image {
+  id: ID!
+  fileName: String!
+  altText: String
+  height: Int
+  imgSrc(transform: ImageTransformInput = null, transformBaseUrl: String = null): String
+  width: Int
+  src(transform: ImageTransformInput = null, transformBaseUrl: String = null): String @deprecated(reason: "use imgSrc instead")
+  url: String @deprecated(reason: "url is deprecated")
+}
+type ImagePayload {
+  fileSize: Int
+  height: Int
+  mimeType: String
+  title: String
+  url: String
+  width: Int
+}
+type ImportRemoteDealsData {
+  departuresEndTime: String
+  departuresStartTime: String
+  name: String
+  productLine: String
+  resSystemType: ImportResSystemType
+  tourId: String
+}
+type ImportRemoteDealsResponse {
+  data: String
+  status: TravelloErrorStatus
+}
+type InclusionPayload {
+  content: String
+  type: String
+}
+type InclusionsPayload {
+  items: [InclusionPayload]
+}
+type InternalStoredData {
+  rsisStoredValues: [AttributeKeyValuePair]!
+}
+type InvoicePayload {
+  contractCommTotal: PriceContractCommTotalPayload
+  grossTotal: PriceLineItemsGrossTotalPayload
+  lineItems: [LineItemPayload]
+  netTotal: PriceLineItemsNetTotalPayload
+  resSuppliedCommTotal: PriceResSuppliedCommTotalPayload
+}
+type ItineraryItemPayload {
+  body: String
+  dayFrom: Int
+  dayTo: Int
+  timeFrom: String
+  timeTo: String
+  title: String
+}
+type ItineraryPayload {
+  items: [ItineraryItemPayload]
+  name: String
+}
+type JobResponse {
+  status: JobStatus
+}
+type Levy implements Price {
+  fareType: FareType! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  label: String @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  value: Money! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+type LevyPrice {
+  included: Boolean!
+  value: AvailabilityMoney!
+}
+type LimitOffsetPageInfo {
+  totalCount: Int!
+}
+type LineItemPayload {
+  commissionTotal: PriceLineItemCommissionTotalPayload
+  fareUuids: [UUIDPayload]
+  grossPerUnit: PriceLineItemGrossPerUnitPayload
+  grossTotal: PriceLineItemGrossTotalPayload
+  netPerUnit: PriceLineItemNetPerUnitPayload
+  netTotal: PriceLineItemNetTotalPayload
+  quantity: Int
+  salesComputationDetails: SalesComputationDetailsPayload
+  title: String
+  type: String
+}
+type LoaderResultPayload {
+  executed: Int
+  ignored: Int
+  processed: Int
+  stored: Int
+}
+type LocalTimePayload {
+  hour: Int
+  minute: Int
+  nano: Int
+  second: Int
+}
+type LocationData {
+  id: ID!
+  name: String!
+  uniqueName: String!
+}
+type LocationPayload {
+  address1: String
+  address2: String
+  building: String
+  business: String
+  city: String
+  continent: String
+  country: String
+  district: String
+  landmark: String
+  latitude: Float
+  longitude: Float
+  postcode: String
+  state: String
+  streetAddressAccuracy: Boolean
+  tz: String
+}
+type MapBookingFieldTypeConfigurationPayload {
+  groupId: Int!
+  id: Int!
+  label: String
+  originalLabel: String
+  resSystemAnswerId: String
+}
+type Me implements MeOrGuestMe {
+  id: ID!
+  user: User!
+  email: EmailAddress!
+  privacySettings: UserPrivacySettings
+  preferredCurrency: String!
+}
+type Merchant {
+  accountsEmail: String
+  companyLogo: Image
+  companyName: String
+  companyPhone: String
+  contactNumber: String
+  contactPerson: String
+  email: String
+  id: ID!
+  name: String
+  otherInfo: String
+  salesEmail: String
+  website: String
+}
+type Money {
+  " 235.95"
+  amount: Float!
+  " The three-letter currency code defined in ISO 4217"
+  currencyCode: String!
+  bpd_convertedAmount(currencyCode: String): Float
+  "this is the same as bpd_convertedAmount except it returns a structure similar to Money but without any convertion methods"
+  bpd_convertTo(currencyCode: String): FinalMoney
+  convertedAmount(
+    " The three-letter currency code defined in ISO 4217"
+    currencyCode: String
+  ): Float
+}
+type Mutation {
+  activateDiscountRule(id: Int!): DiscountRulePayload
+  " Discount Rules "
+  createDiscountRule(input: DiscountRuleInput!, productId: ID!): DiscountRulePayload
+  deleteDiscountRule(id: Int!): DeleteDiscountRulePayload
+  disableDiscountRule(id: Int!): DiscountRulePayload
+  " Fare Types Import "
+  importFareTypes(productIds: [ID!]!): FareTypeImportPayload!
+  importSingleProductAndCache(input: SingleProductCacheUpdateInput!): Boolean!
+  productMetaImportByProductDataMap(productMetaImportInput: ProductMetaImportInput!): ProductMetaImportPayload!
+  " Cache configs "
+  startCaching(input: StartCacheJobInput): StartCacheJobPayload
+  syncProducts(input: SyncProductsInput!): Boolean!
+  updateDiscountRule(id: Int!, input: DiscountRuleInput!): DiscountRulePayload
+  updateFareTypes(input: [FareTypeUpdateInput!]!, productId: ID!): [FareTypePayload]!
+  "  Discount rules "
+  updateProductDiscountsConfiguration(input: DiscountsConfigurationUpdateInput!): ProductDiscountsConfigurationPayload!
+  addAvailabilityFarePrice(input: [AvailabilityFarePriceInput!]!): [AvailabilityFarePricePayload!] @deprecated(reason: "No longer supported")
+  " Admin Only | Internal notes "
+  addBookingInternalNote(bookingUid: String, input: BookingInternalNoteInput!): BookingInternalNotePayload!
+  " Admin Only | Custom booking fields' endpoints "
+  addCustomBookingField(input: [CustomBookingFieldsInput!]!, productId: ID!): [CustomBookingFieldsPayload!]!
+  addMapBookingFieldTypeConfiguration(groupId: Int!, input: [MapBookingFieldTypeConfigurationInput!]!): [MapBookingFieldTypeConfigurationPayload!]!
+  " Promocode API endpoints"
+  applyBookingPromocode(bookingUid: String, promocode: String!): BookingPromocodePayload!
+  " User flow | Contact Info page endpoints"
+  bookingContactInfo(bookingUid: String, input: BookingContactInfoInput!): BookingContactInfoPayload!
+  bookingCustomerLocation(bookingUid: String, input: BookingCustomerLocationInput!): BookingCustomerLocationPayload!
+  bookingExtraInfo(bookingUid: String, message: String!): BookingExtraInfoPayload!
+  bookingPickup(bookingUid: String, input: BookingPickupInput!): BookingPickupPayload!
+  completeBooking(bookingUid: String, paymentToken: String!): Int
+  " User flow | General endpoints "
+  createBooking(input: BookingDataInput!): BookingDataPayload!
+  createMapBookingFieldTypeConfiguration(groupName: String!, input: [MapBookingFieldTypeConfigurationInput!]!): [MapBookingFieldTypeConfigurationPayload!]!
+  " User flow | Payment page "
+  createPaymentToken(userId: ID): Token
+  " General configurations"
+  createStringBookingFieldTypeConfiguration(input: [StringBookingFieldTypeConfigurationInput!]!): [StringBookingFieldTypeConfigurationPayload!]!
+  deleteAvailabilityFarePrice(ids: [Int!]!): [AvailabilityFarePricePayload!]
+  deleteBookingInternalNote(id: Int!): [BookingInternalNotePayload!]! @deprecated(reason: "No longer supported")
+  deleteCustomBookingFields(ids: [Int]!): [CustomBookingFieldsPayload!]!
+  deleteMapBookingFieldTypeConfiguration(ids: [Int!]!): DeleteMapBookingFieldTypeConfigurationPayload!
+  deleteMapBookingFieldTypeGroupConfiguration(groupId: Int!): [MapBookingFieldTypeConfigurationPayload!]!
+  deleteStringBookingFieldTypeConfiguration(id: Int!): StringBookingFieldTypeConfigurationPayload!
+  " Admin Only | Voucher endpoints "
+  redeemVoucher(id: Int, securityCode: String): RedeemVoucherResponse
+  updateAvailabilityFarePrice(id: Int!, input: AvailabilityFarePriceInput!): AvailabilityFarePricePayload! @deprecated(reason: "No longer supported")
+  updateBooking(bookingUid: String, input: UpdateBookingDataInput!): UpdateBookingDataPayload!
+  updateBookingContactInfo(bookingUid: String, input: BookingContactInfoInput!): BookingContactInfoPayload!
+  updateBookingCustomerLocation(bookingUid: String, input: BookingCustomerLocationInput!): BookingCustomerLocationPayload!
+  updateBookingExtraInfo(bookingUid: String, message: String!): BookingExtraInfoPayload!
+  updateBookingInternalNote(input: BookingInternalNoteInput!): BookingInternalNotePayload!
+  updateBookingParticipantDetails(bookingUid: String, input: [BookingParticipantDetailsInput!]!): [BookingParticipantDetailsPayload!]!
+  updateBookingPickup(bookingUid: String, input: BookingPickupInput!): BookingPickupPayload!
+  updateCustomBookingField(id: Int!, input: CustomBookingFieldsInput!): CustomBookingFieldsPayload!
+  updateMapBookingFieldTypeConfiguration(groupId: Int!, input: [UpdateMapBookingFieldTypeConfigurationInput!]!): [MapBookingFieldTypeConfigurationPayload!]!
+  updateStringBookingFieldTypeConfiguration(id: Int!, input: StringBookingFieldTypeConfigurationInput!): StringBookingFieldTypeConfigurationPayload!
+  bpd_createWishlist(input: BPD_CreateWishlistInput!): BPD_CreateWishlistOutput! @deprecated(reason: "migated to use iterable directly")
+  bpd_validateBooking(input: BPD_ValidateBookingInput!): BPD_ValidBookingOutput!
+  bpd_validateCoupon(input: BPD_ValidateCouponInput!): BPD_ValidCouponOutput!
+  bpd_updateContactInformation(input: BPD_UpdateContactInformationInput!): BPD_UpdatedContactInformationOutput!
+  bpd_createBooking(input: BPD_CreateBookingInput!): BPD_CreatedBookingOutput!
+  "bpd_generateBraintreeClientToken can only be used for 'Buy As a Gift'"
+  bpd_generateBraintreeClientToken(input: BPD_GenerateBraintreeClientTokenInput!): BPD_GeneratedBraintreeClientTokenOutput!
+  importNumberOfBookings: JobResponse
+  importReviewData: JobResponse
+  indexAllProducts: JobResponse
+  savePriceFromAndNextAvailableDate(input: EditProductInput!): EditProductPayload!
+  saveProductData(input: ProductDataInput): EditProductPayload!
+  cancelRedeemedPromocode(input: PromocodeRedemptionInput!): Boolean
+  redeemPromocode(input: PromocodeRedemptionInput!): PromocodeRedemptionPayload
+  savePromocode(input: PromocodeSaveInput!): PromocodeSavePayload
+  updateMyCurrency(preferredCurrency: String!): UpdateMyCurrentPayload!
+  updateMyPrivacySettings(privacySettings: UserPrivacySettingsInput!): UpdateMyPrivacySettingsPayload!
+}
+"Represents data regarding the next availability of a product."
+type NextAvailableData {
+  "The date on which the product becomes available next."
+  nextAvailableDate: String
+  "The starting price for the product."
+  priceFrom: Money
+  "The date and time at which the priceFrom becomes available."
+  priceFromAvailableAt: String
+  "The unique identifier for the product."
+  productId: String!
+}
+type NextAvailableDateAndPricePayload {
+  availableDateAndPrice: [NextAvailableData!]!
+  hasOnlyOneVariant: Boolean!
+  hasTwoOrMoreVariantProducts: Boolean!
+}
+type NextAvailableDatePayload {
+  priceFrom: Money
+  value: DateTime!
+}
+type OtherDetailsPayload {
+  body: String
+  title: String
+}
+type PassengerDetailsPayload {
+  age: Int
+  fareUUIDs: [UUIDPayload]
+  name: String
+  otherDetails: [OtherDetailsPayload]
+}
+type PickupDetail {
+  locationTitle: String!
+  notes: String
+  pickupTime: String
+}
+type PickupDetailsPayload {
+  dropOffLocation: String
+  dropOffTime: String
+  dropoffNotes: String
+  fareUuids: [UUIDPayload]
+  notes: String
+  pickupLocation: String
+  pickupTime: String
+}
+type PickupDropOffPayload {
+  address: String!
+  id: ID
+  isDefault: Boolean
+  " -30 mins before the departure date or +15 mins after departure date"
+  latitude: Float
+  longitude: Float
+  name: String!
+  notes: String
+  offset: Int
+  time: String
+  type: PickupDropOffType!
+}
+type PriceAddOnPayload {
+  amount: String
+  currency: String
+}
+type PriceBand {
+  code: String!
+  maxAge: Int!
+  maxTravellers: Int!
+  minAge: Int!
+  minTravellers: Int!
+  name: String!
+  prices: [ProductAdminPrice!]!
+}
+type PriceCancellationCostAmountPayload {
+  amount: String
+  currency: String
+}
+type PriceContractCommPayload {
+  amount: String
+  currency: String
+}
+type PriceContractCommTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceFarePayload {
+  amount: String
+  currency: String
+}
+type PriceFromPayload {
+  priceDate: DateTime
+  value: Money!
+}
+type PriceLineItemCommissionTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceLineItemGrossPerUnitPayload {
+  amount: String
+  currency: String
+}
+type PriceLineItemGrossTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceLineItemNetPerUnitPayload {
+  amount: String
+  currency: String
+}
+type PriceLineItemNetTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceLineItemsGrossTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceLineItemsNetTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceResSuppliedCommPayload {
+  amount: String
+  currency: String
+}
+type PriceResSuppliedCommTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceResSuppliedGrandTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceResSuppliedNetGrandTotalPayload {
+  amount: String
+  currency: String
+}
+type PriceResSuppliedPayload {
+  amount: String
+  currency: String
+}
+type Product {
+  availability(days: Int = null, 
+    "month is deprecated, use days instead"
+    month: Int = null,startDate: DateTime = null, 
+    "targetCurrency at this level is deprecated use Money.bpd_convertedAmount"
+    targetCurrency: String = null
+  ): ProductAvailability @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  " Unique product identifier (UUID)"
+  productId: ID!
+  bpd_name: String @deprecated(reason: "use Product.title")
+  bpd_subheader: String @deprecated(reason: "use Product.legacy.subheader")
+  bpd_priceFrom: Money @deprecated(reason: "use Product.legacy.priceFrom")
+  bpd_displayPrice: BPD_DisplayPrice @deprecated(reason: "use Product.legacy.displayPrice")
+  bpd_recommendedRetailPrice: Money @deprecated(reason: "use Product.legacy.recommendedRetailPrice")
+  bpd_uri: BPD_Uri @deprecated(reason: "use Product.uri")
+  bpd_ribbon: BPD_DealRibbon @deprecated(reason: "use Product.labels")
+  bpd_activityHr: String @deprecated(reason: "use Product.duration.label")
+  bpd_countDownLimit: Int @deprecated(reason: "use Product.legacy.countDownLimit")
+  bpd_excludedBookingInfo: String @deprecated(reason: "use Product.legacy.excludedBookingInfo, disabled in admin, almost always null")
+  bpd_bookingUrl: String @deprecated(reason: "use Product.legacy.bookingUrl, disabled in admin, almost always null")
+  bpd_partner: BPD_Partner @deprecated(reason: "use Product.partner ")
+  bpd_shortId: Int! @deprecated(reason: "use Product.legacy.shortId, reference only field, use Product.productId where possible")
+  bpd_openDatedBooking: Boolean @deprecated(reason: "use Product.legacy.openDatedBooking")
+  bpd_showMerchant: Boolean @deprecated(reason: "use Product.legacy.showMerchant")
+  bpd_hasNoIndexMetaTag: Boolean @deprecated(reason: "use Product.legacy.hasNoIndexMetaTag")
+  bpd_createdAt: DateTime @deprecated(reason: "use Product.legacy.updatedAt")
+  bpd_hidePickupOnFrontend: Boolean @deprecated(reason: "use Product.legacy.hidePickupOnFrontend")
+  bpd_isDisplayGooglePay: Boolean @deprecated(reason: "use Product.legacy.isDisplayGooglePay")
+  bpd_isDisplayPaypal: Boolean @deprecated(reason: "use Product.legacy.isDisplayPaypal")
+  bpd_isDisplayApplePay: Boolean @deprecated(reason: "use Product.legacy.isDisplayApplePay")
+  bpd_isDisplayAfterpay: Boolean @deprecated(reason: "use Product.legacy.isDisplayAfterpay")
+  bpd_forceAvailabilityV1: Boolean @deprecated(reason: "use Product.legacy.forceAvailabilityV1")
+  bpd_defaultDeparturePoint: String @deprecated(reason: "use Product.legacy.defaultDeparturePoint")
+  bpd_isDisplayHotelPickupWarning: Boolean @deprecated(reason: "use Product.legacy.isDisplayHotelPickupWarning")
+  " Product FAQ"
+  address: ProductAddress
+  benefits: TextContent
+  bookingRequired: Boolean
+  " Travel Instructions (how to get there information)"
+  cancellationPolicy: TextContent
+  categories: [ProductCategoryEdge!]
+  discounts: [ProductDiscount!]
+  duration: ProductDuration
+  " Indicate whether booking is required, if false then user will directly come to payment after choosing a product"
+  enquireOnly: Boolean
+  " Product Benefits (why we love this)"
+  exclusions: TextContent
+  " Product pickup Details, default one will be the 1st and rest items are ordered by name"
+  faqs: [ProductFaq]
+  fullDescription: TextContent
+  " Product address or merchant address if product address is not available"
+  icons: [ProductIcon]
+  images(first: Int = 0): ProductImagesInfo
+  " Indicate a product only support enquire support team to book"
+  instantConfirmation: Boolean
+  """
+  Variant products, if product has sub-products. At the moment, Products returned as variants will have only limited number of fields populated, e.g. productId and title
+  Intrinsic property used by product purchasing or search
+  """
+  isMaster: Boolean
+  itinerary: ProductItinerary
+  labels: [String!]
+  legacy: ProductLegacy
+  location: ProductLocation
+  nextAvailableDate: String
+  " Product duration, supports duration range (e.g. from 1 to 2 hours). Maximum value may be absent for durations without a range"
+  numberOfBookings: Int
+  " Product relation to other products"
+  parentProduct: Product
+  " not optimized - do not batch"
+  partner: Merchant
+  pickupDetails: [PickupDetail!]
+  " Money relative items"
+  priceFrom: Money
+  " Travello reward credit points a customer may earn"
+  priceFromAnP: Money
+  ratingScore: Float
+  " Product review, not optimized - do not batch"
+  recentReviews(first: Int = 5): [ReviewDetail!] @deprecated(reason: "querying reviewDetail is no longer supported")
+  recommendedRetailPrice: Money
+  relativeUrl: String @deprecated(reason: "relativeUrl is deprecated, use uri.url instead, the only difference between relativeUrl and uri.url is that relativeUrl has no / as prefix")
+  resSystemType: String
+  " Discounts applied to a product"
+  rewardPointsToEarn: Int
+  " Product content"
+  shortDescription: TextContent
+  status: String
+  supplierTermsAndConditions: TextContent
+  termsAndConditions: TextContent
+  " whether a product could instantly confirmed"
+  title: String
+  totalReviews: Int
+  travelInstructions: TextContent
+  uri: Uri
+  " Parent product, if there is one. At the moment, Product returned as a parent will have only limited number of fields populated, e.g. productId and title"
+  variantProducts: [Product!]
+  " Product Icons and the associated names and hints, order is customized by CMS"
+  videos: [ProductVideo]
+}
+type ProductAddress {
+  address: String
+}
+type ProductAdminPrice {
+  amount: String!
+  currency: String!
+  deposit: String!
+  promotions: [Promotion!]!
+}
+type ProductAdminServiceCategory {
+  categoryType: CategoryType!
+  href: String!
+  id: String!
+  name: String!
+}
+type ProductAdminServiceDeparture {
+  href: String!
+  id: String!
+}
+type ProductAdminServiceImage {
+  imageHref: String
+  type: String
+}
+type ProductAdminServiceItinerary {
+  href: String!
+  id: String!
+  validDuringRanges: [ValidDuringRange!]!
+  variationId: String!
+}
+type ProductAdminServicePromotion {
+  href: String!
+  id: String!
+  name: String!
+}
+type ProductAvailability {
+  "Get the value of calendar."
+  availableDates: [AvailableDate!]! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  "Get the value of maximumUnitOrder."
+  maximumUnitOrder: Int @deprecated(reason: "No longer supported")
+  "Get the value of minimumUnitOrder."
+  minimumUnitOrder: Int! @deprecated(reason: "No longer supported")
+  nextAvailableDate: DateTime @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  startDate: DateTime! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+type ProductCategory {
+  id: ID!
+  image: Image
+  metaData: ProductGroupMetaData
+  name: String!
+  uniqueName: String!
+  uri: Uri
+}
+type ProductCategoryEdge {
+  category: ProductCategory!
+  categoryId: ID!
+  " indicates if this Category is a main category for this product"
+  isMainCategory: Boolean!
+  title: String! @deprecated(reason: "use category.name")
+  uniqueName: String! @deprecated(reason: "use category.uniqueName")
+}
+type ProductCategoryWithStatistic implements ProductStatistic {
+  category: ProductCategory!
+  id: ID!
+  name: String! @deprecated(reason: "use category.name")
+  productCount: Int!
+  uniqueName: String! @deprecated(reason: "use category.uniqueName")
+}
+type ProductCity {
+  country: ProductCountry
+  id: ID!
+  image: Image
+  metaData: ProductGroupMetaData
+  name: String!
+  region: ProductRegion
+  uniqueName: String!
+  uri: Uri
+}
+type ProductCityWithStatistic implements ProductStatistic {
+  city: ProductCity!
+  id: ID!
+  name: String! @deprecated(reason: "use city.name")
+  productCount: Int!
+  uniqueName: String! @deprecated(reason: "use city.uniqueName")
+}
+" define pagination according to https://relay.dev/graphql/connections.htm"
+type ProductConnection {
+  edges: [ProductEdge]
+  limitOffsetPageInfo: LimitOffsetPageInfo
+}
+type ProductCountry {
+  id: ID!
+  image: Image
+  name: String!
+  uniqueName: String!
+  uri: Uri
+}
+type ProductCountryWithStatistic implements ProductStatistic {
+  country: ProductCountry!
+  id: ID!
+  name: String! @deprecated(reason: "use country.name")
+  productCount: Int!
+  uniqueName: String! @deprecated(reason: "use country.uniqueName")
+}
+type ProductDataPayload {
+  isProviderSupported: Boolean
+  resSystemType: ResSystemType
+  summary: AvailabilityAndPricingSummaryPayload
+}
+type ProductDataRetrievalResponse {
+  advertisedDepartures: [AdvertisedDeparture!]!
+  bookingCompanies: [BookingCompany!]!
+  categories: [ProductAdminServiceCategory!]!
+  departuresEndDate: String!
+  departuresStartDate: String!
+  description: String!
+  details: [Detail!]!
+  geography: Geography
+  href: String!
+  id: String!
+  images: [ProductAdminServiceImage!]
+  name: String!
+  productLine: String!
+  slug: String!
+  structuredItineraries: [ProductAdminServiceItinerary!]!
+}
+type ProductDetailsPayload {
+  baseVariantName: String
+  fareSelectionUUID: UUIDPayload
+  location: String
+  name: String
+  openingHours: String
+  otherDetails: [OtherDetailsPayload]
+  startTime: String
+}
+type ProductDiscount {
+  discountAmount: Money!
+  discountType: ProductDiscountType!
+  displayName: String
+}
+type ProductDiscountsConfigurationPayload {
+  commissionType: CommissionDiscountType!
+  fareDiscounts: [FareDiscountValuesPayload!]!
+}
+type ProductDuration {
+  " raw duration"
+  label: String
+  " maximum duration in ISO Duration standard"
+  maxDuration: String
+  " minimum duration in ISO Duration standard"
+  minDuration: String
+}
+type ProductEdge {
+  node: Product!
+  cursor: String!
+}
+type ProductFaq {
+  answer: TextContent!
+  question: String!
+}
+type ProductGroup {
+  groupIdentifier: ID!
+  groupName: String
+  products: [Product!]!
+}
+type ProductGroupMetaData {
+  priority: Int
+}
+type ProductIcon {
+  hints: String
+  name: String
+  src: String
+  value: String
+}
+type ProductImage {
+  image: Image
+  isMainImage: Boolean
+  position: Int
+  productImageId: ID!
+  status: String
+  title: String
+}
+type ProductImagesInfo {
+  productImages: [ProductImage!]
+  totalCount: Int!
+}
+type ProductItinerary {
+  itineraryItems: [ProductItineraryItem]
+  tourEndCoordinate: Coordinate
+  tourEndLocationTitle: String
+  tourStartCoordinate: Coordinate
+  tourStartLocationTitle: String
+}
+type ProductItineraryItem {
+  coordinate: Coordinate
+  description: TextContent
+  locationTitle: String
+  title: String
+}
+type ProductLegacy {
+  bookingUrl: String
+  closeBooking: Int
+  countDownLimit: Int
+  defaultDeparturePoint: String
+  displayPrice: ProductLegacyDisplayPrice
+  excludedBookingInfo: String
+  forceAvailabilityV1: Boolean
+  hasNoIndexMetaTag: Boolean
+  hidePickupOnFrontend: Boolean
+  isDisplayAfterpay: Boolean
+  isDisplayApplePay: Boolean
+  isDisplayGooglePay: Boolean
+  isDisplayHotelPickupWarning: Boolean
+  isDisplayPaypal: Boolean
+  openDatedBooking: Boolean
+  priceFrom: Money
+  recommendedRetailPrice: Money
+  shortId: ID
+  showMerchant: Boolean
+  subheader: String
+  updatedAt: DateTime
+}
+type ProductLegacyDisplayPrice {
+  adultPrice: ProductLegacyPrice
+  childPrice: ProductLegacyPrice
+  familyPrice: ProductLegacyPrice
+}
+type ProductLegacyPrice {
+  price: Money
+  type: String
+  value: Money
+}
+" currently one product could have multiple cities and only one coordinate that belongs to the 1st city"
+type ProductLocation {
+  allCityLocations: [GeoLocation!]
+  city: String
+  coordinate: Coordinate
+  country: String
+  region: String
+}
+type ProductMetaImportPayload {
+  productId: String!
+  resSystemType: ResSystemType!
+}
+type ProductPayload {
+  ageMax: Int
+  ageMin: Int
+  catalogue: CataloguePayload
+  catalogueProductId: Int
+  categories: [CategoryPayload]
+  channel: ChannelPayload
+  commissionPerc: String
+  created: DateTime
+  currencies: [String]
+  demo: Boolean
+  description: String
+  disabled: Boolean
+  distance: Float
+  distributor: DistributorPayload
+  dropoffNotes: String
+  duration: Int
+  durationRangeMax: Int
+  durationStr: String
+  groupSizeMax: Int
+  highlights: HighlightsPayload
+  id: Int
+  images: [ImagePayload]
+  inclusions: InclusionsPayload
+  itinerary: ItineraryPayload
+  locationsEnd: [LocationPayload]
+  locationsStart: [LocationPayload]
+  modified: DateTime
+  name: String
+  nameOriginal: String
+  netRatesMarkupPerc: String
+  operatedBy: String
+  operatingDays: Int
+  operatingDaysStr: String
+  operatingLanguages: [String]
+  operatingSchedule: String
+  pickupNotes: String
+  redemptionNotes: String
+  resSystem: String
+  specialNotes: String
+  supplier: SupplierBasicPayload
+  timeStart: String
+  timeStartRangeMax: String
+  usesNetRates: Boolean
+  v1Cid: Int
+}
+type ProductRegion {
+  country: ProductCountry
+  id: ID!
+  name: String!
+  uniqueName: String!
+}
+type ProductRegionWithStatistic implements ProductStatistic {
+  id: ID!
+  name: String! @deprecated(reason: "use region.name")
+  productCount: Int!
+  region: ProductRegion!
+  uniqueName: String! @deprecated(reason: "use region.uniqueName")
+}
+type ProductRelatedDataPayload {
+  optionName: String
+  title: String
+}
+type ProductSelectionPayload {
+  ageMax: Int
+  ageMin: Int
+  catalogue: CataloguePayload
+  catalogueProductId: Int
+  categories: [CategoryPayload]
+  channel: ChannelPayload
+  commissionPerc: String
+  created: DateTime
+  currency: String
+  demo: Boolean
+  description: String
+  disabled: Boolean
+  distance: Float
+  distributor: DistributorPayload
+  dropoffNotes: String
+  duration: Int
+  durationRangeMax: Int
+  durationStr: String
+  groupSizeMax: Int
+  highlights: HighlightsPayload
+  id: Int
+  images: [ImagePayload]
+  inclusions: InclusionsPayload
+  itinerary: ItineraryPayload
+  locationsEnd: [LocationPayload]
+  locationsStart: [LocationPayload]
+  modified: DateTime
+  name: String
+  nameOriginal: String
+  netRatesMarkupPerc: String
+  operatedBy: String
+  operatingDays: Int
+  operatingDaysStr: String
+  operatingLanguages: [String]
+  operatingSchedule: String
+  pickupNotes: String
+  redemptionNotes: String
+  resSystem: String
+  specialNotes: String
+  supplier: SupplierBasicPayload
+  timeStart: String
+  timeStartRangeMax: String
+  usesNetRates: Boolean
+  v1Cid: Int
+}
+type ProductStatistics {
+  categoryStatistic: [ProductCategoryWithStatistic!]
+  cityStatistic: [ProductCityWithStatistic!]
+  countryStatistic: [ProductCountryWithStatistic!]
+  regionStatistic: [ProductRegionWithStatistic!]
+}
+type ProductVideo {
+  url: String
+}
+type ProfileUser {
+  user: User!
+}
+type PromocodeAvailabilityPayload {
+  errors: [PromocodeRedemptionError!]!
+}
+type PromocodeEdge {
+  cursor: String!
+  node: PromocodePayload!
+}
+type PromocodeLimitOffsetPageInfo {
+  totalCount: Int!
+}
+type PromocodeListConnection {
+  edges: [PromocodeEdge]!
+  limitOffsetPageInfo: PromocodeLimitOffsetPageInfo!
+}
+"Types"
+type PromocodePayload {
+  active: Boolean!
+  application: PromocodeApplicationType!
+  categoryId: String
+  code: String!
+  currencyId: String
+  description: String
+  discountType: PromocodeDiscountType!
+  end: DateTime!
+  excludedProductIds: [String!]
+  id: Int!
+  isPartOfSpecialPromotion: Boolean
+  locationId: String
+  locationType: PromocodeLocationLeaf
+  minimumOrderAmount: Int
+  name: String!
+  nonDiscountOffersOnly: Boolean!
+  productIds: [String!]
+  quantity: Int!
+  specialPromotionId: String
+  start: DateTime!
+  type: PromocodeType!
+  uniquePerUser: Boolean!
+  usedCount: Int!
+  value: Int!
+}
+type PromocodePaymentDetailsPayload {
+  application: PromocodeApplicationType!
+  code: String!
+  discountType: PromocodeDiscountType!
+  name: String!
+  value: Int!
+}
+type PromocodeRedemptionPayload {
+  errors: [PromocodeRedemptionError!]!
+  redeemed: Boolean!
+}
+type PromocodeSavePayload {
+  " Database ID"
+  code: String!
+  id: Int!
+}
+type PromocodeValidationPayload {
+  details: PromocodePaymentDetailsPayload
+  "Able to apply the promocode with the below details"
+  error: PromocodeValidationError
+  success: Boolean!
+}
+type Promotion {
+  amount: String!
+  href: String!
+  id: String!
+}
+type Query {
+  " General "
+  availability(input: AvailabilityDataFilter!): AvailabilityDataPayload
+  " Livn "
+  departureSelection(input: DepartureSelection): ProductSelectionPayload @deprecated(reason: "livn is not supported")
+  " Admin Only "
+  discountRule(filter: DiscountRuleFilter!): [DiscountRulePayload!]
+  fareType(filter: FareTypeFilter!): [FareTypePayload]!
+  nextAvailableDateAndPriceFrom(input: NextAvailableDateAndPriceFromFilter!): NextAvailableDateAndPricePayload
+  productData(productId: String!): ProductDataPayload
+  productDiscountsConfiguration(productId: String!): ProductDiscountsConfigurationPayload!
+  productMetaCallByProductId(productId: String!): InternalStoredData
+  productAvailability(days: Int = null, 
+    "month is deprecated, use days instead"
+    month: Int = null,productId: String!, startDate: DateTime = null, targetCurrency: String = null  ): ProductAvailability @deprecated(reason: "this query comes from old system and should no longer be source of truth")
+  availabilityFarePrice(filter: AvailabilityFarePriceFilter!): [AvailabilityFarePricePayload!]
+  " User flow | General endpoints "
+  booking(bookingUid: String): BookingDataPayload!
+  " User flow | Contact Info page endpoints"
+  bookingContactInfo(bookingUid: String): BookingContactInfoPayload
+  bookingCustomerLocation(bookingUid: String): BookingCustomerLocationPayload
+  bookingExtraInfo(bookingUid: String): BookingExtraInfoPayload
+  bookingInternalNote(bookingUid: String): [BookingInternalNotePayload!]! @deprecated(reason: "No longer supported")
+  bookingParticipantDetails(bookingUid: String): [BookingParticipantDetailsPayload]
+  bookingPickup(bookingUid: String): BookingPickupPayload
+  bookingPricing(bookingUid: String): BookingPricingPayload!
+  bookingReferrals(bookingUid: String): BookingReferrals!
+  createOrQuoteBooking(input: BookingRequest): BookingResponse @deprecated(reason: "No longer supported")
+  " Per product configurations"
+  customBookingFields(filter: CustomBookingFieldsFilter!): [CustomBookingFieldsPayload!]!
+  customBookingFieldsMapTypeConfiguration(filter: CustomBookingFieldsFilter!): [MapBookingFieldTypeConfigurationPayload!]!
+  customBookingFieldsStringTypeConfiguration(filter: CustomBookingFieldsFilter!): [StringBookingFieldTypeConfigurationPayload!]!
+  exportSearchBooking(filter: FilterBookingCriteria, search: SearchBookingCriteria): SearchBookingExportPayload
+  " PDF/Email related endpoints "
+  getBookingConfirmationSignedUrl(bookingUid: String, fileType: FILETYPE, userId: ID): BookingConfirmationResponse!
+  mapBookingFieldTypeConfiguration(groupId: Int!): [MapBookingFieldTypeConfigurationPayload!]!
+  " Logged In User flow | General endpoints "
+  myBookings(input: UserBookingFilter!): [UserBookingPayload!]!
+  " Admin Only "
+  searchBooking(filter: FilterBookingCriteria, limit: Int, offset: Int = 0, search: SearchBookingCriteria): SearchBookingConnection
+  " Admin Only | Voucher endpoints "
+  searchVoucher(filter: FilterVoucherCriteria, limit: Int, offset: Int = 0, search: SearchVoucherCriteria): SearchVoucherConnection
+  " General configurations"
+  stringBookingFieldTypeConfiguration: [StringBookingFieldTypeConfigurationPayload!]!
+  " Admin Only | Custom booking fields' related endpoints "
+  userBookings(input: UserBookingFilter!, userId: ID!): [UserBookingPayload!]!
+  validateAvailabilityAndPricing(bookingUid: String): Boolean!
+  bpd_lastMinuteDeals: [Product!]! @deprecated(reason: "use Query.products")
+  bpd_homeCountries: [BPD_Country!]! @deprecated(reason: "use Query.productStatistics")
+  bpd_homeCategories: [BPD_Category!]! @deprecated(reason: "use Query.productStatistics")
+  bpd_homeLocalDeals(clientIP: String): BPD_HomeLocalDeals! @deprecated(reason: "use Query.products")
+  bpd_products(filter: BPD_ProductFilter, sortOrder: ProductSortOrder, limit: Int = 20, offset: Int = 0, clientIP: String): ProductConnection @deprecated(reason: "use Query.products")
+  bpd_redirect(pathname: String!): BPD_Redirect
+  bpd_channelByHost(host: String!): BPD_Channel!
+  "id should come straight from BPD_Channel.id, id format may change"
+  bpd_channelById(id: ID!): BPD_Channel
+  bpd_channels(filter: BPD_ChannelFilter): [BPD_Channel!]!
+  bpd_page(host: String!, pathname: String!, clientIP: String): BPD_Page
+  bpd_seoData(host: String!, pathname: String!, clientIP: String): BPD_SeoData!
+  bpd_otherSearch(query: String): BPD_OtherSearch! @deprecated(reason: "use Query.productStatistics")
+  bpd_blog(baseUrl: String, first: Int): BPD_Blog!
+  bpd_clientInfo(host: String!, clientIP: String): BPD_ClientInfo
+  bpd_bookingFields(productId: String!): BPD_BookingFields
+  bpd_orderById(orderID: String!): BPD_Order
+  bpd_userOrders(userToken: String!, limit: Int = 20, offset: Int = 0): BPD_UserOrders!
+  imgTransformImage(url: String!): Image!
+  GetProductData(input: GetProductDataInput): ProductDataRetrievalResponse
+  HelloWorldTestEndpoint(input: String): String
+  importRemoteDeals(input: ImportRemoteDealsInput!): ImportRemoteDealsResponse
+  allCategories: [ProductCategory!]!
+  allCities: [ProductCity!]!
+  allCountries: [ProductCountry!]!
+  allRegions: [ProductRegion!]!
+  merchant(merchantId: ID!): Merchant
+  " need to provide productId or slug to get a result, if a product is hiddenFromSearch/inactive, then it could only be got via productId, all other api will filter it out"
+  product(hedgeMode: HedgeMode = NONE, productId: String, slug: String, targetCurrency: String): Product
+  " Returns product groups for a specified location (groups are defined by `groupBy` parameter)"
+  productGroups(filter: ProductLocationFilter!, groupBy: ProductGroupBy!, hedgeMode: HedgeMode = NONE, targetCurrency: String): [ProductGroup!] @deprecated(reason: "use Query.products instead")
+  productReviews(first: Int = 0, productId: String!): [ReviewDetail!] @deprecated(reason: "querying reviewDetail is no longer supported")
+  """
+  Returns products for a specified location, sorted by default, unless sortOrder is specified
+  offset should be non-negative or it will reset to 0
+  """
+  products(filter: ProductFilter, hedgeMode: HedgeMode = NONE, limit: Int, offset: Int = 0, sortOrder: ProductSortOrder, targetCurrency: String): ProductConnection
+  " returns the productsStatistics based on the filter. The list is ordered by productCount then product name"
+  productsStatistics(filter: ProductFilter): ProductStatistics
+  transformImage(url: String!): Image! @deprecated(reason: "use imgTransformImage instead")
+  availablePromocode(input: PromocodeRedemptionInput!): PromocodeAvailabilityPayload
+  findPromocodeById(id: Int!): PromocodePayload
+  listPromocodes(limit: Int! = 20, offset: Int! = 0, search: PromocodeListSearchInput, sort: PromocodeListSortInput! = {column: ID, sortOrder: ASC}): PromocodeListConnection!
+  "base 0 offset"
+  validatePromocode(input: PromocodeValidationInput!): PromocodeValidationPayload
+  me: MeOrGuestMe!
+  user(id: ID!): ProfileUser
+}
+type QuestionGroupPayload {
+  caption: String
+  questions: [QuestionPayload]
+}
+type QuestionPayload {
+  answerType: String
+  defaultValue: String
+  description: String
+  example: String
+  fareUuids: [UUIDPayload]
+  feeDescription: String
+  lengthMax: Int
+  lengthMin: Int
+  multiLine: Boolean
+  purpose: String
+  regex: String
+  required: Boolean
+  scope: String
+  selectMax: Int
+  selectMin: Int
+  selectOptions: [SelectOptionPayload]
+  title: String
+  uuid: UUIDPayload
+  valueMax: String
+  valueMin: String
+}
+type QuestionsPayload {
+  questionGroups: [QuestionGroupPayload]
+}
+type QuotePayload {
+  cancellationPolicy: CancellationPolicyPayload
+  contractCommTotal: PriceContractCommTotalPayload
+  generalTerms: String
+  grossTotal: PriceLineItemsGrossTotalPayload
+  lineItems: [LineItemPayload]
+  localFees: String
+  netTotal: PriceLineItemsNetTotalPayload
+  resSuppliedCommTotal: PriceResSuppliedCommTotalPayload
+  title: String
+}
+type RecommendedRetailPrice implements Price {
+  fareType: FareType! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  maximumUnitOrder: Int @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  minimumUnitOrder: Int @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  rateId: ID @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  seatUsed: Int! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  value: Money! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+type RedeemVoucherResponse {
+  bookingId: Int @deprecated(reason: "replaced by bookingUid")
+  bookingUid: String
+  id: Int
+  securityCode: String
+  voucherCode: String
+  voucherStatus: VoucherStatus
+}
+type Region {
+  id: String!
+  name: String!
+}
+type ReviewDetail {
+  id: Int
+  ratingScore: Int
+  reviewCreatedAt: DateTime
+  text: String
+  title: String
+  userId: String
+  userName: String
+}
+type Room {
+  availability: DepartureAvailability!
+  code: String!
+  flags: [String!]!
+  name: String!
+  priceBands: [PriceBand!]!
+}
+type SalesComputationDetailsPayload {
+  commissionable: Boolean
+  contractCommPerc: String
+  contractCommPrice: PriceContractCommPayload
+  resSuppliedCommPerc: String
+  resSuppliedCommPrice: PriceResSuppliedCommPayload
+  resSuppliedPrice: PriceResSuppliedPayload
+  resSuppliedPriceIsNetRate: Boolean
+}
+" define pagination according to https://relay.dev/graphql/connections.htm"
+type SearchBookingConnection {
+  edges: [SearchBookingEdge]
+  limitOffsetPageInfo: LimitOffsetPageInfo
+}
+type SearchBookingEdge {
+  cursor: String!
+  node: SearchBookingPayload!
+}
+"## Booking Search Export ###"
+type SearchBookingExportPayload {
+  email: String
+  file: String
+  username: String
+}
+type SearchBookingPayload {
+  bookingId: Int! @deprecated(reason: "replaced by bookingUid")
+  bookingStatus: BookingStatus!
+  bookingUid: String!
+  contactInfo: BookingSearchContactInfoPayload
+  coupon: BookingSearchCouponPayload
+  createdAt: DateTime!
+  customerLocation: BookingSearchCustomerLocationPayload
+  expiryDate: DateTime!
+  extra: BookingSearchExtraInfoPayload
+  fareTypes: [BookingSearchFareTypePayload!]
+  internalNotes: [BookingSearchInternalNotePayload!]
+  isLastMinute: Boolean
+  order: BookingSearchOrderPayload
+  orderNumber: String!
+  payment: BookingPaymentPayload
+  pricing: BookingSearchPricingPayload
+  product: BookingSearchProductPayload
+  productData: BookingSearchProductDataPayload
+  referrals: BookingReferralsPayload
+  resProvider: BookingSearchResProviderPayload
+  voucher: BookingSearchVoucherPayload
+}
+type SearchVoucherConnection {
+  edges: [SearchVoucherEdge]
+}
+type SearchVoucherEdge {
+  cursor: String!
+  node: SearchVoucherPayload!
+}
+type SearchVoucherPayload {
+  bookingDate: DateTime
+  dealName: String
+  invoiceId: Int
+  orderData: String
+  participant: String
+  status: VoucherStatus
+  validTill: DateTime
+  voucherCode: String
+}
+type SelectOptionPayload {
+  description: String
+  feeDescription: String
+  followUpQuestions: QuestionsPayload
+  title: String
+  uuid: UUIDPayload
+}
+type Slot {
+  date: DateTime @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  endTime: String! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  isActive: Boolean! @deprecated(reason: "use `status` instead")
+  isLastMinute: Boolean! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  isTopDeal: Boolean! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  orderedId: String! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  prices: [Price!]! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  remainingCount: Int! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  slotId: String! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  startTime: String! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  status: SlotStatusEnum! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  title: String @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  totalCount: Int! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+type StartCacheJobPayload {
+  jobId: String!
+  status: CacheJobStatus
+}
+type StepPayload {
+  addOnSelections: [AddOnSelectionPayload]
+  allowBackHere: Boolean
+  answers: AnswersPayload
+  caption: String
+  created: String
+  error: BookingErrorPayload
+  expires: String
+  fareDetails: FareDetailsPayload
+  fareSelections: [FareSelectionPayload]
+  finalQuote: QuotePayload
+  id: Int
+  milestone: String
+  modified: String
+  nextStepConfirmedBooking: Boolean
+  nextStepSequenceNumber: Int
+  nextStepTemporaryHold: Boolean
+  previousStep: String
+  previousStepSequenceNumber: Int
+  questions: QuestionsPayload
+  resSuppliedGrossGrandTotal: PriceResSuppliedGrandTotalPayload
+  resSuppliedNetGrandTotal: PriceResSuppliedNetGrandTotalPayload
+  sequenceNumber: Int
+  status: String
+  stepName: String
+}
+type StringBookingFieldTypeConfigurationPayload {
+  id: Int!
+  maxLength: Int
+  regex: String
+  shortDescription: String!
+}
+type SupplierBasicPayload {
+  address1: String
+  address2: String
+  businessNumber: String
+  catalogueSupplierId: Int
+  city: String
+  country: String
+  created: DateTime
+  demo: Boolean
+  description: String
+  disabled: Boolean
+  email: String
+  emailRes: String
+  id: Int
+  logo: ImagePayload
+  modified: DateTime
+  name: String
+  nameCompany: String
+  nameOriginal: String
+  nameTradingAs: String
+  phoneRes: String
+  postcode: String
+  resSystem: String
+  state: String
+  tnc: String
+  tz: String
+  v1Cid: Int
+  website: String
+}
+type TextContent {
+  format: TextFormat
+  text: String
+}
+type TicketPayload {
+  barcodeDetails: BarcodeDetailsPayload
+  billingNotes: String
+  bookingDetails: BookingDetailsPayload
+  created: DateTime
+  id: Int
+  localFees: String
+  localOperatorName: String
+  passengerDetails: [PassengerDetailsPayload]
+  pickupDetails: PickupDetailsPayload
+  printRequired: Boolean
+  productDetails: [ProductDetailsPayload]
+  specialNotes: String
+  supplierEmailRes: String
+  supplierName: String
+  supplierPhoneRes: String
+  supplierReference: String
+  travelDate: Date
+  uuid: String
+}
+type TimeslotPayload {
+  addOns: [AddOnPayload]
+  availabilityShared: Boolean
+  available: Boolean
+  description: String
+  duration: Int
+  durationRangeMax: Int
+  durationStr: String
+  fares: [FarePayload]
+  name: String
+  specialNotes: String
+  timeEnd: String
+  timeStart: String
+}
+type Token {
+  type: String!
+  value: String!
+}
+type TravelloPrice implements Price {
+  fareType: FareType! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  maximumUnitOrder: Int @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  minimumUnitOrder: Int @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  rateId: ID @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  seatUsed: Int! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  value: Money! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+type UpdateBookingDataPayload {
+  data: BookingDataPayload
+  errors: [String]
+  pricing: BookingPricingPayload!
+}
+type UpdateMyCurrentPayload {
+  preferredCurrency: String
+}
+type UpdateMyPrivacySettingsPayload {
+  privacySettings: UserPrivacySettings
+}
+type Uri {
+  city: String
+  country: String
+  slug: String
+  """
+   url is the full path that could be used to reach a product, e.g. "/united-states/maui/haleakala-sunrise-tour-with-breakfast"
+  """
+  url: String
+}
+type User {
+  id: ID!
+  userName: String!
+  gender: Gender
+  dateOfBirth: DateTime
+  bio: String
+  profileImage: Image
+  mediaList: [UserMedia!]!
+  nationality: CountryCode
+  verified: Boolean!
+  locationText: String
+}
+" User account | Search bookings "
+type UserBookingPayload {
+  " booking_voucher"
+  bookedAt: DateTime!
+  bookedFareTypes: [FareTypeBooked!]
+  bookingId: Int! @deprecated(reason: "replaced by bookingUid")
+  bookingStatus: BookingStatus!
+  bookingUid: String!
+  " booking_voucher"
+  confirmationTicketCode: String
+  " booking"
+  expiryDate: String
+  " booking"
+  invoiceId: String
+  " availability_fare_price"
+  priceTotal: Float!
+  " booking"
+  productRelatedData: ProductRelatedDataPayload
+  " booking_pricing"
+  tourDate: String!
+}
+type UserCoverImage {
+  image: Image
+}
+type UserMapImage {
+  image: Image
+}
+type UserPrivacySettings {
+  email: UserPrivacyType
+}
+type UserProfileImage {
+  image: Image
+}
+type UUIDPayload {
+  value: String
+}
+type ValidDuringRange {
+  endDate: String!
+  startDate: String!
+}
+type ZoneOffsetPayload {
+  totalSeconds: Int
+}
+interface BPD_CategoryLike {
+  id: ID
+  uri: BPD_Uri!
+  name: String!
+  uniqueName: String!
+  image: Image
+  productCount: Int
+}
+interface BPD_Page {
+  id: ID!
+  template: String!
+  channel: BPD_Channel!
+}
+interface MeOrGuestMe {
+  id: ID!
+  preferredCurrency: String!
+}
+interface Price {
+  fareType: FareType! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+  value: Money! @deprecated(reason: "this property comes from old system and should no longer be source of truth")
+}
+interface ProductStatistic {
+  id: ID!
+  name: String!
+  productCount: Int!
+  uniqueName: String!
+}
+union BookingPromocodePayload = BookingPromocodeErrorPayload | BookingPromocodeSuccessPayload
+union BPD_MenuItemUri = BPD_Uri | BPD_ExternalUri
+union UserMedia = UserProfileImage | UserCoverImage | UserMapImage
+enum AvailabilityCacheConfigType {
+  DAILY_LONG
+  DAILY_SHORT
+  WEEKLY
+}
+enum AvailabilitySlotStatusEnum {
+  AVAILABLE
+  SOLD_OUT
+  UNAVAILABLE
+}
+enum BookingAnswerLevel {
+  BOOKING
+  PARTICIPANT
+}
+enum BookingExceptionType {
+  BOOKING_API_ERROR
+}
+enum BookingPaymentStatus {
+  CREATED
+  PROCESSED
+}
+enum BookingPaymentType {
+  CREDIT_CARD
+}
+"General"
+enum BookingResSystemType {
+  AMSTAR
+  BOKUN
+  BPD
+  FAREHARBOR
+  FAREHARBOR_MARKETPLACE
+  IBIS
+  LIVN
+  LIVN_DIRECT
+  PEEK
+  RESPAX
+  REZDY
+  RTBS
+  UNDEFINED
+}
+enum BookingStatus {
+  AUTHORIZE_PAYMENT_FAILED
+  COMPLETED
+  CREATED
+  CREATE_BOOKING_FAILED
+  FAILED
+  FINISH_BOOKING_FAILED
+  PROMOCODE_REDEMPTION_FAILED
+  QUOTE_BOOKING_FAILED
+  SETTLE_PAYMENT_FAILED
+  UNKNOWN_ERROR
+  VOUCHER_USED
+}
+enum BookingType {
+  BUY_AS_A_GIFT
+  OPEN_DATED
+  REGULAR
+}
+enum BPD_BannerType {
+  DEAL
+  LISTING
+  HOME
+}
+enum BPD_DealRibbon {
+  DEAL
+  TOP
+  LAST_MINUTE
+  FEATURED
+}
+enum BPD_FareTypeInput {
+  ADULT
+  CHILD
+  FAMILY
+}
+enum BpdFareType {
+  ADULT
+  CHILD
+  FAMILY
+  UNDEFINED
+}
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+enum CacheJobStatus {
+  STARTED
+}
+enum CommissionDiscountType {
+  PERCENTAGE
+  VOUCHER
+}
+"## Custom Booking Types ###"
+enum CustomBookingFieldType {
+  BOOLEAN
+  DATE
+  MAP
+  NUMBER
+  PHONE
+  STRING
+}
+enum DiscountType {
+  LMD
+  "LAST MINUTE DEAL"
+  NONE
+}
+enum ErrorDetail {
+  """
+  The deadline expired before the operation could complete.
+  
+  For operations that change the state of the system, this error
+  may be returned even if the operation has completed successfully.
+  For example, a successful response from a server could have been
+  delayed long enough for the deadline to expire.
+  
+  HTTP Mapping: 504 Gateway Timeout
+  Error Type: UNAVAILABLE
+  """
+  DEADLINE_EXCEEDED
+  """
+  The server detected that the client is exhibiting a behavior that
+  might be generating excessive load.
+  
+  HTTP Mapping: 429 Too Many Requests or 420 Enhance Your Calm
+  Error Type: UNAVAILABLE
+  """
+  ENHANCE_YOUR_CALM
+  """
+  The requested field is not found in the schema.
+  
+  This differs from `NOT_FOUND` in that `NOT_FOUND` should be used when a
+  query is valid, but is unable to return a result (if, for example, a
+  specific video id doesn't exist). `FIELD_NOT_FOUND` is intended to be
+  returned by the server to signify that the requested field is not known to exist.
+  This may be returned in lieu of failing the entire query.
+  See also `PERMISSION_DENIED` for cases where the
+  requested field is invalid only for the given user or class of users.
+  
+  HTTP Mapping: 404 Not Found
+  Error Type: BAD_REQUEST
+  """
+  FIELD_NOT_FOUND
+  """
+  The client specified an invalid argument.
+  
+  Note that this differs from `FAILED_PRECONDITION`.
+  `INVALID_ARGUMENT` indicates arguments that are problematic
+  regardless of the state of the system (e.g., a malformed file name).
+  
+  HTTP Mapping: 400 Bad Request
+  Error Type: BAD_REQUEST
+  """
+  INVALID_ARGUMENT
+  """
+  The provided cursor is not valid.
+  
+  The most common usage for this error is when a client is paginating
+  through a list that uses stateful cursors. In that case, the provided
+  cursor may be expired.
+  
+  HTTP Mapping: 404 Not Found
+  Error Type: NOT_FOUND
+  """
+  INVALID_CURSOR
+  """
+  Unable to perform operation because a required resource is missing.
+  
+  Example: Client is attempting to refresh a list, but the specified
+  list is expired. This requires an action by the client to get a new list.
+  
+  If the user is simply trying GET a resource that is not found,
+  use the NOT_FOUND error type. FAILED_PRECONDITION.MISSING_RESOURCE
+  is to be used particularly when the user is performing an operation
+  that requires a particular resource to exist.
+  
+  HTTP Mapping: 400 Bad Request or 500 Internal Server Error
+  Error Type: FAILED_PRECONDITION
+  """
+  MISSING_RESOURCE
+  """
+  Service Error.
+  
+  There is a problem with an upstream service.
+  
+  This may be returned if a gateway receives an unknown error from a service
+  or if a service is unreachable.
+  If a request times out which waiting on a response from a service,
+  `DEADLINE_EXCEEDED` may be returned instead.
+  If a service returns a more specific error Type, the specific error Type may
+  be returned instead.
+  
+  HTTP Mapping: 502 Bad Gateway
+  Error Type: UNAVAILABLE
+  """
+  SERVICE_ERROR
+  """
+  Request failed due to network errors.
+  
+  HTTP Mapping: 503 Unavailable
+  Error Type: UNAVAILABLE
+  """
+  TCP_FAILURE
+  """
+  Request throttled based on server concurrency limits.
+  
+  HTTP Mapping: 503 Unavailable
+  Error Type: UNAVAILABLE
+  """
+  THROTTLED_CONCURRENCY
+  """
+  Request throttled based on server CPU limits
+  
+  HTTP Mapping: 503 Unavailable.
+  Error Type: UNAVAILABLE
+  """
+  THROTTLED_CPU
+  """
+  The operation is not implemented or is not currently supported/enabled.
+  
+  HTTP Mapping: 501 Not Implemented
+  Error Type: BAD_REQUEST
+  """
+  UNIMPLEMENTED
+  """
+  Unknown error.
+  
+  This error should only be returned when no other error detail applies.
+  If a client sees an unknown errorDetail, it will be interpreted as UNKNOWN.
+  
+  HTTP Mapping: 500 Internal Server Error
+  """
+  UNKNOWN
+}
+enum ErrorType {
+  """
+  Bad Request.
+  
+  There is a problem with the request.
+  Retrying the same request is not likely to succeed.
+  An example would be a query or argument that cannot be deserialized.
+  
+  HTTP Mapping: 400 Bad Request
+  """
+  BAD_REQUEST
+  """
+  The operation was rejected because the system is not in a state
+  required for the operation's execution.  For example, the directory
+  to be deleted is non-empty, an rmdir operation is applied to
+  a non-directory, etc.
+  
+  Service implementers can use the following guidelines to decide
+  between `FAILED_PRECONDITION` and `UNAVAILABLE`:
+  
+  - Use `UNAVAILABLE` if the client can retry just the failing call.
+  - Use `FAILED_PRECONDITION` if the client should not retry until
+  the system state has been explicitly fixed.  E.g., if an "rmdir"
+       fails because the directory is non-empty, `FAILED_PRECONDITION`
+  should be returned since the client should not retry unless
+  the files are deleted from the directory.
+  
+  HTTP Mapping: 400 Bad Request or 500 Internal Server Error
+  """
+  FAILED_PRECONDITION
+  """
+  Internal error.
+  
+  An unexpected internal error was encountered. This means that some
+  invariants expected by the underlying system have been broken.
+  This error code is reserved for serious errors.
+  
+  HTTP Mapping: 500 Internal Server Error
+  """
+  INTERNAL
+  """
+  The requested entity was not found.
+  
+  This could apply to a resource that has never existed (e.g. bad resource id),
+  or a resource that no longer exists (e.g. cache expired.)
+  
+  Note to server developers: if a request is denied for an entire class
+  of users, such as gradual feature rollout or undocumented allowlist,
+  `NOT_FOUND` may be used. If a request is denied for some users within
+  a class of users, such as user-based access control, `PERMISSION_DENIED`
+  must be used.
+  
+  HTTP Mapping: 404 Not Found
+  """
+  NOT_FOUND
+  """
+  The caller does not have permission to execute the specified
+  operation.
+  
+  `PERMISSION_DENIED` must not be used for rejections
+  caused by exhausting some resource or quota.
+  `PERMISSION_DENIED` must not be used if the caller
+  cannot be identified (use `UNAUTHENTICATED`
+  instead for those errors).
+  
+  This error Type does not imply the
+  request is valid or the requested entity exists or satisfies
+  other pre-conditions.
+  
+  HTTP Mapping: 403 Forbidden
+  """
+  PERMISSION_DENIED
+  """
+  The request does not have valid authentication credentials.
+  
+  This is intended to be returned only for routes that require
+  authentication.
+  
+  HTTP Mapping: 401 Unauthorized
+  """
+  UNAUTHENTICATED
+  """
+  Currently Unavailable.
+  
+  The service is currently unavailable.  This is most likely a
+  transient condition, which can be corrected by retrying with
+  a backoff.
+  
+  HTTP Mapping: 503 Unavailable
+  """
+  UNAVAILABLE
+  """
+  Unknown error.
+  
+  For example, this error may be returned when
+  an error code received from another address space belongs to
+  an error space that is not known in this address space.  Also
+  errors raised by APIs that do not return enough error information
+  may be converted to this error.
+  
+  If a client sees an unknown errorType, it will be interpreted as UNKNOWN.
+  Unknown errors MUST NOT trigger any special behavior. These MAY be treated
+  by an implementation as being equivalent to INTERNAL.
+  
+  When possible, a more specific error should be provided.
+  
+  HTTP Mapping: 520 Unknown Error
+  """
+  UNKNOWN
+}
+enum FareTypeEnum {
+  ADULT
+  CHILD
+  FAMILY
+}
+enum FILETYPE {
+  INVOICE
+  VOUCHER
+}
+enum HedgeMode {
+  DOWN
+  NONE
+  UP
+}
+enum ImgOptimazeType {
+  DSSIM
+  ML
+  SIZE
+}
+enum ImgResizeType {
+  AUTO
+  FILL
+  FILL_DOWN
+  FIT
+  FORCE
+}
+enum ImportResSystemType {
+  GADVENTURES
+}
+enum JobStatus {
+  COMPLETED
+  FAILED
+  STARTED
+}
+enum MeasurementType {
+  DAY
+  MONTH
+}
+enum PickupDropOffType {
+  BOTH
+  DROP_OFF
+  PICKUP
+}
+enum ProductDiscountType {
+  TRAVELLO_DISCOUNT
+  TRAVELLO_REWARDS
+}
+enum ProductGroupBy {
+  CATEGORY
+}
+enum ProductSortOrder {
+  "TOP product, discount percentage in desc order, product id in desc order"
+  DEFAULT
+  "Sort by distance from target location(city)"
+  LOCATION
+  "Sort by number of bookings"
+  MOST_BOUGHT
+  "Uses a combination of fields, e.g. Featured products first, sort by Discount in desc order, etc"
+  POPULAR
+  "Sort by flag of TOP_PRODUCT and updatedAt(DESC)"
+  TOP_PRODUCT
+  "sort by price from high to low"
+  PRICE_HIGH_TO_LOW
+  "sort by price from low to high"
+  PRICE_LOW_TO_HIGH
+}
+enum PromocodeApplicationType {
+  PER_CART
+  PER_PERSON
+}
+enum PromocodeDiscountType {
+  AMOUNT
+  PERCENT
+}
+enum PromocodeListAllowedColumns {
+  CODE
+  CURRENCY_ID
+  DISCOUNT_TYPE
+  END
+  ID
+  NAME
+  QUANTITY
+  START
+  TYPE
+  USED_COUNT
+  VALUE
+}
+enum PromocodeListSortOrder {
+  ASC
+  DESC
+}
+enum PromocodeListStatus {
+  ACTIVE
+  EXPIRED
+}
+enum PromocodeLocationLeaf {
+  CITY
+  COUNTRY
+  REGION
+}
+enum PromocodeRedemptionError {
+  INVALID_PROMOCODE
+  USED
+  USER_ALREADY_REDEEMED
+}
+enum PromocodeType {
+  MULTIPLE
+  PARENT
+}
+enum PromocodeValidationError {
+  "Products GEO doesn't match promocode geo requirements"
+  CATEGORY_WRONG
+  "Product discounted. Promocode requirement doesn't allow discounts"
+  CURRENCY_WRONG
+  DISABLED_PROMOCODE
+  "Products Category doesn't match promocode category requirements"
+  DISCOUNT_NOT_ALLOWED
+  "Can't find the promocode"
+  EXPIRED_PROMOCODE
+  "All the available count have been used up. ie  count == used"
+  GEO_WRONG
+  "Product is in the exclusion list of the promocode requirement"
+  INVALID_PROMOCODE
+  "Currency specified doesn't match promocode requirement"
+  MINIMUM_ORDER_NOT_MET
+  "Product is not in the inclusion list of the promocode requirement"
+  PRODUCT_EXCLUDED
+  "Miniumn order amount is not met as per the promocode requirement"
+  PRODUCT_NOT_INCLUDED
+  "Promocode disabled by the promocode admin"
+  USED_COMPLETELY
+}
+enum ResSystemIntegrationServiceEnums {
+  NOT_APPLICABLE
+}
+enum ResSystemType {
+  AMSTAR
+  BOKUN
+  BPD
+  FAREHARBOR
+  FAREHARBOR_MARKETPLACE
+  GADVENTURES
+  IBIS
+  LIVN
+  LIVN_DIRECT
+  PEEK
+  RESPAX
+  REZDY
+  RTBS
+  UNDEFINED
+}
+"Booking for Livn"
+enum ResSystemTypeForLivn {
+  BOKUN
+  FAREHARBOR
+  IBIS
+  LIVN
+  PEEK
+  RESPAX
+  REZDY
+  RTBS
+  UNKNOWN
+  UNRECOGNIZED
+}
+enum SlotStatusEnum {
+  AVAILABLE
+  SOLD_OUT
+  UNAVAILABLE
+}
+enum TextFormat {
+  HTML
+}
+enum TextQueryCategory {
+  PRODUCT_CITY
+  PRODUCT_COUNTRY
+  PRODUCT_TITLE
+  PRODUCT_TOUR_CATEGORY
+}
+enum TravelloErrorStatus {
+  FAILURE
+  SUCCESS
+}
+enum TravelloSecurityExceptionType {
+  TOKEN_VALIDATION_FAILED
+}
+enum UserBookingStatus {
+  ACTIVE
+  EXPIRED
+}
+enum UserPrivacyType {
+  OPT_IN
+  OPT_OUT
+}
+enum VisibilityLevel {
+  BOOKING
+  BOTH
+  NONE
+  PARTICIPANT
+}
+enum VoucherStatus {
+  ACTIVE
+  ORDER_CANCELED
+  REDEEMED
+  SCHEDULED
+}
+input AddOn {
+  ageMax: Int
+  ageMin: Int
+  ageQualified: Boolean
+  description: String
+  name: String
+  otherCharges: String
+  price: PriceAddOn
+  specialNotes: String
+  unitsAvailable: Int
+  unitsLinkedToParent: Boolean
+  unitsMax: Int
+  unitsMin: Int
+  unitsMultipleOf: Int
+  uuid: UUID
+}
+input AddOnSelection {
+  hint: String
+  quantity: Int
+  uuid: String
+}
+input Answer {
+  hint: String
+  questionUuid: String
+  value: String
+}
+input Answers {
+  answers: [Answer]
+}
+input AutoQualityInput {
+  allowedError: Float
+  maxFileOther: Float
+  maxFileSize: Int
+  maxQuality: Int
+  method: ImgOptimazeType
+  minQuality: Int
+}
+input AvailabilityCacheConfigurationInput {
+  cacheTtl: Long!
+  productId: String!
+  resSystemType: ResSystemType!
+}
+input AvailabilityDataFilter {
+  endDate: DateTime!
+  ignoreCache: Boolean! = false
+  parentProductId: String
+  perApiRequestDelay: Long
+  productId: String!
+  showHiddenFares: Boolean! = true
+  startDate: DateTime!
+}
+" Availability fare price filters "
+input AvailabilityFarePriceFilter {
+  resSystemFareTypeId: String
+}
+input AvailabilityFarePriceInput {
+  availabilitySlotKey: String
+  commission: Float
+  discountRulePrice: Float
+  fareDiscountPrice: Float
+  id: Int
+  maxQuantityOfFareType: Int!
+  minQuantityOfFareType: Int!
+  netPrice: Float
+  productId: String
+  recommendedRetailPrice: Float
+  resSystemFareTypeId: String
+  seatUsedOfFareType: Int!
+  totalNumberOfSeatsAvailable: Int
+  totalPrice: Float
+  totalSaving: Float
+}
+input BarcodeDetails {
+  barcodeData: String
+  barcodeRaw: String
+  barcodeRequired: Boolean
+  format: String
+  instructions: String
+}
+input BaseVariant {
+  addOns: [AddOn]
+  available: Boolean
+  description: String
+  name: String
+  specialNotes: String
+  timeSlots: [Timeslot]
+}
+input BillingInfo {
+  billingCurrency: String
+  billingExchangeRate: String
+  forexSurchargePerc: String
+}
+input Booking {
+  billingInfo: BillingInfo
+  cancellationPolicy: CancellationPolicy
+  cancellations: [Cancellation]
+  clientReference: String
+  confirmed: DateTime
+  email: String!
+  externalResources: ExternalResources
+  firstName: String!
+  flowId: Int
+  id: Int
+  invoice: Invoice
+  lastName: String!
+  livnReference: String
+  partyEmailAddress: String
+  partyName: String
+  passThroughReference: String
+  phone: String!
+  supplierReference: String
+  tickets: [Ticket]
+}
+input BookingContactInfoInput {
+  customBookingFields: [CustomBookingFieldAnswerInput!]! = []
+  email: String!
+  firstName: String!
+  lastName: String!
+  phone: String!
+}
+input BookingCouponFilterCriteria {
+  name: String
+}
+input BookingCustomerLocationInput {
+  customerCity: String
+  customerCountry: String
+  customerLocation: String
+  ipAddress: String!
+}
+"## BOOKING ###"
+input BookingDataInput {
+  availabilitySlotKey: String!
+  bookingReferrals: BookingReferralsInput!
+  bookingType: BookingType
+  departureDate: DateTime!
+  discountType: DiscountType!
+  fareTypesToBook: [FareTypeToBookInput!]!
+  giftDetails: GiftBookingInput
+  openDatedDetails: OpenDatedBookingInput
+  productId: String!
+}
+input BookingDetails {
+  cancellationPolicy: CancellationPolicy
+  clientReference: String
+  id: Int
+  livnReference: String
+  partyEmailAddress: String
+  partyName: String
+  passThroughReference: String
+  supplierReference: String
+}
+input BookingError {
+  customerErrorMessage: String
+  goBackToRetry: Boolean
+  internalErrorMessage: String
+  terminateTransaction: Boolean
+}
+input BookingFilterCriteria {
+  bookingStatus: BookingStatus
+  createdAt: DateRangeFilterCriteria
+  expirationDate: DateRangeFilterCriteria
+  orderNumber: String
+  productId: String
+}
+input BookingInternalNoteInput {
+  id: Int
+  noteText: String!
+}
+input BookingParticipant {
+  firstName: String
+  lastName: String
+  resSystemFareTypeId: String
+}
+input BookingParticipantDetailsInput {
+  customBookingFields: [CustomBookingFieldAnswerInput!]! = []
+  firstName: String
+  id: Int!
+  lastName: String
+}
+input BookingPickupInput {
+  additionalNotes: String
+  address: String
+  name: String
+  offset: Int
+  pickupId: String
+}
+input BookingPrimaryContact {
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  resSystemFareTypeId: String
+}
+input BookingReferralsFilterCriteria {
+  channelId: String
+  merchantId: String
+}
+input BookingReferralsInput {
+  affiliateType: String
+  channelId: String!
+  merchantId: String!
+  promotionName: String
+}
+"Booking for Fareharbor, Ibis, Respax, Rezdy"
+input BookingRequest {
+  bookingType: BookingType
+  itemsToBook: [ItemsToBook]
+  participants: [BookingParticipant]
+  payment: Payment
+  primaryContact: BookingPrimaryContact
+  productId: String
+  slotInfo: BookingSlotInfo
+  travelloBookingData: TravelloBookingData
+}
+input BookingSlotInfo {
+  availabilityKey: String
+  departureDate: DateTime
+  departureDateLocal: String
+  departureDateOffset: Int
+  productId: String
+}
+input BPD_BookingExtraFieldInput {
+  formKey: String!
+  value: String
+}
+input BPD_BookingRequestInput {
+  date: String
+  adultQuantity: Int!
+  childQuantity: Int
+  familyQuantity: Int
+  prices: BPD_BookingRequestPricesInput!
+}
+input BPD_BookingRequestPricesInput {
+  adultPrice: Float!
+  childPrice: Float
+  familyPrice: Float
+}
+input BPD_ChannelFilter {
+  hosts: [String!]
+  ids: [ID!]
+}
+input BPD_ContactBookingDataInput {
+  contactName: String!
+  email: String!
+  contactNumber: String!
+  participants: [BPD_ContactBookingDataParticipantInput!]!
+  couponCode: String
+  pickupID: String
+  specialInstructionMessage: String
+  extraFields: [BPD_BookingExtraFieldInput]
+}
+input BPD_ContactBookingDataParticipantInput {
+  fareType: BPD_FareTypeInput!
+  name: String!
+  extraFields: [BPD_BookingExtraFieldInput]
+}
+input BPD_CreateBookingInput {
+  productSlug: String!
+  orderID: String!
+  availabilitySlotId: String!
+  nonce: String!
+  deviceData: String!
+  countryCode: String!
+  zipCode: String
+  bookingData: BPD_ContactBookingDataInput!
+  bookingRequest: BPD_BookingRequestInput!
+}
+input BPD_CreateWishlistInput {
+  host: String!
+  productId: String!
+  date: DateTime!
+  email: String!
+}
+input BPD_FareTypeBookingID {
+  bpdFareType: BPD_FareTypeInput!
+  resSystemBookingId: String!
+}
+input BPD_GenerateBraintreeClientTokenInput {
+  channelHost: String!
+  productSlug: String!
+  bookingRequest: BPD_OpenDatedBookingRequestInput!
+  orderID: String
+  generateBraintreeToken: Boolean
+}
+input BPD_IntRange {
+  from: Int!
+  to: Int!
+}
+input BPD_OpenDatedBookingRequestInput {
+  adultQuantity: Int!
+  childQuantity: Int
+  familyQuantity: Int
+}
+input BPD_ProductFilter {
+  countryIds: [Int!]
+  cityIds: [Int!]
+  categoryIds: [Int!]
+  priceRange: BPD_IntRange
+  tourLength: BPD_IntRange
+  lastMinute: Boolean
+  topDeal: Boolean
+}
+input BPD_UpdateContactInformationInput {
+  orderID: String!
+  bookingData: BPD_ContactBookingDataInput!
+  bookingRequest: BPD_BookingRequestInput!
+}
+input BPD_ValidateBookingInput {
+  channelHost: String!
+  productSlug: String!
+  availabilitySlotId: String!
+  bookingRequest: BPD_BookingRequestInput!
+  generateBraintreeToken: Boolean
+  orderID: String
+  isGroupOrder: Boolean
+  isBuyAsAGift: Boolean
+  fareTypeBookingIds: [BPD_FareTypeBookingID]!
+  deviceInfo: String
+}
+input BPD_ValidateCouponInput {
+  productSlug: String!
+  couponCode: String!
+  orderID: String!
+  adultQuantity: Int!
+  childQuantity: Int
+  familyQuantity: Int
+  email: String
+}
+input Cancellation {
+  booking: Booking
+  confirmed: DateTime
+  created: DateTime
+  error: BookingError
+  failed: DateTime
+  id: Int
+  modified: DateTime
+  price: PriceCancellationCost
+  reason: String
+  supplierReference: String
+}
+input CancellationPolicy {
+  rules: [CancellationPolicyRule]
+  setAtTimeOfBooking: Boolean
+  text: String
+}
+input CancellationPolicyRule {
+  after: DateTime
+  cancellationCostAmount: PriceCancellationCostAmount
+  cancellationCostPerc: String
+  cancellationPossible: Boolean
+}
+input Catalogue {
+  id: Int
+  modified: DateTime
+  name: String
+}
+input Category {
+  id: Int
+  name: String
+}
+input CategoryDataInput {
+  additionalCategoryUniqueNames: [String!]
+  mainCategoryUniqueName: String
+}
+input Channel {
+  billingCurrency: String
+  cancellationPolicy: ChannelCancellationPolicy
+  created: DateTime
+  directConnect: Boolean
+  forexSurchargePerc: String
+  id: Int
+  modified: DateTime
+}
+input ChannelCancellationPolicy {
+  rules: [ChannelCancellationPolicyRule]
+  text: String
+}
+input ChannelCancellationPolicyRule {
+  cancellationCostAmount: PriceCancellationCostAmount
+  cancellationCostPerc: String
+  cancellationPossible: Boolean
+  hoursToDeparture: Int
+}
+input CityDataInput {
+  additionalCityUniqueNames: [String!]
+  mainCityUniqueName: String
+}
+input ClientFilterCriteria {
+  affiliateType: String
+  channel: String
+  city: String
+  country: String
+  ip: String
+  merchant: String
+  promotionName: String
+}
+input Company {
+  address1: String
+  address2: String
+  businessNumber: String
+  city: String
+  code: String
+  country: String
+  created: DateTime
+  email: String
+  id: Int
+  modified: DateTime
+  name: String
+  nameCompany: String
+  nameTradingAs: String
+  phone: String
+  postcode: String
+  state: String
+  tz: String
+}
+input CustomBookingFieldAnswerInput {
+  answerValue: String!
+  customBookingFieldId: Int!
+}
+input CustomBookingFieldsFilter {
+  productId: ID!
+}
+input CustomBookingFieldsInput {
+  fieldType: CustomBookingFieldType!
+  fieldTypeDataForeignId: Int
+  isRequiredByProvider: Boolean
+  label: String
+  note: String
+  originalLabel: String
+  placeholder: String
+  publishedLevel: VisibilityLevel!
+  requiredLevel: VisibilityLevel!
+  resSystemFieldId: String!
+}
+input CustomerSearchCriteria {
+  email: String
+  name: String
+  phone: String
+}
+input DateRangeFilterCriteria {
+  from: Date
+  to: Date
+}
+input DateRangeInput {
+  end: DateTime!
+  start: DateTime!
+}
+"Livn models"
+input DepartureSelection {
+  endDate: String
+  productId: String
+  startDate: String
+}
+input DiscountRuleFilter {
+  bpdId: Int
+  productId: ID!
+}
+"Discount related models"
+input DiscountRuleInput {
+  blackoutDates: [DateRangeInput!]
+  " used for DB-sync only to ensure one-to-one mapping between BPD record and new DiscountRule record"
+  bpdId: Int
+  dayOfWeekDisabled: Int
+  discountRate: Int!
+  isApproved: Boolean
+  numberOfSeats: Int
+  startTimeOffset: Int!
+  travelDate: DateRangeInput
+  valid: DateRangeInput
+}
+input DiscountsConfigurationUpdateInput {
+  commissionType: CommissionDiscountType!
+  fareDiscounts: [FareDiscountValuesInput!]!
+  productId: String!
+}
+input Distributor {
+  company: Company
+  created: DateTime
+  emailCancellations: String
+  emailRes: String
+  id: Int
+  modified: DateTime
+  name: String
+  tnc: String
+}
+input DurationRange {
+  maxDurationInMinutes: Int
+  minDurationInMinutes: Int
+}
+input EditProductInput {
+  nextAvailableDate: String!
+  priceFrom: Float!
+  priceFromCurrency: String!
+  productId: String!
+}
+input ExternalResource {
+  caption: String
+  data: String
+  mimeType: String
+  printRequired: Boolean
+  required: Boolean
+  ticketUuids: [UUID]
+  url: String
+}
+input ExternalResources {
+  externalResources: [ExternalResource]
+}
+input FareDetails {
+  addOns: [AddOn]
+  baseVariants: [BaseVariant]
+}
+input FareDiscountValuesInput {
+  bpdFareType: BpdFareType
+  commission: Float
+  displayName: String
+  fareDiscount: Float
+  fareTypeId: Int!
+  isHidden: Boolean
+  isLevyIncluded: Boolean
+  levyAmount: Float
+  levyBpdLabel: String
+  levyLabel: String
+}
+input FareLivn {
+  addOns: [AddOn]
+  ageMax: Int
+  ageMin: Int
+  ageQualified: Boolean
+  availabilityUnknown: Boolean
+  description: String
+  name: String
+  otherCharges: String
+  price: PriceFare
+  specialNotes: String
+  unitsAvailable: Int
+  unitsMax: Int
+  unitsMin: Int
+  unitsMultipleOf: Int
+  uuid: UUID
+}
+input FareSelection {
+  hint: String
+  quantity: Int
+  uuid: String
+}
+input FareTypeFilter {
+  productId: ID!
+  showHidden: Boolean!
+}
+input FareTypeToBookInput {
+  numberOfSeats: Int!
+  resSystemBookingId: String!
+  resSystemFareTypeId: String!
+}
+input FareTypeUpdateInput {
+  bpdFareType: BpdFareType
+  description: String
+  displayName: String
+  " Database ID"
+  id: Int!
+  isHidden: Boolean
+  resSystemFareTypeId: ID
+}
+" Filter =  full match #"
+input FilterBookingCriteria {
+  booking: BookingFilterCriteria
+  coupon: BookingCouponFilterCriteria
+  referrals: BookingReferralsFilterCriteria
+}
+input FilterVoucherCriteria {
+  dealName: String
+  voucherStatus: VoucherStatus
+}
+input Flow {
+  billingInfo: BillingInfo
+  bookings: [Booking]
+  clientId: String
+  clientReference: String
+  currency: String
+  date: Date
+  directConnect: Boolean
+  id: Int
+  livnReference: String
+  product: LivnProduct
+  productId: Int
+  roadmap: String
+  simulation: Boolean
+  steps: [Step]
+}
+"Get Product Raw Data"
+input GetProductDataInput {
+  productCode: String
+  resSystemType: ImportResSystemType!
+}
+input GiftBookingInput {
+  dateOfPrice: DateTime!
+}
+input Highlights {
+  highlights: [String]
+}
+"check the document for parameters of image transformation https://docs.imgproxy.net/generating_the_url?id=processing-options"
+input ImageTransformInput {
+  autoQuality: AutoQualityInput
+  dpr: Float
+  enlarge: Boolean
+  extend: Boolean
+  height: Int
+  quality: Int
+  resizeType: ImgResizeType
+  width: Int
+}
+"import Remote Deals"
+input ImportRemoteDealsInput {
+  resSystemType: ImportResSystemType!
+}
+input Inclusion {
+  content: String
+  type: String
+}
+input Inclusions {
+  items: [Inclusion]
+}
+input Invoice {
+  contractCommTotal: PriceContractCommTotal
+  grossTotal: PriceLineItemsGrossTotal
+  lineItems: [LineItem]
+  netTotal: PriceLineItemsNetTotal
+  resSuppliedCommTotal: PriceResSuppliedCommTotal
+}
+input ItemsToBook {
+  quantityToBook: Int
+  resSystemFareTypeId: String
+}
+input Itinerary {
+  items: [ItineraryItem]
+  name: String
+}
+input ItineraryItem {
+  body: String
+  dayFrom: Int
+  dayTo: Int
+  timeFrom: String
+  timeTo: String
+  title: String
+}
+input LineItem {
+  commissionTotal: PriceLineItemCommissionTotal
+  fareUuids: [UUID]
+  grossPerUnit: PriceLineItemGrossPerUnit
+  grossTotal: PriceLineItemGrossTotal
+  netPerUnit: PriceLineItemNetPerUnit
+  netTotal: PriceLineItemNetTotal
+  quantity: Int
+  salesComputationDetails: SalesComputationDetails
+  title: String
+  type: String
+}
+input LivnImage {
+  fileSize: Int
+  height: Int
+  mimeType: String
+  title: String
+  url: String
+  width: Int
+}
+input LivnProduct {
+  ageMax: Int
+  ageMin: Int
+  catalogue: Catalogue
+  catalogueProductId: Int
+  categories: [Category]
+  channel: Channel
+  commissionPerc: String
+  created: DateTime
+  currencies: [String]
+  demo: Boolean
+  description: String
+  disabled: Boolean
+  distance: Float
+  distributor: Distributor
+  dropoffNotes: String
+  duration: Int
+  durationRangeMax: Int
+  durationStr: String
+  groupSizeMax: Int
+  highlights: Highlights
+  id: Int
+  images: [LivnImage]
+  inclusions: Inclusions
+  itinerary: Itinerary
+  locationsEnd: [Location]
+  locationsStart: [Location]
+  modified: DateTime
+  name: String
+  nameOriginal: String
+  netRatesMarkupPerc: String
+  operatedBy: String
+  operatingDays: Int
+  operatingDaysStr: String
+  operatingLanguages: [String]
+  operatingSchedule: String
+  pickupNotes: String
+  redemptionNotes: String
+  resSystem: String
+  specialNotes: String
+  supplier: SupplierBasic
+  timeStart: String
+  timeStartRangeMax: String
+  usesNetRates: Boolean
+  v1Cid: Int
+}
+input LocalTime {
+  hour: Int
+  minute: Int
+  nano: Int
+  second: Int
+}
+input Location {
+  address1: String
+  address2: String
+  building: String
+  business: String
+  city: String
+  continent: String
+  country: String
+  district: String
+  landmark: String
+  latitude: Float
+  longitude: Float
+  postcode: String
+  state: String
+  streetAddressAccuracy: Boolean
+  tz: String
+}
+input MapBookingFieldTypeConfigurationInput {
+  id: ID
+  label: String
+  originalLabel: String
+  resSystemAnswerId: String
+}
+"This input type represents a filter used to query for the next available date and price information."
+input NextAvailableDateAndPriceFromFilter {
+  "Enabled reservation providers for availability and price fetching."
+  enabledResProviders: String!
+  "Flag indicating whether to only enquire about availability."
+  enquireOnly: Boolean!
+  "Flag indicating whether to force the use of availability version 1."
+  forceAvailabilityV1: Boolean!
+  "Number of days to fetch price information from the current date."
+  priceFromFetchPeriodDays: Long!
+  "Unique identifier of the product for availability and price querying."
+  productId: String!
+}
+input OpenDatedBookingInput {
+  dateOfPrice: DateTime!
+}
+input OtherDetails {
+  body: String
+  title: String
+}
+input PassengerDetails {
+  age: Int
+  fareUUIDs: [UUID]
+  name: String
+  otherDetails: [OtherDetails]
+}
+input Payment {
+  amount: Float
+  datePaid: DateTime
+  type: String
+}
+input PickupDetails {
+  dropOffLocation: String
+  dropOffTime: String
+  dropoffNotes: String
+  fareUuids: [UUID]
+  notes: String
+  pickupLocation: String
+  pickupTime: String
+}
+input PriceAddOn {
+  amount: String
+  currency: String
+}
+input PriceCancellationCost {
+  amount: String
+  currency: String
+}
+input PriceCancellationCostAmount {
+  amount: String
+  currency: String
+}
+input PriceContractComm {
+  amount: String
+  currency: String
+}
+input PriceContractCommTotal {
+  amount: String
+  currency: String
+}
+input PriceFare {
+  amount: String
+  currency: String
+}
+input PriceLineItemCommissionTotal {
+  amount: String
+  currency: String
+}
+input PriceLineItemGrossPerUnit {
+  amount: String
+  currency: String
+}
+input PriceLineItemGrossTotal {
+  amount: String
+  currency: String
+}
+input PriceLineItemNetPerUnit {
+  amount: String
+  currency: String
+}
+input PriceLineItemNetTotal {
+  amount: String
+  currency: String
+}
+input PriceLineItemsGrossTotal {
+  amount: String
+  currency: String
+}
+input PriceLineItemsNetTotal {
+  amount: String
+  currency: String
+}
+input PriceRange {
+  currencyCode: String!
+  from: Float!
+  to: Float!
+}
+input PriceResSupplied {
+  amount: String
+  currency: String
+}
+input PriceResSuppliedComm {
+  amount: String
+  currency: String
+}
+input PriceResSuppliedCommTotal {
+  amount: String
+  currency: String
+}
+input PriceResSuppliedGrandTotal {
+  amount: String
+  currency: String
+}
+input PriceResSuppliedNetGrandTotal {
+  amount: String
+  currency: String
+}
+input ProductDataInput {
+  categories: CategoryDataInput
+  cities: CityDataInput
+  currencyCode: String
+  " List of channel hosts where this product will be excluded"
+  excludedChannelHosts: [String!]
+  " The global discount of a product"
+  globalDiscount: Float
+  productId: String!
+}
+input ProductDataMap {
+  key: String!
+  value: String!
+}
+input ProductDateRange {
+  endDate: Date
+  startDate: Date
+}
+input ProductDetails {
+  baseVariantName: String
+  fareSelectionUUID: UUID
+  location: String
+  name: String
+  openingHours: String
+  otherDetails: [OtherDetails]
+  startTime: String
+}
+input ProductFilter {
+  categoryNames: [String!]
+  categoryUniqueNames: [String!]
+  " use the current channel host to get the products that is only included in that channel"
+  channelHostFilter: String
+  """
+   use cityNames to do freetext match, for example "Brsibane" could match both "Brsibane" and "Brisbane City"
+  """
+  cityNames: [String!]
+  " use uniqueName to do precise match"
+  cityUniqueNames: [String!]
+  countryNames: [String!]
+  countryUniqueNames: [String!]
+  " filter by labels"
+  dateRange: ProductDateRange
+  durationRange: DurationRange
+  includeChildren: Boolean! = false
+  includeHiddenFromSearch: Boolean! = false
+  labelNames: [String!]
+  locationFilter: ProductLocationFilter
+  priceRange: PriceRange
+  productIds: [String!]
+  regionNames: [String!]
+  regionUniqueNames: [String!]
+  slug: String
+  " free text query based on prefix, support multiple words, sort by match score, query targets include title/city/country/category of a product"
+  textQuery: TextQuery
+}
+input ProductLocationFilter {
+  latitude: Float!
+  longitude: Float!
+  radiusInKm: Int = 200
+}
+"these models for metadata"
+input ProductMetaImportInput {
+  productDataMap: [ProductDataMap]!
+  productId: String!
+  resSystemType: ResSystemType!
+}
+input ProductSelection {
+  currency: String
+  date: String
+  productId: String
+}
+input PromocodeListSearchInput {
+  nameOrCode: String
+  parentOnly: Boolean! = false
+  status: PromocodeListStatus
+}
+input PromocodeListSortInput {
+  column: PromocodeListAllowedColumns! = ID
+  sortOrder: PromocodeListSortOrder! = ASC
+}
+input PromocodeRedemptionInput {
+  code: String!
+  userEmailId: String!
+}
+"Inputs"
+input PromocodeSaveInput {
+  active: Boolean!
+  application: PromocodeApplicationType!
+  categoryId: String
+  "Id input can be null for an insert or non null for an update"
+  code: String
+  currencyId: String
+  description: String
+  discountType: PromocodeDiscountType!
+  end: DateTime!
+  excludedProductIds: [String!]! = []
+  id: Int
+  isPartOfSpecialPromotion: Boolean
+  locationId: String
+  locationType: PromocodeLocationLeaf
+  minimumOrderAmount: Int
+  "Code input can be null to autogenerate a code"
+  name: String!
+  nonDiscountOffersOnly: Boolean!
+  productIds: [String!]! = []
+  quantity: Int
+  specialPromotionId: String
+  start: DateTime!
+  type: PromocodeType!
+  uniquePerUser: Boolean!
+  "defaults to 0"
+  value: Int!
+}
+input PromocodeValidationInput {
+  categoryIds: [String!]!
+  cityId: String!
+  code: String!
+  countryId: String!
+  " or multiple product ids"
+  currencyId: String!
+  isDiscountedPrice: Boolean!
+  productId: String!
+  "Need all the ids to match the geo leaf"
+  regionId: String!
+  totalPrice: Float!
+}
+input Question {
+  answerType: String
+  defaultValue: String
+  description: String
+  example: String
+  fareUuids: [UUID]
+  feeDescription: String
+  lengthMax: Int
+  lengthMin: Int
+  multiLine: Boolean
+  purpose: String
+  regex: String
+  required: Boolean
+  scope: String
+  selectMax: Int
+  selectMin: Int
+  selectOptions: [SelectOption]
+  title: String
+  uuid: UUID
+  valueMax: String
+  valueMin: String
+}
+input QuestionGroup {
+  caption: String
+  questions: [Question]
+}
+input Questions {
+  questionGroups: [QuestionGroup]
+}
+input Quote {
+  cancellationPolicy: CancellationPolicy
+  contractCommTotal: PriceContractCommTotal
+  generalTerms: String
+  grossTotal: PriceLineItemsGrossTotal
+  lineItems: [LineItem]
+  localFees: String
+  netTotal: PriceLineItemsNetTotal
+  resSuppliedCommTotal: PriceResSuppliedCommTotal
+  title: String
+}
+input SalesComputationDetails {
+  commissionable: Boolean
+  contractCommPerc: String
+  contractCommPrice: PriceContractComm
+  resSuppliedCommPerc: String
+  resSuppliedCommPrice: PriceResSuppliedComm
+  resSuppliedPrice: PriceResSupplied
+  resSuppliedPriceIsNetRate: Boolean
+}
+"""
+## Booking Search ###
+ Search = partial matching #
+"""
+input SearchBookingCriteria {
+  bookingUid: String
+  customer: CustomerSearchCriteria
+}
+input SearchVoucherCriteria {
+  customerEmail: String
+  id: Int
+  voucherCode: String
+}
+input SelectOption {
+  description: String
+  feeDescription: String
+  followUpQuestions: Questions
+  title: String
+  uuid: UUID
+}
+input SingleProductCacheUpdateInput {
+  cacheConfigType: AvailabilityCacheConfigType
+  productId: String!
+  resSystemType: ResSystemType!
+  startDate: Date
+}
+input StartCacheJobInput {
+  cacheConfigType: AvailabilityCacheConfigType!
+  resSystemType: ResSystemType!
+}
+input Step {
+  addOnSelections: [AddOnSelection]
+  allowBackHere: Boolean
+  answers: Answers
+  caption: String
+  created: String
+  error: BookingError
+  expires: String
+  fareDetails: FareDetails
+  fareSelections: [FareSelection]
+  finalQuote: Quote
+  id: Int
+  milestone: String
+  modified: String
+  nextStepConfirmedBooking: Boolean
+  nextStepSequenceNumber: Int
+  nextStepTemporaryHold: Boolean
+  previousStep: String
+  previousStepSequenceNumber: Int
+  questions: Questions
+  resSuppliedGrossGrandTotal: PriceResSuppliedGrandTotal
+  resSuppliedNetGrandTotal: PriceResSuppliedNetGrandTotal
+  sequenceNumber: Int
+  status: String
+  stepName: String
+}
+input StepSelection {
+  currency: String
+  date: String
+  id: Float
+  productId: String
+  step: [Step]
+}
+input StringBookingFieldTypeConfigurationInput {
+  maxLength: Int
+  regex: String
+  shortDescription: String!
+}
+input SupplierBasic {
+  address1: String
+  address2: String
+  businessNumber: String
+  catalogueSupplierId: Int
+  city: String
+  country: String
+  created: DateTime
+  demo: Boolean
+  description: String
+  disabled: Boolean
+  email: String
+  emailRes: String
+  id: Int
+  logo: LivnImage
+  modified: DateTime
+  name: String
+  nameCompany: String
+  nameOriginal: String
+  nameTradingAs: String
+  phoneRes: String
+  postcode: String
+  resSystem: String
+  state: String
+  tnc: String
+  tz: String
+  v1Cid: Int
+  website: String
+}
+input SyncProductsInput {
+  cacheConfigType: AvailabilityCacheConfigType
+  productIds: [String!]!
+  resSystemType: ResSystemType!
+  startDate: Date
+}
+input TextQuery {
+  text: String!
+  " empty categories means query all categories"
+  textQueryCategories: [TextQueryCategory!]
+}
+input Ticket {
+  barcodeDetails: BarcodeDetails
+  billingNotes: String
+  bookingDetails: BookingDetails
+  created: DateTime
+  id: Int
+  localFees: String
+  localOperatorName: String
+  passengerDetails: [PassengerDetails]
+  pickupDetails: PickupDetails
+  printRequired: Boolean
+  productDetails: [ProductDetails]
+  specialNotes: String
+  supplierEmailRes: String
+  supplierName: String
+  supplierPhoneRes: String
+  supplierReference: String
+  travelDate: Date
+  uuid: String
+}
+input Timeslot {
+  addOns: [AddOn]
+  availabilityShared: Boolean
+  available: Boolean
+  description: String
+  duration: Int
+  durationRangeMax: Int
+  durationStr: String
+  fares: [FareLivn]
+  name: String
+  specialNotes: String
+  timeEnd: String
+  timeStart: String
+}
+input TravelloBookingData {
+  orderNumberCode: String
+  voucherCodes: [String]
+}
+input UpdateBookingDataInput {
+  availabilitySlotKey: String!
+  departureDate: DateTime!
+  discountType: DiscountType!
+  fareTypesToBook: [FareTypeToBookInput!]!
+  userApprovedPriceChange: Boolean
+}
+input UpdateMapBookingFieldTypeConfigurationInput {
+  id: Int!
+  label: String
+  originalLabel: String
+  resSystemAnswerId: String
+}
+input UserBookingFilter {
+  status: UserBookingStatus
+}
+input UserPrivacySettingsInput {
+  email: UserPrivacyType!
+}
+input UUID {
+  value: String
+}
+input ZoneOffset {
+  totalSeconds: Int
+}
+directive @defer(label: String, if: Boolean! = true) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+"Exposes a URL that specifies the behavior of this scalar."
+directive @specifiedBy(
+    "The URL that specifies the behavior of this scalar."
+    url: String!
+  ) on SCALAR
+

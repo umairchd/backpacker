@@ -1,0 +1,66 @@
+.confirmation-page-container {
+  margin: 2rem 0;
+
+  .card-confirmation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem !important; // override card-body default padding;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      padding: 1rem 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.8rem;
+      }
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 1rem 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+    }
+
+    .icon-check-circle {
+      width: 8rem;
+      height: 8rem;
+      color: #8ad914;
+      margin: 1rem 0;
+
+      @media screen and (max-width: 768px) {
+        width: 6rem;
+        height: 6rem;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button-explore {
+      margin-top: 1.5rem;
+      padding: 0.5rem 2.5rem;
+    }
+
+    .share-info {
+      margin-top: 1rem;
+      padding: 0.5rem 2.5rem;
+      width: 100%;
+    }
+
+    .terms {
+      font-size: 0.8rem;
+      margin-top: 2rem;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.htmlPageContent {
+  :global(.temp-content) {
+    margin-top: 2rem;
+  }
+
+  :global(.text-center) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h3 {
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+  }
+
+  :global(hr) {
+    margin: 2rem 0;
+  }
+
+  :global(.temp-content h1) {
+    margin-bottom: 1rem;
+  }
+
+  :global(.temp-content h2) {
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+}

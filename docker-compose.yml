@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+  web:
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
+    #   target: nginx
+    image: us.gcr.io/travello-api/frontend/backpackerdeals-next-nginx:3594
+    ports:
+      - "8888:8080"
+    depends_on:
+      - node
+    volumes:
+      - ./docker-dev/nginx/rootfs/etc/nginx/conf.d/00-upstream.conf:/etc/nginx/conf.d/00-upstream.conf
+      - ./docker/nginx/rootfs/etc/nginx/conf.d/01-default.conf:/etc/nginx/conf.d/01-default.conf
+      - ./public/images:/var/www/html/images
+      - ./public/imagesv3:/var/www/html/imagesv3
+      - ./public/favicon.ico:/var/www/html/favicon.ico
+      - ./bpd:/var/www/bpd # dev only
+
+  node:
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
+    #   target: runner
+
+    image: us.gcr.io/travello-api/frontend/backpackerdeals-next:3594
+    # env_file:
+    #   - .env
+
+    environment:
+      - TZ=UTC
+      - PORT=3000
+      - NEXT_TELEMETRY_DISABLED=1
+      - NEW_RELIC_ENABLED=false
+      - NEW_RELIC_APP_NAME=backpackerdeals-next (dev)
+      - NEW_RELIC_NO_CONFIG_FILE="true"
+      - NEW_RELIC_LICENSE_KEY=e4da6dcab97cc721420459ff719b32456ac1NRAL
+      - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED="true"
+      - NEW_RELIC_IGNORING_RULES='^/ready,^/live,^/_next/static/\*\*/\*'
+      - TRAVELLO_GRAPH=https://api-stage.travelloapp.com/graphql
+      - TRAVELLO_GRAPH_SERVER_SIDE=http://host.docker.internal:10000/graphql
+      - TRAVELLO_APIKEY=test123
+      - TRAVELLO_REST=https://api-stage.travelloapp.com/2
+      - BLOG_URL=https://www.backpackerdeals.com/blog
+      - HOST_OVERRIDE=experiences.stage.travelloapp.com
+      - CLIENTIP_OVERRIDE=159.196.13.170 # your ip
+      - BPD_ASSETS_BASEURL=https://assets-stage.backpackerdeals.com
+      - SHARE_A_SALE_COOKIE_EXPIRY_DAYS=30
+      - ENABLED_RES_PROVIDERS=FAREHARBOR,IBIS,REZDY
+      - SECRET_COOKIE_PASSWORD=88BzDsaWPR7bGkEFjdGuPHcwaJgyMK54
+      - OAUTH_CLIENT_ID=backpackerdeals-next
+      - OAUTH_CLIENT_SECRET=MdT41K9wksuN6FPV3suYzcagfNc2yWMd
+      - OAUTH_ISSUER=http://host.docker.internal:8090/auth/realms/travello
+      - USER_SERVICE_SERVER_SIDE=http://host.docker.internal:8088/2
+      - OAUTH_USER_SERVICE_CLIENT_ID=travelloapp-legacy
+      - OAUTH_USER_SERVICE_CLIENT_SECRET=7f7IOaINePVrM2UQHSXtDprZqMfEceSL
+      - CASHBACK_HOSTS=["www.stage.backpackerdeals.com", "experiences.stage.travelloapp.com", "cairns.stage.travelloapp.com", "www.stage2.backpackerdeals.com", "experiences.stage2.travelloapp.com", "cairns.stage2.travelloapp.com"]
+      - CSP=""
+      - NODE_OPTIONS=--max-old-space-size=1536
+
+
+    ports:
+      - "3000:3000"

@@ -1,0 +1,248 @@
+.booking-info-modal {
+  .booking-info-card {
+    border: none;
+
+    :global(.card-body) .booking-extra-details {
+      display: block;
+    }
+  }
+
+  .booking-info-modal-close-btn {
+    position: absolute;
+    right: 16px;
+    top: 5px;
+    color: white;
+    font-size: 21px;
+    z-index: 1;
+  }
+
+  .booking-info-card :global(.card-title) .product-image-dimmer {
+    display: none;
+  }
+}
+
+.booking-info-card {
+  overflow: hidden;
+
+  :global(.card-title) {
+    height: 128px;
+    position: relative;
+    margin-bottom: 0;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .product-image-dimmer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: white;
+      background: #0000006e;
+      font-size: 20px;
+      line-height: 26px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 40px;
+
+      .product-details-trigger-buttons {
+        display: none;
+
+        @media screen and (max-width: 992px) {
+          display: flex;
+          gap: 10px;
+          margin-top: 20px;
+
+          button {
+            width: 167px;
+            height: 40px;
+            color: white;
+            text-transform: none;
+            border-radius: 4px;
+
+            svg {
+              width: 18px;
+              margin-right: 8px;
+              margin-top: -5px;
+
+              path {
+                fill: white;
+              }
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: 992px) {
+        font-size: 16px;
+        line-height: 22px;
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      height: 150px;
+    }
+  }
+
+  :global(
+      .input-group
+        > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(
+          .valid-feedback
+        ):not(.invalid-tooltip):not(.invalid-feedback)
+    ) {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+  }
+
+  :global(.card-body) {
+    & > div > div {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 16px;
+
+      &.product-subtitle {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      svg {
+        margin-right: 14px;
+        width: 18px;
+        margin-top: -5px;
+
+        path {
+          fill: var(--color-green-dark);
+        }
+      }
+
+      &:nth-of-type(4) {
+        svg {
+          transform: rotate(160deg);
+        }
+      }
+    }
+
+    & > .booking-extra-details {
+      b {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .edit-button {
+        font-weight: 600;
+        color: var(--primary);
+        margin-left: 6px;
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
+    }
+
+    hr {
+      margin-top: 18px;
+      margin-bottom: 12px;
+      border-color: #e4e4e4;
+      border-width: 2px;
+    }
+
+    .gift-label {
+      font-size: 16px;
+      font-weight: 600;
+
+      svg {
+        path {
+          fill: black;
+        }
+      }
+    }
+
+    :global {
+      .input-group {
+        .form-control:focus {
+          box-shadow: none;
+        }
+
+        .btn {
+          border-radius: 0 0.375rem 0.375rem 0;
+          width: initial;
+          text-transform: none;
+          padding: 6px 24px;
+        }
+      }
+    }
+
+    .prices-block {
+      margin-top: 15px;
+
+      span {
+        &:last-of-type {
+          text-align: right;
+          min-width: 100px;
+        }
+      }
+
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .promocode-applyed {
+        span:first-of-type {
+          max-width: 60%;
+        }
+
+        span:last-of-type {
+          max-width: 40%;
+        }
+      }
+
+      .promocode-savings {
+        color: var(--primary);
+      }
+    }
+
+    .total-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+
+      span:first-of-type {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      span:last-of-type {
+        font-size: 24px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+
+      .total-tooltip {
+        margin-left: 10px;
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        margin-bottom: 4px;
+        color: green;
+      }
+
+      afterpay-placement {
+        width: 100%;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

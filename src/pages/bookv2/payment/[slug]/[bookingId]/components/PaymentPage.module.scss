@@ -1,0 +1,99 @@
+.booking-page-content {
+  padding: 64px 0;
+  background: var(--color-gray-bg);
+
+  & > :global(.container) {
+    position: relative;
+  }
+
+  .page-flex-container {
+    @media screen and (max-width: 992px) {
+      flex-direction: column-reverse;
+
+      & > section:last-of-type {
+        margin-top: 100px;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  section {
+    background: var(--color-gray-bg);
+  }
+
+  @media screen and (max-width: 992px) {
+    padding: 32px 0;
+    background: white;
+
+    section {
+      background: white !important;
+    }
+  }
+
+  .secureMessage {
+    text-align: center;
+  }
+  .secureHeader {
+    margin: 2rem 0;
+    text-align: center;
+    svg {
+      width: 38px;
+    }
+  }
+
+  .expressContent {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: auto;
+
+    button {
+      border-radius: 5px;
+      background-color: white;
+      min-width: 6rem;
+      svg {
+        width: 40px;
+      }
+    }
+  }
+
+  .braintree-heading {
+    display: none;
+  }
+
+  #cardForm {
+    background-color: red;
+  }
+
+  .form {
+    [data-braintree-id="payment-options-container"] {
+      display: flex;
+      flex-direction: column-reverse;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    [role="button"] {
+      border-radius: 0;
+      border-width: 1px;
+      margin-top: -1px;
+    }
+  }
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+}
+
+.error-modal {
+  padding: 5%;
+  .modal-header {
+    border: none;
+  }
+  .modal-svg {
+    width: 60px;
+    height: 60px;
+  }
+}

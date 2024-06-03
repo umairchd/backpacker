@@ -1,0 +1,108 @@
+.form-warning {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  padding: 14px 20px;
+  background: #ffaa0433;
+
+  @media screen and (max-width: 992px) {
+    margin-bottom: 0;
+  }
+}
+
+.booking-details-form-wrapper {
+  :global(.form-label).form-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    svg {
+      width: 16px;
+      margin-top: -5px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.booking-details-form {
+  margin-bottom: 30px;
+
+  .custom-booking-fields {
+    & > div {
+      margin-top: 16px;
+    }
+  }
+
+  :global(.container) {
+    padding: 0;
+  }
+
+  .person-block {
+    border: 1px solid var(--color-gray-medium);
+    border-radius: 4px;
+    margin: 5px 0;
+    padding: 20px 28px 0 28px;
+    height: 70px;
+    overflow: hidden;
+    transition: height 0.3s;
+
+    &.selected {
+      border-color: var(--primary);
+      border-width: 2px;
+      height: auto;
+
+      @media screen and (max-width: 768px) {
+        height: 280px;
+      }
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+
+      svg {
+        width: 20px;
+        margin-top: -3px;
+        margin-right: 16px;
+        cursor: pointer;
+      }
+
+      span {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+
+        svg {
+          width: 15px;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  :global(.row) {
+    & > div {
+      box-sizing: border-box;
+      position: relative;
+    }
+  }
+
+  .submit-button {
+    width: 93px;
+    height: 34px;
+    background: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    text-transform: none;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    &:active,
+    &:focus {
+      background: var(--color-green-dark);
+      border-color: var(--color-green-dark);
+    }
+  }
+}

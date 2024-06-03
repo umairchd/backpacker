@@ -1,0 +1,54 @@
+.booking-failed-modal {
+  :global {
+    .modal-header {
+      padding: 42px 42px 0 42px;
+      flex-direction: column;
+      border-bottom: none;
+
+      svg {
+        display: block;
+        width: 60px;
+        height: 60px;
+        margin-bottom: 16px;
+      }
+    }
+
+    .btn-close {
+      position: absolute;
+      right: 22px;
+      top: 22px;
+    }
+
+    .modal-body {
+      padding: 20px 42px 42px 42px;
+
+      .btn-toolbar {
+        flex-wrap: nowrap;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+
+        .btn {
+          text-transform: none;
+          border-radius: 34px;
+          max-width: 290px;
+          width: 100%;
+        }
+      }
+
+      span:last-of-type {
+        font-size: 14px;
+        margin-top: 26px;
+        display: inline-block;
+      }
+
+      a {
+        display: block;
+        text-decoration: underline;
+        color: var(--bs-link-color);
+        font-weight: 700;
+        font-size: 20px;
+      }
+    }
+  }
+}

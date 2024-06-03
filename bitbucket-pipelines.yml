@@ -1,0 +1,293 @@
+.run-tests: &run-tests
+  name: Run Tests and Build
+  size: 2x
+  image: node:18
+  services:
+    - docker
+  caches:
+    - node
+    - nextcache
+  script:
+    - &download-rover |
+      curl -sSL https://rover.apollo.dev/nix/v0.14.2 | sh
+      export PATH=$HOME/.rover/bin:$PATH
+    - export BPD_MAIN_BASEPATH=http://backpackerdeals-main:8080
+    - export NODE_OPTIONS=--max_old_space_size=4096
+    - echo "export ENV_TARGET=stage" >> set_env_target.sh
+    - npm ci --legacy-peer-deps
+    - npm run schema:download
+    - npm run codegen
+    - npm run lint
+    - npm run test -- --runInBand --coverage
+    - npm run build
+  artifacts:
+    - test-report.xml
+    - coverage/**
+    - set_env_target.sh
+
+.run-tests-for-production-release: &run-tests-for-production-release
+  name: Run Tests and Build for a production release
+  size: 2x
+  image: node:18
+  services:
+    - docker
+  caches:
+    - node
+    - nextcache
+  script:
+    - &download-rover |
+      curl -sSL https://rover.apollo.dev/nix/v0.14.2 | sh
+      export PATH=$HOME/.rover/bin:$PATH
+    - export BPD_MAIN_BASEPATH=http://backpackerdeals-main:8080
+    - export NODE_OPTIONS=--max_old_space_size=4096
+    - echo "export ENV_TARGET=production" >> set_env_target.sh
+    - npm ci --legacy-peer-deps
+    - npm run schema:download:prod
+    - npm run codegen
+    - npm run lint
+    - npm run test -- --runInBand --coverage
+    - npm run build
+  artifacts:
+    - test-report.xml
+    - coverage/**
+    - set_env_target.sh
+
+.sonarscan: &sonarscan
+  name: sonarscan
+  clone:
+    depth: full
+  caches:
+    - docker
+  services:
+    - docker
+  script:
+    - pipe: sonarsource/sonarcloud-scan:2.0.0
+      variables:
+        EXTRA_ARGS: -Dsonar.javascript.node.maxspace=8192
+        SONAR_SCANNER_OPTS: -Xmx2048m
+    - pipe: sonarsource/sonarcloud-quality-gate:0.1.6
+
+.verify-prod-schema: &verify-prod-schema
+  name: Verify Production Schema
+  image: node:18
+  caches:
+    - node
+  script:
+    - *download-rover
+    - npm ci --legacy-peer-deps
+    - npm run schema:download:prod
+    - npm run codegen
+    - npm run lint
+    - npm run typecheck
+
+.push-docker-images: &push-docker-images
+  size: 2x
+  caches:
+    - docker
+  services:
+    - docker-with-large-memory
+  name: Push Docker Image
+  image: google/cloud-sdk:431.0.0
+  script:
+    - echo "${DEPLOYMENT_SVC_ACCOUNT_KEY}" > /gcr.json
+    - gcloud auth activate-service-account $DEPLOYMENT_SVC_ACCOUNT --key-file=/gcr.json
+    - gcloud auth configure-docker --quiet
+    - export REPO_VERSION=${BITBUCKET_BUILD_NUMBER}
+    - test set_env_target.sh && source set_env_target.sh || export ENV_TARGET=stage
+    - echo ${ENV_TARGET}
+    - docker --version
+    - docker build --build-arg SERVICE_NAME=${BITBUCKET_REPO_SLUG} --build-arg REPO_VERSION=${REPO_VERSION} --build-arg BITBUCKET_COMMIT=${BITBUCKET_COMMIT} --build-arg ENV_TARGET=${ENV_TARGET} --target runner -t us.gcr.io/travello-api/frontend/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BUILD_NUMBER} --memory-swap -1 .
+    - docker build --build-arg SERVICE_NAME=${BITBUCKET_REPO_SLUG} --build-arg REPO_VERSION=${REPO_VERSION} --build-arg BITBUCKET_COMMIT=${BITBUCKET_COMMIT} --build-arg ENV_TARGET=${ENV_TARGET} --target nginx -t us.gcr.io/travello-api/frontend/${BITBUCKET_REPO_SLUG}-nginx:${BITBUCKET_BUILD_NUMBER} --memory-swap -1 .
+    - docker push us.gcr.io/travello-api/frontend/${BITBUCKET_REPO_SLUG}:${BITBUCKET_BUILD_NUMBER}
+    - docker push us.gcr.io/travello-api/frontend/${BITBUCKET_REPO_SLUG}-nginx:${BITBUCKET_BUILD_NUMBER}
+
+.deploy-travello-canary: &deploy-travello-canary
+  name: Deploy To travello-stage 2
+  clone:
+    enabled: false
+  script:
+    # staging k8s
+    - pipe: atlassian/trigger-pipeline:5.5.1
+      variables:
+        BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+        BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+        REPOSITORY: "backend-deployment"
+        ACCOUNT: "travelloapp"
+        CUSTOM_PIPELINE_NAME: "upgrade"
+        PIPELINE_VARIABLES: >
+          [{
+            "key": "SERVICES",
+            "value": "backpackerdeals-next-canary"
+          },
+          {
+            "key": "ENVIRON",
+            "value": "stage"
+          },
+          {
+            "key": "VERSION",
+            "value": "$BITBUCKET_BUILD_NUMBER"
+          }]
+        WAIT: "true"
+  deployment: canary
+
+.deploy-travello-stage: &deploy-travello-stage
+  name: Deploy To travello-stage
+  clone:
+    enabled: false
+  script:
+    # staging k8s
+    - pipe: atlassian/trigger-pipeline:5.5.1
+      variables:
+        BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+        BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+        REPOSITORY: "backend-deployment"
+        ACCOUNT: "travelloapp"
+        CUSTOM_PIPELINE_NAME: "upgrade"
+        PIPELINE_VARIABLES: >
+          [{
+            "key": "SERVICES",
+            "value": "$BITBUCKET_REPO_SLUG"
+          },
+          {
+            "key": "ENVIRON",
+            "value": "stage"
+          },
+          {
+            "key": "VERSION",
+            "value": "$BITBUCKET_BUILD_NUMBER"
+          }]
+        WAIT: "true"
+  deployment: staging
+
+.deploy-travello-live-canary: &deploy-travello-live-canary
+  name: Deploy To travello-live pre-prod
+  clone:
+    enabled: false
+  script:
+    # staging k8s
+    - pipe: atlassian/trigger-pipeline:5.5.1
+      variables:
+        BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+        BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+        REPOSITORY: "backend-deployment"
+        ACCOUNT: "travelloapp"
+        CUSTOM_PIPELINE_NAME: "upgrade"
+        PIPELINE_VARIABLES: >
+          [{
+            "key": "SERVICES",
+            "value": "backpackerdeals-next-canary"
+          },
+          {
+            "key": "ENVIRON",
+            "value": "production"
+          },
+          {
+            "key": "VERSION",
+            "value": "$BITBUCKET_BUILD_NUMBER"
+          }]
+        WAIT: "true"
+  deployment: preprod
+
+.deploy-travello-live: &deploy-travello-live
+  name: Deploy To travello-live prod
+  clone:
+    enabled: false
+  script:
+    # staging k8s
+    - pipe: atlassian/trigger-pipeline:5.5.1
+      variables:
+        BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+        BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+        REPOSITORY: "backend-deployment"
+        ACCOUNT: "travelloapp"
+        CUSTOM_PIPELINE_NAME: "upgrade"
+        PIPELINE_VARIABLES: >
+          [{
+            "key": "SERVICES",
+            "value": "$BITBUCKET_REPO_SLUG"
+          },
+          {
+            "key": "ENVIRON",
+            "value": "production"
+          },
+          {
+            "key": "VERSION",
+            "value": "$BITBUCKET_BUILD_NUMBER"
+          }]
+        WAIT: "true"
+  deployment: production
+
+pipelines:
+  default:
+    - step: *run-tests
+    - step: *sonarscan
+    - step:
+        <<: *push-docker-images
+        trigger: manual
+    - step:
+        <<: *deploy-travello-canary
+  branches:
+    hotfix/*:
+    - step: *run-tests-for-production-release
+    - step: *sonarscan
+    - step: *push-docker-images
+    - step:
+        <<: *deploy-travello-live-canary
+        trigger: manual
+    - step:
+        <<: *verify-prod-schema
+    - step:
+          <<: *deploy-travello-live
+          trigger: manual
+    release/*:
+      - step: *run-tests-for-production-release
+      - step: *sonarscan
+      - step: *push-docker-images
+      - step:
+          <<: *deploy-travello-stage
+          trigger: manual
+      - step:
+          <<: *verify-prod-schema
+      - step:
+          <<: *deploy-travello-live
+          trigger: manual
+    preprod:
+      - step: *run-tests-for-production-release
+      - step: *sonarscan
+      - step: *push-docker-images
+      - step:
+          <<: *verify-prod-schema
+      - step:
+          <<: *deploy-travello-live-canary
+          trigger: manual
+    canary:
+      - step: *run-tests
+      - step: *sonarscan
+      - step: *push-docker-images
+      - step: *deploy-travello-canary
+    develop:
+      - step: *run-tests
+      - step: *sonarscan
+      - step: *push-docker-images
+      - step: *deploy-travello-stage
+    master:
+      - step: *run-tests-for-production-release
+      - step: *sonarscan
+      - step: *push-docker-images
+      - step:
+          <<: *deploy-travello-stage
+          trigger: manual
+      - step:
+          <<: *verify-prod-schema
+      - step:
+          <<: *deploy-travello-live
+          trigger: manual
+definitions:
+  services:
+    docker:
+      memory: 3072
+    docker-with-large-memory:
+      memory: 7168
+      type: docker
+  caches:
+    nextcache: .next/cache

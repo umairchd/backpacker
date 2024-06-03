@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`healthcheck happy case 1`] = `"{"status":"UP"}"`;
+
+exports[`healthcheck happy case post 1`] = `"{"status":"UP"}"`;

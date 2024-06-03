@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`graphql fail at GET 1`] = `"You have you ask me nicely."`;
+
+exports[`graphql happy case 1`] = `
+{
+  "data": {
+    "__typename": "Query",
+  },
+}
+`;
